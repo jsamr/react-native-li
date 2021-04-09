@@ -1,0 +1,17 @@
+coverage:
+  precision: 2
+  round: down
+  range: '80...100'
+  status:
+    project:
+      default:
+        target: auto
+      example-path:
+        target: auto
+        flags:
+          - example-path
+
+flags:
+  example-path:
+    paths:
+      - packages/example-path/

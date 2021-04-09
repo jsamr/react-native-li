@@ -1,0 +1,13 @@
+diff --git a/lib/plugin/npm/npm.js b/lib/plugin/npm/npm.js
+index 1400c8e9476854ba7843dee7ac751dd2f0aea4cb..edf190e473ceb1ef0fd026aec16b40a055702fed 100644
+--- a/lib/plugin/npm/npm.js
++++ b/lib/plugin/npm/npm.js
+@@ -233,7 +233,7 @@ class npm extends Plugin {
+       return false;
+     }
+     const args = [publishPath, `--tag ${tag}`, otpArg, dryRunArg, ...fixArgs(publishArgs)].filter(Boolean);
+-    return this.exec(`npm publish ${args.join(' ')}`, { options })
++    return (this.config.isDryRun ? this.exec(`npm publish ${args.join(' ')}`, { options }) : this.exec(`yarn npm publish ${args.join(' ')}`, { options }))
+       .then(() => {
+         this.setContext({ isReleased: true });
+       })

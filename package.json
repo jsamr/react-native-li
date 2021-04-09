@@ -1,0 +1,40 @@
+{
+  "name": "example-project",
+  "private": true,
+  "scripts": {
+    "demo": "yarn workspace demo",
+    "example-path": "yarn workspace example-npm"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "@formidable-webview/eslint-config-webjs": "^1.0.0",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-compat": "^3.9.0",
+    "eslint-plugin-tsdoc": "^0.2.11",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1"
+  },
+  "resolutions": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-test-renderer": "16.13.1",
+    "@release-it/conventional-changelog": "patch:@release-it/conventional-changelog@2.0.0#patches/@release-it-conventional-changelog.patch",
+    "release-it": "patch:release-it@14.6.0#patches/release-it.patch"
+  },
+  "author": "Jules Sam. Randolph <jules.sam.randolph@gmail.com> (https://github.com/jsamr)",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "workspaces": [
+    "packages/*",
+    "demo"
+  ]
+}
