@@ -2774,6 +2774,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jsamr/counter-style@workspace:*, @jsamr/counter-style@workspace:packages/counter-style":
+  version: 0.0.0-use.local
+  resolution: "@jsamr/counter-style@workspace:packages/counter-style"
+  dependencies:
+    "@babel/cli": ^7.13.14
+    "@babel/core": ^7.13.15
+    "@babel/preset-typescript": ^7.13.0
+    "@babel/runtime": ^7.13.10
+    "@microsoft/api-documenter": ^7.12.20
+    "@microsoft/api-extractor": 7.13.4
+    "@release-it/conventional-changelog": ^2.0.0
+    "@types/jest": ^26.0.22
+    babel-jest: ^26.6.3
+    eslint: ^7.23.0
+    jest: ^26.6.3
+    prettier: ^2.2.1
+    react-native-builder-bob: ^0.18.1
+    release-it: ^14.3.0
+    rimraf: ^3.0.2
+    typescript: ~4.2.4
+  languageName: unknown
+  linkType: soft
+
 "@mdn/browser-compat-data@npm:^2.0.7":
   version: 2.0.7
   resolution: "@mdn/browser-compat-data@npm:2.0.7"
@@ -3230,9 +3253,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@release-it/conventional-changelog@patch:@release-it/conventional-changelog@2.0.0#patches/@release-it-conventional-changelog.patch::locator=plugins-project%40workspace%3A.":
+"@release-it/conventional-changelog@patch:@release-it/conventional-changelog@2.0.0#patches/@release-it-conventional-changelog.patch::locator=react-native-li-project%40workspace%3A.":
   version: 2.0.0
-  resolution: "@release-it/conventional-changelog@patch:@release-it/conventional-changelog@npm%3A2.0.0#patches/@release-it-conventional-changelog.patch::version=2.0.0&hash=6e3e22&locator=plugins-project%40workspace%3A."
+  resolution: "@release-it/conventional-changelog@patch:@release-it/conventional-changelog@npm%3A2.0.0#patches/@release-it-conventional-changelog.patch::version=2.0.0&hash=6e3e22&locator=react-native-li-project%40workspace%3A."
   dependencies:
     concat-stream: ^2.0.0
     conventional-changelog: ^3.1.23
@@ -6274,6 +6297,7 @@ __metadata:
   dependencies:
     "@babel/core": ~7.9.0
     "@expo/metro-config": ^0.1.60
+    "@jsamr/counter-style": "workspace:*"
     expo: ^40.0.1
     expo-status-bar: ~1.0.3
     react: 16.13.1
@@ -12588,24 +12612,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"plugins-project@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "plugins-project@workspace:."
-  dependencies:
-    "@commitlint/cli": ^12.1.1
-    "@commitlint/config-conventional": ^12.1.1
-    "@formidable-webview/eslint-config-webjs": ^1.0.0
-    "@react-native-community/eslint-config": ^2.0.0
-    "@typescript-eslint/eslint-plugin": ^4.21.0
-    "@typescript-eslint/parser": ^4.21.0
-    eslint: ^7.23.0
-    eslint-plugin-compat: ^3.9.0
-    eslint-plugin-tsdoc: ^0.2.11
-    husky: ^6.0.0
-    prettier: ^2.2.1
-  languageName: unknown
-  linkType: soft
-
 "pngjs@npm:^3.0.0, pngjs@npm:^3.3.0, pngjs@npm:^3.3.3":
   version: 3.4.0
   resolution: "pngjs@npm:3.4.0"
@@ -12997,6 +13003,24 @@ fsevents@^1.2.7:
   checksum: ad2cf0080c0d3c42b9ef192a8fe07395787efeb0b682f9190337d7ec8d3a264fa033c1ba632152405fbf0b7c7a6db3564bc41ef958e3fb3c4a436b00d3910779
   languageName: node
   linkType: hard
+
+"react-native-li-project@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "react-native-li-project@workspace:."
+  dependencies:
+    "@commitlint/cli": ^12.1.1
+    "@commitlint/config-conventional": ^12.1.1
+    "@formidable-webview/eslint-config-webjs": ^1.0.0
+    "@react-native-community/eslint-config": ^2.0.0
+    "@typescript-eslint/eslint-plugin": ^4.21.0
+    "@typescript-eslint/parser": ^4.21.0
+    eslint: ^7.23.0
+    eslint-plugin-compat: ^3.9.0
+    eslint-plugin-tsdoc: ^0.2.11
+    husky: ^6.0.0
+    prettier: ^2.2.1
+  languageName: unknown
+  linkType: soft
 
 "react-native-safe-area-context@npm:3.1.9":
   version: 3.1.9
@@ -13399,9 +13423,9 @@ release-it@14.6.0:
   languageName: node
   linkType: hard
 
-"release-it@patch:release-it@14.6.0#patches/release-it.patch::locator=plugins-project%40workspace%3A.":
+"release-it@patch:release-it@14.6.0#patches/release-it.patch::locator=react-native-li-project%40workspace%3A.":
   version: 14.6.0
-  resolution: "release-it@patch:release-it@npm%3A14.6.0#patches/release-it.patch::version=14.6.0&hash=6ea2c8&locator=plugins-project%40workspace%3A."
+  resolution: "release-it@patch:release-it@npm%3A14.6.0#patches/release-it.patch::version=14.6.0&hash=6ea2c8&locator=react-native-li-project%40workspace%3A."
   dependencies:
     "@iarna/toml": 2.2.5
     "@octokit/rest": 18.5.2

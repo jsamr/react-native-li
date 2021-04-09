@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, run JS and Typescript tests.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: example-path
+name: counter-style
 
 on: [push, pull_request]
 
@@ -21,15 +21,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --immutable
-    - run: yarn workspace example-npm test:ts
+    - run: yarn workspace @jsamr/counter-style test:ts
       name: Typescript Tests
-    - run: yarn workspace example-npm test:lint
+    - run: yarn workspace @jsamr/counter-style test:lint
       name: Linting Tests
-    - run: yarn workspace example-npm test:jest --coverage
+    - run: yarn workspace @jsamr/counter-style test:jest --coverage
       name: Behavior Tests
-    - run: yarn workspace example-npm build
+    - run: yarn workspace @jsamr/counter-style build
       name: Build
     - uses: codecov/codecov-action@v1
       with:
-        flags: example-path
+        flags: counter-style
         fail_ci_if_error: true

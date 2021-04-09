@@ -1,9 +1,5 @@
 jsamr's template for react-native libraries
 
-# First clone
-
-- `.github/ISSUE_TEMPLATE/bug_report.md` → change reference to library name
-
 ## Creating a new package
 
 1. Copy `packages/example` to the new package;

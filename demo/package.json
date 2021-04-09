@@ -9,6 +9,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@jsamr/counter-style": "workspace:*",
     "expo": "^40.0.1",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",

@@ -31,7 +31,7 @@ I swear that I have completed these tasks before submitting:
 -->
 
 - react-native:
--
+- react-native-li:
 
 #### Devices
 

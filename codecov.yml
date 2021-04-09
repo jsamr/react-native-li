@@ -6,12 +6,19 @@ coverage:
     project:
       default:
         target: auto
-      example-path:
+      counter-style:
         target: auto
         flags:
-          - example-path
+          - counter-style
+      react-native-li:
+        target: auto
+        flags:
+          - react-native-li
 
 flags:
-  example-path:
+  counter-style:
     paths:
-      - packages/example-path/
+      - packages/counter-style/
+  react-native-li:
+    paths:
+      - packages/react-native-li/

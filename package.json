@@ -1,9 +1,10 @@
 {
-  "name": "example-project",
+  "name": "react-native-li-project",
   "private": true,
   "scripts": {
     "demo": "yarn workspace demo",
-    "example-path": "yarn workspace example-npm"
+    "react-native-li": "yarn workspace @jsamr/react-native-li",
+    "counter-style": "yarn workspace @jsamr/counter-style"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
