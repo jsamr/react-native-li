@@ -23,3 +23,7 @@ getMaxLenInRange(min: number, max: number): number;
 
 number
 
+## Remarks
+
+This method doesn't take into account [unicode graphemes clusters](https://www.unicode.org/reports/tr29/tr29-37.html#Grapheme_Cluster_Boundaries)<!-- -->.
+

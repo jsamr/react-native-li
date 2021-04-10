@@ -78,6 +78,9 @@ export interface CounterStyleRenderer {
    * If a fallback is defined, it will be used for values outside the range
    * boundaries of this renderer.
    *
+   * @remarks This method doesn't take into account
+   * {@link https://www.unicode.org/reports/tr29/tr29-37.html#Grapheme_Cluster_Boundaries | unicode graphemes clusters}.
+   *
    * @param min - The minimum inclusive value.
    * @param max - The maximum inclusive value.
    */
