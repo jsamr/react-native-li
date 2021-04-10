@@ -37,7 +37,7 @@
 </p>
 
 <p align="center">
-  A slim (&lt;2kb) <a href="https://drafts.csswg.org/css-counter-styles-3">CSS Counter Styles Level 3 compliant</a> library with 47 presets including<br> <b>Arabic</b>, <b>Persian</b>, <b>Thai</b>, <b>Hebrew</b>, <b>Roman</b>, <b>Katana</b>...<br>
+  A slim (&lt;1.4kB minified and gzipped) <a href="https://drafts.csswg.org/css-counter-styles-3">CSS Counter Styles Level 3 compliant</a> library with 47 presets including<br> <b>Arabic</b>, <b>Persian</b>, <b>Thai</b>, <b>Hebrew</b>, <b>Roman</b>, <b>Katana</b>...<br>
   <small>Based on <a href="https://github.com/beanandbean/counter-style">the great work from Whang Shuwei</a></small>
 </p>
 

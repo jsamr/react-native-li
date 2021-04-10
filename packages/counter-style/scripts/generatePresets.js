@@ -35,7 +35,9 @@ async function run() {
       JSON.stringify({
         module: `../../lib/es/presets/${baseName}.js`,
         main: `../../lib/cjs/presets/${baseName}.js`,
-        types: `../../lib/cjs/presets/${baseName}.d.ts`
+        types: `../../lib/cjs/presets/${baseName}.d.ts`,
+        'react-native': `../../lib/es/presets/${baseName}.js`,
+        sideEffects: false
       })
     );
   }

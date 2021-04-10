@@ -5,6 +5,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "outDir": "lib/cjs",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "noEmitHelpers": false
   }
 }
