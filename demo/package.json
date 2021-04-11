@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@jsamr/counter-style": "workspace:*",
+    "@jsamr/react-native-li": "workspace:*",
     "expo": "^40.0.1",
     "expo-status-bar": "~1.0.3",
     "lorem-ipsum": "^2.0.3",
