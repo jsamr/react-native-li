@@ -2,7 +2,7 @@ jsamr's template for react-native libraries
 
 ## Creating a new package
 
-1. Copy `packages/example` to the new package;
+1. Copy `packages/example-path` to the new package;
 2. Create a new workflow from `.github/workflows/example-path.yml`. The name of
    the workflow must match the name of the folder for that package in
    `packages/` directory.

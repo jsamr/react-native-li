@@ -2799,6 +2799,44 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@jsamr/react-native-li@workspace:*, @jsamr/react-native-li@workspace:packages/react-native-li":
+  version: 0.0.0-use.local
+  resolution: "@jsamr/react-native-li@workspace:packages/react-native-li"
+  dependencies:
+    "@babel/cli": ^7.13.14
+    "@babel/core": ^7.13.15
+    "@babel/plugin-transform-react-jsx": ^7.13.12
+    "@babel/preset-typescript": ^7.13.0
+    "@babel/runtime": ^7.13.10
+    "@jsamr/counter-style": "workspace:*"
+    "@microsoft/api-documenter": ^7.12.20
+    "@microsoft/api-extractor": 7.13.4
+    "@release-it/conventional-changelog": ^2.0.0
+    "@testing-library/react-native": ^7.2.0
+    "@tsconfig/react-native": ^1.0.3
+    "@types/jest": ^26.0.22
+    "@types/react": ^17.0.3
+    "@types/react-native": ^0.64.2
+    "@types/react-test-renderer": ^17.0.1
+    babel-jest: ^26.6.3
+    eslint: ^7.23.0
+    jest: ^26.6.3
+    metro-react-native-babel-preset: ^0.65.2
+    metro-react-native-babel-transformer: ^0.65.2
+    react: 17.0.2
+    react-native: ^0.64.0
+    react-native-builder-bob: ^0.18.1
+    react-native-testing-library: ^6.0.0
+    react-test-renderer: 17.0.2
+    release-it: ^14.3.0
+    typescript: ~4.2.4
+  peerDependencies:
+    "@jsamr/counter-style": "*"
+    react: "*"
+    react-native: "*"
+  languageName: unknown
+  linkType: soft
+
 "@mdn/browser-compat-data@npm:^2.0.7":
   version: 2.0.7
   resolution: "@mdn/browser-compat-data@npm:2.0.7"
@@ -6053,7 +6091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.7.1":
+"commander@npm:^2.17.1, commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.7.1":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
@@ -7154,8 +7192,10 @@ __metadata:
     "@babel/core": ~7.9.0
     "@expo/metro-config": ^0.1.60
     "@jsamr/counter-style": "workspace:*"
+    "@jsamr/react-native-li": "workspace:*"
     expo: ^40.0.1
     expo-status-bar: ~1.0.3
+    lorem-ipsum: ^2.0.3
     react: 16.13.1
     react-dom: 16.13.1
     react-native: "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
@@ -11971,6 +12011,17 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"lorem-ipsum@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "lorem-ipsum@npm:2.0.3"
+  dependencies:
+    commander: ^2.17.1
+  bin:
+    lorem-ipsum: dist/bin/lorem-ipsum.bin.js
+  checksum: 0b930e8f864c2c8f9f5168096e9b300756bc95d7f9c95a1ae83e3d978eab5e6452e496a7058b3bcf12b8966117e1c19de46d305ef6165d33aec4a647246c0ded
+  languageName: node
+  linkType: hard
+
 "loud-rejection@npm:^1.0.0":
   version: 1.6.0
   resolution: "loud-rejection@npm:1.6.0"
@@ -15035,6 +15086,18 @@ fsevents@^1.2.7:
     react: "*"
     react-native: "*"
   checksum: acc6ee6591c11982876158113e51133dc18b03c0ce6bb42414b1486180ef1b07d4068b3c0d0c70e4bc53fe324e7365d04323677e1dd986c68460fc30e19b8ec6
+  languageName: node
+  linkType: hard
+
+"react-native-testing-library@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "react-native-testing-library@npm:6.0.0"
+  dependencies:
+    pretty-format: ^26.0.1
+  peerDependencies:
+    react: ">=16.0.0"
+    react-test-renderer: ">=16.0.0"
+  checksum: 5f8ef603c6c300d785876290e03ea3f0d1b34518e5ded994dc4a1024a3794311e57f2516bdacf01c668edb896ae1d0bffe9461e47dbafe5469ead28f9fd97178
   languageName: node
   linkType: hard
 
