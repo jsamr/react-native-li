@@ -6053,7 +6053,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.7.1":
+"commander@npm:^2.17.1, commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.7.1":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
@@ -7156,6 +7156,7 @@ __metadata:
     "@jsamr/counter-style": "workspace:*"
     expo: ^40.0.1
     expo-status-bar: ~1.0.3
+    lorem-ipsum: ^2.0.3
     react: 16.13.1
     react-dom: 16.13.1
     react-native: "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
@@ -11968,6 +11969,17 @@ fsevents@^1.2.7:
   bin:
     loose-envify: cli.js
   checksum: 5c3b47bbe5f597a3889fb001a3a98aaea2a3fafa48089c19034de1e0121bf57dbee609d184478514d74d5c5a7e9cfa3d846343455e5123b060040d46c39e91dc
+  languageName: node
+  linkType: hard
+
+"lorem-ipsum@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "lorem-ipsum@npm:2.0.3"
+  dependencies:
+    commander: ^2.17.1
+  bin:
+    lorem-ipsum: dist/bin/lorem-ipsum.bin.js
+  checksum: 0b930e8f864c2c8f9f5168096e9b300756bc95d7f9c95a1ae83e3d978eab5e6452e496a7058b3bcf12b8966117e1c19de46d305ef6165d33aec4a647246c0ded
   languageName: node
   linkType: hard
 
