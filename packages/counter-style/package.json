@@ -15,6 +15,7 @@
     "presets"
   ],
   "scripts": {
+    "autogen-presets-index": "node scripts/generatePresetsIndex.js",
     "test": "yarn test:ts && yarn test:lint && yarn test:jest && yarn test:size",
     "test:jest": "jest src/",
     "test:ts": "tsc --noEmit",
