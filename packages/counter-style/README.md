@@ -65,9 +65,40 @@ import arabicIndic from '@jsamr/counter-style/presets/arabicIndic';
 expect(arabicIndic.render(78)).toBe('٧٨. ');
 ```
 
+> PRs are welcomed to support [other presets](https://www.w3.org/TR/predefined-counter-styles/).
+
 ### Creating custom style renderers
 
-The API follows closely the specs for CSS `@counter-style` at rule. The default export ([CounterStyle](./docs/counter-style.counterstyle.md)) is a static object with methods to build [CounterStyleRenderer](./docs/counter-style.counterstylerenderer.md). In the
+The API follows closely the specs for CSS `@counter-style` at rule. The default export ([CounterStyle](./docs/counter-style.counterstyle.md)) is a static object with methods to build [CounterStyleRenderer](./docs/counter-style.counterstylerenderer.md).
+
+#### Example 1: a lower Russian alphabet renderer
+
+In the
+below example, we're using [the alphabetic counter system](https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system) and we are using `alphabeticFromUnicodeRange` builder which allows to specify a contiguous unicode range. For non-contiguous ranges, use the `alphabetic` builder.
+
+```js
+import CounterStyle from '@jsamr/counter-style';
+
+const lowerRussian = CounterStyle.alphabeticFromUnicodeRange(
+  0x430, // а
+  28
+).withSuffix(') ');
+
+// Expect comes from jest testing framework.
+// Just a showcase of expected returned values.
+expect(lowerRussian.render(1)).toBe('а) ');
+expect(lowerRussian.render(2)).toBe('б) ');
+expect(lowerRussian.render(3)).toBe('в) ');
+expect(lowerRussian.render(4)).toBe('г) ');
+expect(lowerRussian.render(5)).toBe('д) ');
+expect(lowerRussian.render(29)).toBe('аа) ');
+// getMaxLenInRange takes suffixes into account.
+expect(lowerRussian.getMaxLenInRange(1, 5)).toBe(3);
+```
+Reference: [W3 predefined counter styles: Cyrillic styles](https://www.w3.org/TR/predefined-counter-styles/#cyrillic-styles).
+#### Example 2: a "Funky" symbolic renderer
+
+In the
 below example, we're using [the symbolic counter system](https://www.w3.org/TR/css-counter-styles-3/#symbolic-system).
 
 ```js
