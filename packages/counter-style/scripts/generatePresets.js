@@ -2,11 +2,9 @@ const fs = require('fs/promises');
 const rimraf = require('rimraf');
 const path = require('path');
 const util = require('util');
+const { presetsPath, getPresets } = require('./utils');
 
 const rimrafAsync = util.promisify(rimraf);
-
-const presetsPath = path.join(__dirname, '../presets');
-const presetsSrcPath = path.join(__dirname, '../src/presets');
 
 async function clean() {
   try {
@@ -23,7 +21,7 @@ async function clean() {
 }
 
 async function run() {
-  const presets = await fs.readdir(presetsSrcPath);
+  const presets = await getPresets();
   await clean();
   await fs.mkdir(presetsPath);
   for (const counter of presets) {
@@ -35,12 +33,23 @@ async function run() {
       JSON.stringify({
         module: `../../lib/es/presets/${baseName}.js`,
         main: `../../lib/cjs/presets/${baseName}.js`,
-        types: `../../lib/cjs/presets/${baseName}.d.ts`,
+        types: `../../lib/es/presets/${baseName}.d.ts`,
         'react-native': `../../lib/es/presets/${baseName}.js`,
         sideEffects: false
       })
     );
   }
+  // Add a barrel for all presets for easy presets discoverability.
+  await fs.writeFile(
+    path.join(presetsPath, 'package.json'),
+    JSON.stringify({
+      module: '../lib/es/presets/index.js',
+      main: '../lib/cjs/presets/index.js',
+      types: '../lib/es/presets/index.d.ts',
+      'react-native': '../lib/es/presets/index.js',
+      sideEffects: false
+    })
+  );
   console.info(
     `Done. Wrote ${presets.length} modules in ${presetsPath} folder.`
   );
