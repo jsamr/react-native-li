@@ -20,7 +20,7 @@ export default CounterStyle;
 // @public (undocumented)
 export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
     withFallback(fallback: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
-    withMaxLengthComputer(computer: MaxLengthInRangeComputer): CounterStyleRenderer;
+    withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;
     withPadLeft(length: number, pad: string): CounterStyleRenderer;
     withPadRight(length: number, pad: string): CounterStyleRenderer;
@@ -39,15 +39,15 @@ export interface CounterStyleStatic {
     fixed: (...symbols: string[]) => CounterStyleRenderer;
     numeric: (...symbols: string[]) => CounterStyleRenderer;
     numericFromUnicodeRange: (originUnicode: number, base: number) => CounterStyleRenderer;
-    raw: (formatter: LoseCounterFormatter, maxLengthComputer?: MaxLengthInRangeComputer) => CounterStyleRenderer;
+    raw: (formatter: LoseCounterFormatter, maxLengthComputer?: MaxCodepointLengthInRangeComputer) => CounterStyleRenderer;
     symbolic: (...symbols: string[]) => CounterStyleRenderer;
 }
 
 // @public
 export type LoseCounterFormatter = (index: number) => string | undefined;
 
-// @public (undocumented)
-export type MaxLengthInRangeComputer = (min: number, max: number) => number;
+// @public
+export type MaxCodepointLengthInRangeComputer = (min: number, max: number) => number;
 
 // @public (undocumented)
 export interface RtlOptions {

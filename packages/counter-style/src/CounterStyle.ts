@@ -5,9 +5,9 @@ import makeAlphanumMaxlenComputer from './makeAlphanumMaxlenComputer';
 interface Engine {
   specs: Specifications;
   formatter: LoseCounterFormatter;
-  maxLengthInRange: MaxLengthInRangeComputer;
+  maxLengthInRange: MaxCodepointLengthInRangeComputer;
   withSpecs: (spToMerge: Partial<Specifications>) => Engine;
-  withMaxLengthInRange: (cp: MaxLengthInRangeComputer) => Engine;
+  withMaxLengthInRange: (cp: MaxCodepointLengthInRangeComputer) => Engine;
 }
 
 interface Specifications {
@@ -40,12 +40,18 @@ interface CounterStyleRendererInt extends CounterStyleRenderer {
 }
 
 /**
+ * A function which compute the maximum codepoint length of a formatter in a
+ * given range.
+ *
  * @param min - The inclusive non-negative minimum.
  * @param max - The inclusive non-negative maximum.
  *
  * @public
  */
-export type MaxLengthInRangeComputer = (min: number, max: number) => number;
+export type MaxCodepointLengthInRangeComputer = (
+  min: number,
+  max: number
+) => number;
 
 /**
  * A function that renders an index into its counter representation.
@@ -159,16 +165,16 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
   withPrefix(prefix: string | null): CounterStyleRenderer;
 
   /**
-   * Create a new renderer with a (hopefuly) cost-effective max length
-   * computer.
+   * Create a new renderer with a (hopefuly) cost-effective max codepoint
+   * length computer.
    *
    * @remarks The computer function must not handle negative numbers.
    *
-   * @param computer - A function to compute the max length produced by the
-   * underlying formatter given a range.
+   * @param computer - A function to compute the max codepoints length
+   * produced by the underlying formatter given a range.
    */
   withMaxLengthComputer(
-    computer: MaxLengthInRangeComputer
+    computer: MaxCodepointLengthInRangeComputer
   ): CounterStyleRenderer;
 
   /**
@@ -235,6 +241,15 @@ const defaultRtlOptions: Required<RtlOptions> = {
   reverseSuffix: true
 };
 
+function codeunitLength(source?: string | null) {
+  return (source && source.length) || 0;
+}
+
+function codepointLength(source?: string | null) {
+  // get codepoints length instead of UTF16 code units with the string Iterator.
+  return (source && [...source].length) || 0;
+}
+
 function reverseString(source: string) {
   return Array.from(source).reverse().join('');
 }
@@ -259,7 +274,8 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
         negative ? Math.abs(supportedMin) : supportedMax
       ) +
         (negative && specs.negative
-          ? specs.negative.prefix.length + specs.negative.suffix.length
+          ? codeunitLength(specs.negative.prefix) +
+            codeunitLength(specs.negative.suffix)
           : 0),
       specs?.padding?.length || 0
     );
@@ -288,7 +304,8 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
   maxMarkerLenInRange(this: CounterStyleRendererInt, min, max) {
     return (
       this.maxCounterLenInRange(min, max) +
-      +(this.engine.specs.suffix?.length || 0)
+      codeunitLength(this.engine.specs.suffix) +
+      codeunitLength(this.engine.specs.prefix)
     );
   },
   renderCounter(this: CounterStyleRendererInt, index) {
@@ -301,18 +318,20 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     }
     const decoratorL =
       negative && index < 0
-        ? negative.prefix.length + negative.suffix.length
+        ? codeunitLength(negative.prefix) + codeunitLength(negative.suffix)
         : 0;
     res = formatter(Math.sign(index) * index);
     if (typeof res === 'undefined') {
       return sp.fallback.renderCounter(index);
     }
-    const lenWithDecorator = res.length + decoratorL;
-    if (sp.padding && lenWithDecorator < sp.padding.length) {
-      const padChar = sp.padding.char.repeat(
-        sp.padding.length - lenWithDecorator
-      );
-      res = sp.padding.right ? res + padChar : padChar + res;
+    if (sp.padding) {
+      const lenWithDecorator = codepointLength(res) + decoratorL;
+      if (lenWithDecorator < sp.padding.length) {
+        const padChar = sp.padding.char.repeat(
+          sp.padding.length - lenWithDecorator
+        );
+        res = sp.padding.right ? res + padChar : padChar + res;
+      }
     }
     if (index < 0 && negative) {
       if (typeof res === 'string') {
@@ -465,15 +484,15 @@ export interface CounterStyleStatic {
    * {@link CounterStyleRenderer.withFallback}), or the default fallback.
    *
    * @param maxLengthComputer - A function which takes a non-negative range and
-   * returns the maximum formatter length for this range. Default
-   * implementation iterates over all values in range.
-   * See {@link MaxLengthInRangeComputer}.
+   * returns the maximum formatter length for this range in codepoints. Default
+   * implementation is slow as it iterates over all values in range.
+   * See {@link MaxCodepointLengthInRangeComputer}.
    *
    * @returns A style renderer.
    */
   raw: (
     formatter: LoseCounterFormatter,
-    maxLengthComputer?: MaxLengthInRangeComputer
+    maxLengthComputer?: MaxCodepointLengthInRangeComputer
   ) => CounterStyleRenderer;
 
   /**
@@ -598,8 +617,8 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
         Math.ceil(index / symbols.length)
       )
     ).withRange(1, Infinity),
-  alphabetic: (...symbols) =>
-    makeRawFromFormatter((index) => {
+  alphabetic: (...symbols) => {
+    const formatter: StrictCounterFormatter = (index) => {
       let result = '';
       while (index > 0) {
         index--;
@@ -607,11 +626,13 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
         index = Math.floor(index / symbols.length);
       }
       return result;
-    })
+    };
+    return makeRawFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(symbols.length, true))
-      .withRange(1, Infinity),
-  numeric: (...symbols) =>
-    makeRawFromFormatter((index) => {
+      .withRange(1, Infinity);
+  },
+  numeric: (...symbols) => {
+    const formatter: StrictCounterFormatter = (index) => {
       if (index === 0) {
         return symbols[0];
       } else {
@@ -622,17 +643,21 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
         }
         return result;
       }
-    })
+    };
+    return makeRawFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(symbols.length, false))
-      .withNegative('-'),
-  numericFromUnicodeRange: (originUnicode: number, base: number) =>
-    makeRawFromFormatter((index) =>
-      getAlphanumFromUnicodeRange(index, originUnicode, base, false)
-    )
+      .withNegative('-');
+  },
+
+  numericFromUnicodeRange: (originUnicode: number, base: number) => {
+    const formatter: StrictCounterFormatter = (index) =>
+      getAlphanumFromUnicodeRange(index, originUnicode, base, false);
+    return makeRawFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(base, false))
-      .withNegative('-'),
-  alphabeticFromUnicodeRange: (originUnicode: number, alphabetLen: number) =>
-    makeRawFromFormatter((index) => {
+      .withNegative('-');
+  },
+  alphabeticFromUnicodeRange: (originUnicode: number, alphabetLen: number) => {
+    const formatter: LoseCounterFormatter = (index) => {
       if (index > 0) {
         return getAlphanumFromUnicodeRange(
           index,
@@ -642,9 +667,11 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
         );
       }
       return;
-    })
+    };
+    return makeRawFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(alphabetLen, true))
-      .withRange(1, Infinity),
+      .withRange(1, Infinity);
+  },
   additive: (symbols: { [value: number]: string }) => {
     const values = Object.keys(symbols)
       .map((value) => parseInt(value, 10))
@@ -713,7 +740,7 @@ const styleEngineProto: Pick<
     for (let i = Math.max(0, min); i <= max; i++) {
       const val = this.formatter(i);
       if (typeof val === 'string') {
-        len = Math.max(val.length, len);
+        len = Math.max(codepointLength(val), len);
       }
     }
     return len;

@@ -17,7 +17,7 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer
 |  Method | Description |
 |  --- | --- |
 |  [withFallback(fallback)](./counter-style.counterstylerenderer.withfallback.md) | Create a new renderer with a fallback used when the index is out of bounds.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-fallback |
-|  [withMaxLengthComputer(computer)](./counter-style.counterstylerenderer.withmaxlengthcomputer.md) | Create a new renderer with a (hopefuly) cost-effective max length computer. |
+|  [withMaxLengthComputer(computer)](./counter-style.counterstylerenderer.withmaxlengthcomputer.md) | Create a new renderer with a (hopefuly) cost-effective max codepoint length computer. |
 |  [withNegative(prefix, suffix)](./counter-style.counterstylerenderer.withnegative.md) | Create a new renderer which will render negative values by prefixing and suffixing the provided characters to the renderer function.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-negative |
 |  [withPadLeft(length, pad)](./counter-style.counterstylerenderer.withpadleft.md) | Create a new renderer which adds padding to the left.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-pad |
 |  [withPadRight(length, pad)](./counter-style.counterstylerenderer.withpadright.md) | Create a new renderer which adds padding to the right.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-pad |

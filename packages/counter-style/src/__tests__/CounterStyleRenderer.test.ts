@@ -37,6 +37,10 @@ describe('CounterStyleRenderer', () => {
     expect(counter.renderCounter(4000)).toBe('4000');
     expect(counter.renderCounter(-5)).toBe('-5 ');
   });
+  test('::withPreffix | ::withSuffix', () => {
+    const counter = decimal.withPrefix('xx').withSuffix('xx');
+    expect(counter.maxMarkerLenInRange(1, 1)).toBe(5);
+  });
 
   test('It should fall back to a decimal renderer when out of bounds preserving prefixes and suffixes', () => {
     const counter = lowerGreek

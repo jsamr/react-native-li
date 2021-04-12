@@ -4,19 +4,19 @@
 
 ## CounterStyleRenderer.withMaxLengthComputer() method
 
-Create a new renderer with a (hopefuly) cost-effective max length computer.
+Create a new renderer with a (hopefuly) cost-effective max codepoint length computer.
 
 <b>Signature:</b>
 
 ```typescript
-withMaxLengthComputer(computer: MaxLengthInRangeComputer): CounterStyleRenderer;
+withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  computer | [MaxLengthInRangeComputer](./counter-style.maxlengthinrangecomputer.md) | A function to compute the max length produced by the underlying formatter given a range. |
+|  computer | [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md) | A function to compute the max codepoints length produced by the underlying formatter given a range. |
 
 <b>Returns:</b>
 

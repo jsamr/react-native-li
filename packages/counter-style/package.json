@@ -71,12 +71,12 @@
   "size-limit": [
     {
       "path": "lib/es/index.js",
-      "limit": "1.40 KB",
+      "limit": "1.60 KB",
       "gzip": true
     },
     {
       "path": "lib/cjs/index.js",
-      "limit": "1.70 KB",
+      "limit": "2.00 KB",
       "gzip": true
     }
   ],

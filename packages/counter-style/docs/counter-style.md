@@ -24,6 +24,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [LoseCounterFormatter](./counter-style.losecounterformatter.md) | A function that renders an index into its counter representation.<!-- -->It can return undefined to signal a fallback should be used instead. |
-|  [MaxLengthInRangeComputer](./counter-style.maxlengthinrangecomputer.md) |  |
+|  [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md) | A function which compute the maximum codepoint length of a formatter in a given range. |
 |  [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A function that renders an index into its counter representation. |
 

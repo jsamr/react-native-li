@@ -28,17 +28,14 @@
       alt="DL/month"
     />
   </a>
-  <!-- <a href="https://discord.gg/3B9twTMEzb">
-      <img
-      src="https://img.shields.io/discord/736906960041148476?label=discord"
-      alt="Discord"
-    />
-  </a> -->
 </p>
 
 <p align="center">
   A slim <a href="https://drafts.csswg.org/css-counter-styles-3">CSS Counter Styles Level 3 compliant</a> library with 47 presets including<br> <b>Arabic</b>, <b>Persian</b>, <b>Thai</b>, <b>Hebrew</b>, <b>Roman</b>, <b>Katana</b>...<br><br>
-  <sup>The core is 1.4kB minified and gzipped. Each preset is distributed as a separate module.<br>Available in both CommonJS and ECMAScript modules. <br>Optimized for metro (React Native) and Webpack bundlers.<br>
+  <sup>The core is 1.4kB minified and gzipped. Each preset is distributed as a separate module.<br>
+  Available in both CommonJS and ECMAScript modules. <br>
+  Targets ECMAScript 2015.<br>
+  Optimized for metro (React Native) and Webpack bundlers.<br>
   Based on <a href="https://github.com/beanandbean/counter-style">prior work from Whang Shuwei</a>
   </sup>
 </p>
@@ -65,7 +62,7 @@ import arabicIndic from '@jsamr/counter-style/presets/arabicIndic';
 expect(arabicIndic.render(78)).toBe('٧٨. ');
 ```
 
-> PRs are welcomed to support [other presets](https://www.w3.org/TR/predefined-counter-styles/).
+> PRs are welcomed to support other presets. Very easy to implement thanks to [this W3C resource](https://www.w3.org/TR/predefined-counter-styles/).
 
 ### Creating custom style renderers
 
@@ -127,18 +124,26 @@ All renderers can be chained to create variants, such as `withSuffix`,
 
 **The API reference [is available here](./docs/counter-style.md).**
 
+### Caveats
+
+- In **numeric** and **alphabetic** systems , one UTF-16 code unit per symbol
+  must be used. Otherwise, length computation will be erroneous. If you really
+  need multi code units per symbol however, you can still set a custom length
+  computer via `withMaxLenComputer`.
+- When using padding (`withPadding`) and negative (`withNegative`) symbols, one
+  UTF-16 code unit per symbol must be used. Otherwise, length computation will
+  be erroneous.
+- Never use combining characters. [Grapheme
+  clusters](https://www.w3.org/TR/css-text-3/#grapheme-cluster) will be
+  considered distinct characters. Beware that is the case for some emojis, see
+  [this SO thread](https://stackoverflow.com/q/54369513/2779871).
+- Don't define incomplete additive systems which have holes in their range
+  coverage. For example, an additive system which has no representation for "1"
+  will not translate odd indexes.
+
 ### Limitations
 
 - `speakAs` hasn't been implemented yet.
-- Only `disk`, `circle` and `square` symbolic presets are provided.
-- [Chinese styles](https://www.w3.org/TR/css-counter-styles-3/#limited-chinese)
+- [Chinese renderers](https://www.w3.org/TR/css-counter-styles-3/#limited-chinese)
   haven't been implemented, requiring custom logic. PRs welcomed!
-- Only textual representations are supported. Images are not.
-- Additive systems might have "holes" in their range coverage. For
-  example, an additive system which has no representation for "1" will not
-  translate odd indexes. This library behavior for such edge cases is unspecified.
-- `maxMarkerLenInRange`, `maxCounterLenInRange` and `withPadding` don't take
-  into account [unicode grapheme
-  clusters](https://www.w3.org/TR/css-text-3/#grapheme-cluster). Unfortunately,
-  there is no Web API for grapheme clustering and adding a third party library
-  would defy the purpose of being a *slim* library.
+- Only textual symbols are supported. Images are not.

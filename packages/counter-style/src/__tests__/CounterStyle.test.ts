@@ -8,12 +8,24 @@ describe('CounterStyle', () => {
     expect(counter.renderCounter(5)).toBe('>');
   });
 
+  test('::cyclic with multi-units codepoints', () => {
+    const counter = CounterStyle.cyclic('👍').withSuffix(null);
+    expect(counter.renderCounter(1)).toBe('👍');
+    expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+  });
+
   test('::fixed', () => {
     const counter = CounterStyle.fixed('x', 'y', 'z');
     expect(counter.renderCounter(1)).toBe('x');
     expect(counter.renderCounter(2)).toBe('y');
     expect(counter.renderCounter(3)).toBe('z');
     expect(counter.renderCounter(4)).toBe('4');
+  });
+
+  test('::fixed with multi-units codepoints', () => {
+    const counter = CounterStyle.fixed('👍').withSuffix(null);
+    expect(counter.renderCounter(1)).toBe('👍');
+    expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
   });
 
   test('::symbolic', () => {
@@ -24,6 +36,12 @@ describe('CounterStyle', () => {
     expect(counter.renderCounter(3)).toBe('**');
     expect(counter.renderCounter(4)).toBe('&&');
     expect(counter.renderCounter(5)).toBe('***');
+  });
+
+  test('::symbolic with multi-units codepoints', () => {
+    const counter = CounterStyle.symbolic('👍').withSuffix(null);
+    expect(counter.renderCounter(1)).toBe('👍');
+    expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
   });
 
   test('::alphabetic', () => {

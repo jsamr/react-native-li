@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "lib": ["esnext"],
+    "lib": ["ES2015"],
+    "target": "ES2015",
     "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,
