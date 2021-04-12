@@ -2826,7 +2826,6 @@ __metadata:
     react: 17.0.2
     react-native: ^0.64.0
     react-native-builder-bob: ^0.18.1
-    react-native-testing-library: ^6.0.0
     react-test-renderer: 17.0.2
     release-it: ^14.3.0
     typescript: ~4.2.4
@@ -15086,18 +15085,6 @@ fsevents@^1.2.7:
     react: "*"
     react-native: "*"
   checksum: acc6ee6591c11982876158113e51133dc18b03c0ce6bb42414b1486180ef1b07d4068b3c0d0c70e4bc53fe324e7365d04323677e1dd986c68460fc30e19b8ec6
-  languageName: node
-  linkType: hard
-
-"react-native-testing-library@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "react-native-testing-library@npm:6.0.0"
-  dependencies:
-    pretty-format: ^26.0.1
-  peerDependencies:
-    react: ">=16.0.0"
-    react-test-renderer: ">=16.0.0"
-  checksum: 5f8ef603c6c300d785876290e03ea3f0d1b34518e5ded994dc4a1024a3794311e57f2516bdacf01c668edb896ae1d0bffe9461e47dbafe5469ead28f9fd97178
   languageName: node
   linkType: hard
 
