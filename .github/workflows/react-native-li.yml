@@ -21,6 +21,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --immutable
+    - run: yarn workspace @jsamr/counter-style build
+      name: Build counter-style
     - run: yarn workspace @jsamr/react-native-li test:ts
       name: Typescript Tests
     - run: yarn workspace @jsamr/react-native-li test:lint
