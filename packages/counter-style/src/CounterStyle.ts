@@ -11,7 +11,10 @@ interface Engine {
 }
 
 interface Specifications {
+  reversedMarker: boolean;
+  reversedCounter: boolean;
   suffix: string | null;
+  prefix: string | null;
   fallback: BaseCounterStyleRenderer;
   negative: null | {
     prefix: string;
@@ -59,6 +62,24 @@ export type StrictCounterFormatter = (index: number) => string;
  * @public
  */
 export type LoseCounterFormatter = (index: number) => string | undefined;
+
+/**
+ * @public
+ */
+export interface RtlOptions {
+  /**
+   * @defaultValue true
+   */
+  reversePrefix?: boolean;
+  /**
+   * @defaultValue true
+   */
+  reverseSuffix?: boolean;
+  /**
+   * @defaultValue false
+   */
+  reverseCounter?: boolean;
+}
 
 /**
  * @public
@@ -120,13 +141,22 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
   withPadRight(length: number, pad: string): CounterStyleRenderer;
 
   /**
-   * Create a new renderer which replaces or removes the default suffix.
+   * Create a new renderer which replaces or removes this renderer suffix.
    *
    * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-suffix
    *
    * @param suffix - A suffix, or `null` to remove the default suffix.
    */
   withSuffix(suffix: string | null): CounterStyleRenderer;
+
+  /**
+   * Create a new renderer which replaces or removes this renderer prefix.
+   *
+   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-prefix
+   *
+   * @param prefix - A prefix, or `null` to remove this renderer suffix.
+   */
+  withPrefix(prefix: string | null): CounterStyleRenderer;
 
   /**
    * Create a new renderer with a (hopefuly) cost-effective max length
@@ -140,6 +170,16 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
   withMaxLengthComputer(
     computer: MaxLengthInRangeComputer
   ): CounterStyleRenderer;
+
+  /**
+   * Create a new renderer which renders Right-to-left.
+   *
+   * @remarks By default:
+   * - The order of prefix, counter representation and suffix will be reversed when rendering marker.
+   * - The letter ordering of prefix and suffix will be reversed when rendering marker, prefix and suffix.
+   * - The letter ordering of counter representation will not be reversed when rendering marker and counter.
+   */
+  withRtl(options?: RtlOptions): CounterStyleRenderer;
 }
 
 /**
@@ -187,6 +227,16 @@ export interface BaseCounterStyleRenderer {
    * @param max - The maximum inclusive value.
    */
   maxCounterLenInRange(min: number, max: number): number;
+}
+
+const defaultRtlOptions: Required<RtlOptions> = {
+  reverseCounter: false,
+  reversePrefix: true,
+  reverseSuffix: true
+};
+
+function reverseString(source: string) {
+  return Array.from(source).reverse().join('');
 }
 
 const _mod = (value: number, divisor: number) =>
@@ -245,7 +295,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     const formatter = this.engine.formatter;
     const sp = this.engine.specs;
     const negative = sp.negative;
-    let baseResult;
+    let res;
     if (index < sp.range.min || index > sp.range.max) {
       return sp.fallback.renderCounter(index);
     }
@@ -253,44 +303,43 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
       negative && index < 0
         ? negative.prefix.length + negative.suffix.length
         : 0;
-    baseResult = formatter(Math.sign(index) * index);
-    if (typeof baseResult === 'undefined') {
+    res = formatter(Math.sign(index) * index);
+    if (typeof res === 'undefined') {
       return sp.fallback.renderCounter(index);
     }
-    const lenWithDecorator = baseResult.length + decoratorL;
+    const lenWithDecorator = res.length + decoratorL;
     if (sp.padding && lenWithDecorator < sp.padding.length) {
       const padChar = sp.padding.char.repeat(
         sp.padding.length - lenWithDecorator
       );
-      baseResult = sp.padding.right
-        ? baseResult + padChar
-        : padChar + baseResult;
+      res = sp.padding.right ? res + padChar : padChar + res;
     }
     if (index < 0 && negative) {
-      if (typeof baseResult === 'string') {
-        baseResult = negative.prefix + baseResult + negative.suffix;
+      if (typeof res === 'string') {
+        res = negative.prefix + res + negative.suffix;
       }
     }
-    return baseResult;
+    return sp.reversedCounter ? reverseString(res) : res;
   },
   renderMarker(this: CounterStyleRendererInt, index) {
     const sp = this.engine.specs;
-    const counterRepresentation = this.renderCounter(index);
-    return sp.suffix
-      ? counterRepresentation + sp.suffix
-      : counterRepresentation;
+    const elements = [
+      sp.prefix || '',
+      this.renderCounter(index),
+      sp.suffix || ''
+    ];
+    return sp.reversedMarker ? elements.reverse().join('') : elements.join('');
   },
   withFallback(
     this: CounterStyleRendererInt,
     fallback: BaseCounterStyleRenderer | StrictCounterFormatter
   ) {
-    const normalizedFallback =
-      typeof fallback === 'function'
-        ? makeRawFromFormatter(fallback)
-        : fallback;
     return makeRaw(
       this.engine.withSpecs({
-        fallback: normalizedFallback
+        fallback:
+          typeof fallback === 'function'
+            ? makeRawFromFormatter(fallback)
+            : fallback
       })
     );
   },
@@ -308,10 +357,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
         }
       })
     );
-    if (fallback) {
-      return result.withFallback(fallback);
-    }
-    return result;
+    return fallback ? result.withFallback(fallback) : result;
   },
   withNegative(
     this: CounterStyleRendererInt,
@@ -353,6 +399,31 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     return makeRaw(
       this.engine.withSpecs({
         suffix
+      })
+    );
+  },
+  withPrefix(this: CounterStyleRendererInt, prefix) {
+    return makeRaw(
+      this.engine.withSpecs({
+        prefix
+      })
+    );
+  },
+  withRtl(this: CounterStyleRendererInt, options) {
+    const synthOptions = Object.assign({}, defaultRtlOptions, options);
+    const sp = this.engine.specs;
+    return makeRaw(
+      this.engine.withSpecs({
+        reversedMarker: true,
+        reversedCounter: synthOptions.reverseCounter,
+        suffix:
+          synthOptions.reverseSuffix && sp.suffix
+            ? reverseString(sp.suffix)
+            : sp.suffix,
+        prefix:
+          synthOptions.reversePrefix && sp.prefix
+            ? reverseString(sp.prefix)
+            : sp.prefix
       })
     );
   },
@@ -608,6 +679,9 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
 
 const DEFAULT_SPECS: Specifications = {
   suffix: DEFAULT_SUFFIX,
+  prefix: null,
+  reversedMarker: false,
+  reversedCounter: false,
   fallback: {
     renderMarker: (index) => index.toString() + DEFAULT_SUFFIX,
     renderCounter: (index) => index.toString(),

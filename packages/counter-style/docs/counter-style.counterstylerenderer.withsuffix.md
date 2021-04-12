@@ -4,7 +4,7 @@
 
 ## CounterStyleRenderer.withSuffix() method
 
-Create a new renderer which replaces or removes the default suffix.
+Create a new renderer which replaces or removes this renderer suffix.
 
 See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-suffix
 

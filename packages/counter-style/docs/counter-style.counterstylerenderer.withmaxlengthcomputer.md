@@ -24,5 +24,5 @@ withMaxLengthComputer(computer: MaxLengthInRangeComputer): CounterStyleRenderer;
 
 ## Remarks
 
-The computer function must not handle negative ranges.
+The computer function must not handle negative numbers.
 

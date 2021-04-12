@@ -11,6 +11,7 @@
 |  [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md) |  |
 |  [CounterStyleRenderer](./counter-style.counterstylerenderer.md) |  |
 |  [CounterStyleStatic](./counter-style.counterstylestatic.md) |  |
+|  [RtlOptions](./counter-style.rtloptions.md) |  |
 
 ## Variables
 

@@ -24,7 +24,9 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;
     withPadLeft(length: number, pad: string): CounterStyleRenderer;
     withPadRight(length: number, pad: string): CounterStyleRenderer;
+    withPrefix(prefix: string | null): CounterStyleRenderer;
     withRange(min: number, max: number, fallback?: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+    withRtl(options?: RtlOptions): CounterStyleRenderer;
     withSuffix(suffix: string | null): CounterStyleRenderer;
 }
 
@@ -46,6 +48,16 @@ export type LoseCounterFormatter = (index: number) => string | undefined;
 
 // @public (undocumented)
 export type MaxLengthInRangeComputer = (min: number, max: number) => number;
+
+// @public (undocumented)
+export interface RtlOptions {
+    // (undocumented)
+    reverseCounter?: boolean;
+    // (undocumented)
+    reversePrefix?: boolean;
+    // (undocumented)
+    reverseSuffix?: boolean;
+}
 
 // @public
 export type StrictCounterFormatter = (index: number) => string;
