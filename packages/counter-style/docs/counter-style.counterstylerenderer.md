@@ -8,15 +8,14 @@
 <b>Signature:</b>
 
 ```typescript
-export interface CounterStyleRenderer 
+export interface CounterStyleRenderer extends BaseCounterStyleRenderer 
 ```
+<b>Extends:</b> [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md)
 
 ## Methods
 
 |  Method | Description |
 |  --- | --- |
-|  [getMaxLenInRange(min, max)](./counter-style.counterstylerenderer.getmaxleninrange.md) | Get the maximum rendered length given an index range. If a fallback is defined, it will be used for values outside the range boundaries of this renderer. |
-|  [render(index)](./counter-style.counterstylerenderer.render.md) | Render an index into its counter style representation. |
 |  [withFallback(fallback)](./counter-style.counterstylerenderer.withfallback.md) | Create a new renderer with a fallback used when the index is out of bounds.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-fallback |
 |  [withMaxLengthComputer(computer)](./counter-style.counterstylerenderer.withmaxlengthcomputer.md) | Create a new renderer with a (hopefuly) cost-effective max length computer. |
 |  [withNegative(prefix, suffix)](./counter-style.counterstylerenderer.withnegative.md) | Create a new renderer which will render negative values by prefixing and suffixing the provided characters to the renderer function.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-negative |

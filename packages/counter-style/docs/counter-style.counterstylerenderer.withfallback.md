@@ -11,14 +11,14 @@ See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-fallback
 <b>Signature:</b>
 
 ```typescript
-withFallback(fallback: CounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+withFallback(fallback: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  fallback | [CounterStyleRenderer](./counter-style.counterstylerenderer.md) \| [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A fallback CounterStyleRenderer or a formatter function. |
+|  fallback | [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md) \| [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A fallback CounterStyleRenderer or a formatter function. |
 
 <b>Returns:</b>
 

@@ -11,7 +11,7 @@ See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-range
 <b>Signature:</b>
 
 ```typescript
-withRange(min: number, max: number, fallback?: CounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+withRange(min: number, max: number, fallback?: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ withRange(min: number, max: number, fallback?: CounterStyleRenderer | StrictCoun
 |  --- | --- | --- |
 |  min | number | Minimum value (inclusive) |
 |  max | number | Maximum value (inclusive) |
-|  fallback | [CounterStyleRenderer](./counter-style.counterstylerenderer.md) \| [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A fallback to apply when the index is out of bounds. |
+|  fallback | [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md) \| [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A fallback to apply when the index is out of bounds. |
 
 <b>Returns:</b>
 

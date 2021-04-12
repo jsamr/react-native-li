@@ -74,7 +74,7 @@ The API follows closely the specs for CSS `@counter-style` at rule. The default 
 #### Example 1: a lower Russian alphabet renderer
 
 In the
-below example, we're using [the alphabetic counter system](https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system) and we are using `alphabeticFromUnicodeRange` builder which allows to specify a contiguous unicode range. For non-contiguous ranges, use the `alphabetic` builder.
+below example, we're using [the alphabetic counter system](https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system) and `alphabeticFromUnicodeRange` builder which allows to specify a contiguous unicode range. For non-contiguous ranges, use the `alphabetic` builder.
 
 ```js
 import CounterStyle from '@jsamr/counter-style';
@@ -86,20 +86,22 @@ const lowerRussian = CounterStyle.alphabeticFromUnicodeRange(
 
 // Expect comes from jest testing framework.
 // Just a showcase of expected returned values.
-expect(lowerRussian.render(1)).toBe('а) ');
-expect(lowerRussian.render(2)).toBe('б) ');
-expect(lowerRussian.render(3)).toBe('в) ');
-expect(lowerRussian.render(4)).toBe('г) ');
-expect(lowerRussian.render(5)).toBe('д) ');
-expect(lowerRussian.render(29)).toBe('аа) ');
-// getMaxLenInRange takes suffixes into account.
-expect(lowerRussian.getMaxLenInRange(1, 5)).toBe(3);
+expect(lowerRussian.renderCounter(1)).toBe('а');
+expect(lowerRussian.renderMarker(1)).toBe('а) ');
+expect(lowerRussian.renderCounter(2)).toBe('б');
+expect(lowerRussian.renderCounter(3)).toBe('в');
+expect(lowerRussian.renderMarker(4)).toBe('г) ');
+expect(lowerRussian.renderMarker(5)).toBe('д) ');
+expect(lowerRussian.renderCounter(29)).toBe('аа');
+expect(lowerRussian.maxMarkerLenInRange(1, 5)).toBe(3);
+expect(lowerRussian.maxCounterLenInRange(1, 5)).toBe(1);
 ```
-Reference: [W3 predefined counter styles: Cyrillic styles](https://www.w3.org/TR/predefined-counter-styles/#cyrillic-styles).
+Reference: [W3C Ready-made Counter Styles: Cyrillic styles](https://www.w3.org/TR/predefined-counter-styles/#cyrillic-styles).
 #### Example 2: a "Funky" symbolic renderer
 
 In the
 below example, we're using [the symbolic counter system](https://www.w3.org/TR/css-counter-styles-3/#symbolic-system).
+Note that `withSuffix(null)` removes default suffix.
 
 ```js
 import CounterStyle from '@jsamr/counter-style';
@@ -109,12 +111,13 @@ const funky = CounterStyle.symbolic('*', '&').withSuffix(null);
 
 // Expect comes from jest testing framework.
 // Just a showcase of expected returned values.
-expect(funky.render(1)).toBe('*');
-expect(funky.render(2)).toBe('&');
-expect(funky.render(3)).toBe('**');
-expect(funky.render(4)).toBe('&&');
-expect(funky.render(5)).toBe('***');
-expect(funky.getMaxLenInRange(1, 5)).toBe(3);
+expect(funky.render(1)).renderCounter('*');
+expect(funky.render(2)).renderMarker('&');
+expect(funky.render(3)).renderCounter('**');
+expect(funky.render(4)).renderMarker('&&');
+expect(funky.render(5)).renderCounter('***');
+expect(funky.maxMarkerLenInRange(1, 5)).toBe(3);
+expect(funky.maxCounterLenInRange(1, 5)).toBe(3);
 ```
 
 All renderers can be chained to create variants, such as `withSuffix`,
@@ -134,7 +137,8 @@ All renderers can be chained to create variants, such as `withSuffix`,
 - Additive systems might have "holes" in their range coverage. For
   example, an additive system which has no representation for "1" will not
   translate odd indexes. This library behavior for such edge cases is unspecified.
-- `getMaxLenInRange` and `withPadding` don't take into account [unicode
-  grapheme clusters](https://www.w3.org/TR/css-text-3/#grapheme-cluster).
-  Unfortunately, there is no Web API for grapheme clustering and adding a third
-  party library would defy the purpose of being a *slim* library.
+- `maxMarkerLenInRange`, `maxCounterLenInRange` and `withPadding` don't take
+  into account [unicode grapheme
+  clusters](https://www.w3.org/TR/css-text-3/#grapheme-cluster). Unfortunately,
+  there is no Web API for grapheme clustering and adding a third party library
+  would defy the purpose of being a *slim* library.

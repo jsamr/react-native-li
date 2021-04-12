@@ -12,7 +12,7 @@ interface Engine {
 
 interface Specifications {
   suffix: string | null;
-  fallback: CounterStyleRenderer;
+  fallback: BaseCounterStyleRenderer;
   negative: null | {
     prefix: string;
     suffix: string;
@@ -60,32 +60,10 @@ export type StrictCounterFormatter = (index: number) => string;
  */
 export type LoseCounterFormatter = (index: number) => string | undefined;
 
-// TODO fix implementation, see https://www.w3.org/TR/css-counter-styles-3/#fixed-system
-
 /**
  * @public
  */
-export interface CounterStyleRenderer {
-  /**
-   * Render an index into its counter style representation.
-   *
-   * @param index - The index to render.
-   */
-  render(index: number): string;
-
-  /**
-   * Get the maximum rendered length given an index range.
-   * If a fallback is defined, it will be used for values outside the range
-   * boundaries of this renderer.
-   *
-   * @remarks This method doesn't take into account
-   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
-   *
-   * @param min - The minimum inclusive value.
-   * @param max - The maximum inclusive value.
-   */
-  getMaxLenInRange(min: number, max: number): number;
-
+export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
   /**
    * Create a new renderer with a fallback used when the index is out of bounds.
    *
@@ -94,7 +72,7 @@ export interface CounterStyleRenderer {
    * @param fallback - A fallback CounterStyleRenderer or a formatter function.
    */
   withFallback(
-    fallback: CounterStyleRenderer | StrictCounterFormatter
+    fallback: BaseCounterStyleRenderer | StrictCounterFormatter
   ): CounterStyleRenderer;
   /**
    * Create a new renderer with a constrained range. When the index is out of
@@ -110,7 +88,7 @@ export interface CounterStyleRenderer {
   withRange(
     min: number,
     max: number,
-    fallback?: CounterStyleRenderer | StrictCounterFormatter
+    fallback?: BaseCounterStyleRenderer | StrictCounterFormatter
   ): CounterStyleRenderer;
   /**
    * Create a new renderer which will render negative values by prefixing and
@@ -154,7 +132,7 @@ export interface CounterStyleRenderer {
    * Create a new renderer with a (hopefuly) cost-effective max length
    * computer.
    *
-   * @remarks The computer function must not handle negative ranges.
+   * @remarks The computer function must not handle negative numbers.
    *
    * @param computer - A function to compute the max length produced by the
    * underlying formatter given a range.
@@ -162,6 +140,53 @@ export interface CounterStyleRenderer {
   withMaxLengthComputer(
     computer: MaxLengthInRangeComputer
   ): CounterStyleRenderer;
+}
+
+/**
+ * @public
+ */
+export interface BaseCounterStyleRenderer {
+  /**
+   * Render an index into its corresponding marker string.
+   * See {@link https://www.w3.org/TR/css-lists-3/#text-markers | CSS Lists Level 3, Text-based Markers}.
+   *
+   * @param index - The counter value to render.
+   */
+  renderMarker(index: number): string;
+
+  /**
+   * Render an index into its counter representation, equivalent to CSS `counter` function.
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#generate-a-counter | CSS Counter Styles Level 3, Counter Styles}.
+   *
+   * @param index - The counter value to render.
+   */
+  renderCounter(index: number): string;
+
+  /**
+   * Get the maximum marker string length given an index range. If a fallback
+   * is defined, it will be used for values outside the range boundaries of
+   * this renderer.
+   *
+   * @remarks This method doesn't take into account
+   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
+   *
+   * @param min - The minimum inclusive value.
+   * @param max - The maximum inclusive value.
+   */
+  maxMarkerLenInRange(min: number, max: number): number;
+
+  /**
+   * Get the maximum counter representation length given an index range. If a
+   * fallback is defined, it will be used for values outside the range
+   * boundaries of this renderer.
+   *
+   * @remarks This method doesn't take into account
+   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
+   *
+   * @param min - The minimum inclusive value.
+   * @param max - The maximum inclusive value.
+   */
+  maxCounterLenInRange(min: number, max: number): number;
 }
 
 const _mod = (value: number, divisor: number) =>
@@ -178,28 +203,27 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     const supportedRange = specs.range;
     const supportedMin = Math.max(normMin, supportedRange.min);
     const supportedMax = Math.min(normMax, supportedRange.max);
-    const lenMiddle =
-      Math.max(
-        this.engine.maxLengthInRange(
-          negative ? Math.abs(supportedMax) : supportedMin,
-          negative ? Math.abs(supportedMin) : supportedMax
-        ) +
-          (negative && specs.negative
-            ? specs.negative.prefix.length + specs.negative.suffix.length
-            : 0),
-        specs?.padding?.length || 0
-      ) + (specs.suffix?.length || 0);
+    const lenMiddle = Math.max(
+      this.engine.maxLengthInRange(
+        negative ? Math.abs(supportedMax) : supportedMin,
+        negative ? Math.abs(supportedMin) : supportedMax
+      ) +
+        (negative && specs.negative
+          ? specs.negative.prefix.length + specs.negative.suffix.length
+          : 0),
+      specs?.padding?.length || 0
+    );
     const lenLeft =
       supportedMin > normMin
-        ? specs.fallback.getMaxLenInRange(normMin, supportedMin - 1)
+        ? specs.fallback.maxCounterLenInRange(normMin, supportedMin - 1)
         : 0;
     const lenRight =
       supportedMax < normMax
-        ? specs.fallback.getMaxLenInRange(supportedMax + 1, normMax)
+        ? specs.fallback.maxCounterLenInRange(supportedMax + 1, normMax)
         : 0;
     return Math.max(lenLeft, lenMiddle, lenRight);
   },
-  getMaxLenInRange(this: CounterStyleRendererInt, min, max) {
+  maxCounterLenInRange(this: CounterStyleRendererInt, min, max) {
     if (min >= 0) {
       return this.getAbsoluteMaxLenInRange(min, max, false);
     }
@@ -211,21 +235,27 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
       this.getAbsoluteMaxLenInRange(0, max, false)
     );
   },
-  render(this: CounterStyleRendererInt, index) {
-    const renderer = this.engine.formatter;
+  maxMarkerLenInRange(this: CounterStyleRendererInt, min, max) {
+    return (
+      this.maxCounterLenInRange(min, max) +
+      +(this.engine.specs.suffix?.length || 0)
+    );
+  },
+  renderCounter(this: CounterStyleRendererInt, index) {
+    const formatter = this.engine.formatter;
     const sp = this.engine.specs;
     const negative = sp.negative;
     let baseResult;
     if (index < sp.range.min || index > sp.range.max) {
-      return sp.fallback.render(index);
+      return sp.fallback.renderCounter(index);
     }
     const decoratorL =
       negative && index < 0
         ? negative.prefix.length + negative.suffix.length
         : 0;
-    baseResult = renderer(Math.sign(index) * index);
+    baseResult = formatter(Math.sign(index) * index);
     if (typeof baseResult === 'undefined') {
-      return sp.fallback.render(index);
+      return sp.fallback.renderCounter(index);
     }
     const lenWithDecorator = baseResult.length + decoratorL;
     if (sp.padding && lenWithDecorator < sp.padding.length) {
@@ -241,12 +271,18 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
         baseResult = negative.prefix + baseResult + negative.suffix;
       }
     }
-
-    return sp.suffix ? baseResult + sp.suffix : baseResult;
+    return baseResult;
+  },
+  renderMarker(this: CounterStyleRendererInt, index) {
+    const sp = this.engine.specs;
+    const counterRepresentation = this.renderCounter(index);
+    return sp.suffix
+      ? counterRepresentation + sp.suffix
+      : counterRepresentation;
   },
   withFallback(
     this: CounterStyleRendererInt,
-    fallback: CounterStyleRenderer | StrictCounterFormatter
+    fallback: BaseCounterStyleRenderer | StrictCounterFormatter
   ) {
     const normalizedFallback =
       typeof fallback === 'function'
@@ -262,7 +298,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     this: CounterStyleRendererInt,
     min: number,
     max: number,
-    fallback?: CounterStyleRenderer | StrictCounterFormatter
+    fallback?: BaseCounterStyleRenderer | StrictCounterFormatter
   ) {
     const result = makeRaw(
       this.engine.withSpecs({
@@ -362,7 +398,7 @@ export interface CounterStyleStatic {
    * implementation iterates over all values in range.
    * See {@link MaxLengthInRangeComputer}.
    *
-   * @returns A CounterStyleRenderer
+   * @returns A style renderer.
    */
   raw: (
     formatter: LoseCounterFormatter,
@@ -463,10 +499,7 @@ export interface CounterStyleStatic {
  * @public
  */
 const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
-  raw: (
-    formatter: LoseCounterFormatter,
-    lengthComputer?: MaxLengthInRangeComputer
-  ): CounterStyleRenderer => {
+  raw: (formatter, lengthComputer) => {
     if (lengthComputer) {
       return makeRawFromFormatter(formatter).withMaxLengthComputer(
         lengthComputer
@@ -474,7 +507,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
     }
     return makeRawFromFormatter(formatter);
   },
-  cyclic: (...symbols: string[]) => {
+  cyclic: (...symbols) => {
     if (symbols.length === 1) {
       return makeRawFromFormatter(() => symbols[0]);
     } else {
@@ -483,18 +516,18 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       );
     }
   },
-  fixed: (...symbols: string[]) =>
+  fixed: (...symbols) =>
     makeRawFromFormatter((index) => symbols[index - 1]).withRange(
       1,
       symbols.length
     ),
-  symbolic: (...symbols: string[]) =>
+  symbolic: (...symbols) =>
     makeRawFromFormatter((index) =>
       symbols[_mod(index - 1, symbols.length)].repeat(
         Math.ceil(index / symbols.length)
       )
     ).withRange(1, Infinity),
-  alphabetic: (...symbols: string[]) =>
+  alphabetic: (...symbols) =>
     makeRawFromFormatter((index) => {
       let result = '';
       while (index > 0) {
@@ -506,7 +539,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
     })
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(symbols.length, true))
       .withRange(1, Infinity),
-  numeric: (...symbols: string[]) =>
+  numeric: (...symbols) =>
     makeRawFromFormatter((index) => {
       if (index === 0) {
         return symbols[0];
@@ -575,11 +608,17 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
 
 const DEFAULT_SPECS: Specifications = {
   suffix: DEFAULT_SUFFIX,
-  // @ts-ignore
   fallback: {
-    render: (index) => index.toString() + DEFAULT_SUFFIX,
-    getMaxLenInRange(min, max) {
-      return Math.max(this.render(min).length, this.render(max).length);
+    renderMarker: (index) => index.toString() + DEFAULT_SUFFIX,
+    renderCounter: (index) => index.toString(),
+    maxCounterLenInRange(min, max) {
+      return Math.max(
+        this.renderCounter(min).length,
+        this.renderCounter(max).length
+      );
+    },
+    maxMarkerLenInRange(min, max) {
+      return this.maxCounterLenInRange(min, max) + DEFAULT_SUFFIX.length;
     }
   },
   negative: null,

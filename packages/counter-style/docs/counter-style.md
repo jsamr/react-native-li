@@ -8,6 +8,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md) |  |
 |  [CounterStyleRenderer](./counter-style.counterstylerenderer.md) |  |
 |  [CounterStyleStatic](./counter-style.counterstylestatic.md) |  |
 

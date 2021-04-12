@@ -4,21 +4,27 @@
 
 ```ts
 
+// @public (undocumented)
+export interface BaseCounterStyleRenderer {
+    maxCounterLenInRange(min: number, max: number): number;
+    maxMarkerLenInRange(min: number, max: number): number;
+    renderCounter(index: number): string;
+    renderMarker(index: number): string;
+}
+
 // @public
 const CounterStyle: Readonly<CounterStyleStatic>;
 
 export default CounterStyle;
 
 // @public (undocumented)
-export interface CounterStyleRenderer {
-    getMaxLenInRange(min: number, max: number): number;
-    render(index: number): string;
-    withFallback(fallback: CounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
+    withFallback(fallback: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
     withMaxLengthComputer(computer: MaxLengthInRangeComputer): CounterStyleRenderer;
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;
     withPadLeft(length: number, pad: string): CounterStyleRenderer;
     withPadRight(length: number, pad: string): CounterStyleRenderer;
-    withRange(min: number, max: number, fallback?: CounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+    withRange(min: number, max: number, fallback?: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
     withSuffix(suffix: string | null): CounterStyleRenderer;
 }
 
