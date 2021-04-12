@@ -5,9 +5,10 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { LoremIpsum } from 'lorem-ipsum';
 import * as presets from '@jsamr/counter-style/presets';
-import MarkerList from '@jsamr/react-native-li';
+import MarkedList from '@jsamr/react-native-li';
 
 const lorem = new LoremIpsum({});
+
 export default function App() {
   return (
     <SafeAreaProvider style={styles.grow}>
@@ -15,14 +16,13 @@ export default function App() {
         <ScrollView
           style={styles.grow}
           contentContainerStyle={styles.container}>
-          <MarkerList counterRenderer={presets.arabicIndic} rtl={true}>
+          <MarkedList counterRenderer={presets.disc}>
             {[...Array(100).keys()].map((index) => (
               <Text key={index} style={{ flexShrink: 1 }}>
-                يقوم اتحاد شبكة الويب العالمية (W3C) بتطوير معايير دولية للويب و
-                HTML و CSS وغير ذلك الكثير.
+                {lorem.generateSentences(1)}
               </Text>
             ))}
-          </MarkerList>
+          </MarkedList>
         </ScrollView>
       </SafeAreaView>
       <StatusBar style="auto" />
