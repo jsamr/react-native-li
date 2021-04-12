@@ -134,4 +134,7 @@ All renderers can be chained to create variants, such as `withSuffix`,
 - Additive systems might have "holes" in their range coverage. For
   example, an additive system which has no representation for "1" will not
   translate odd indexes. This library behavior for such edge cases is unspecified.
-- `getMaxLenInRange` method doesn't take into account [unicode graphemes clusters](https://www.unicode.org/reports/tr29/tr29-37.html#Grapheme_Cluster_Boundaries).
+- `getMaxLenInRange` and `withPadding` don't take into account [unicode
+  grapheme clusters](https://www.w3.org/TR/css-text-3/#grapheme-cluster).
+  Unfortunately, there is no Web API for grapheme clustering and adding a third
+  party library would defy the purpose of being a *slim* library.

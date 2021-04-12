@@ -79,7 +79,7 @@ export interface CounterStyleRenderer {
    * boundaries of this renderer.
    *
    * @remarks This method doesn't take into account
-   * {@link https://www.unicode.org/reports/tr29/tr29-37.html#Grapheme_Cluster_Boundaries | unicode graphemes clusters}.
+   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
    *
    * @param min - The minimum inclusive value.
    * @param max - The maximum inclusive value.
