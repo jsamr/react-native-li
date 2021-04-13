@@ -333,9 +333,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
       }
     }
     if (index < 0 && negative) {
-      if (typeof res === 'string') {
-        res = negative.prefix + res + negative.suffix;
-      }
+      res = negative.prefix + res + negative.suffix;
     }
     return sp.reversedCounter ? reverseString(res) : res;
   },
@@ -711,9 +709,7 @@ const styleEngineProto: Pick<
     let len = 0;
     for (let i = Math.max(0, min); i <= max; i++) {
       const val = this.formatter(i);
-      if (typeof val === 'string') {
-        len = Math.max(codepointLength(val), len);
-      }
+      len = Math.max(codepointLength(val), len);
     }
     return len;
   },

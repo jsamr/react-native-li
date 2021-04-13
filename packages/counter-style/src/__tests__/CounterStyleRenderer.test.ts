@@ -41,7 +41,10 @@ describe('CounterStyleRenderer', () => {
     const counter = decimal.withPrefix('xx').withSuffix('xx');
     expect(counter.maxMarkerLenInRange(1, 1)).toBe(5);
   });
-
+  test('::withRange', () => {
+    const counter = lowerGreek.withRange(1, Infinity, decimal);
+    expect(counter.renderCounter(-1)).toBe('-1');
+  });
   test('It should fall back to a decimal renderer when out of bounds preserving prefixes and suffixes', () => {
     const counter = lowerGreek
       .withRange(0, 10)
