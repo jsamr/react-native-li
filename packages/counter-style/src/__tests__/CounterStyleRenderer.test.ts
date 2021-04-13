@@ -97,6 +97,11 @@ describe('CounterStyleRenderer', () => {
     );
   });
   describe('::maxMarkerLenInRange', () => {
+    it('should return 0 when range is decreasing', () => {
+      const counter = decimal;
+      expect(counter.maxMarkerLenInRange(1, 0)).toBe(0);
+      expect(counter.maxCounterLenInRange(1, 0)).toBe(0);
+    });
     it('should work with numeric styles', () => {
       const counter = decimal;
       expect(counter.maxMarkerLenInRange(1, 9)).toBe(1 + DEFAULT_SUFFIX.length);

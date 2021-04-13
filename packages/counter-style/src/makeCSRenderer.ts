@@ -43,6 +43,9 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     return Math.max(lenLeft, lenMiddle, lenRight);
   },
   maxCounterLenInRange(this: CounterStyleRendererInt, min, max) {
+    if (max < min) {
+      return 0;
+    }
     if (min >= 0) {
       return this.getAbsoluteMaxLenInRange(min, max, false);
     }
@@ -55,6 +58,9 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     );
   },
   maxMarkerLenInRange(this: CounterStyleRendererInt, min, max) {
+    if (max < min) {
+      return 0;
+    }
     return (
       this.maxCounterLenInRange(min, max) +
       codeunitLength(this.engine.specs.suffix) +
