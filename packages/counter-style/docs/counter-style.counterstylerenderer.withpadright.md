@@ -6,7 +6,7 @@
 
 Create a new renderer which adds padding to the right.
 
-See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-pad
+See [CSS Counter Styles Level 3, Zero-Padding and Constant-Width Representations: the pad descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad)<!-- -->.
 
 <b>Signature:</b>
 

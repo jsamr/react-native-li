@@ -4,7 +4,9 @@
 
 ## CounterStyleStatic.alphabetic property
 
-See https://www.w3.org/TR/css-counter-styles-3/\#alphabetic-system
+Create an alphabetic system renderer.
+
+See [CSS Counter Styles Level 3, Bijective Numerals: the alphabetic system](https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system)<!-- -->.
 
 <b>Signature:</b>
 

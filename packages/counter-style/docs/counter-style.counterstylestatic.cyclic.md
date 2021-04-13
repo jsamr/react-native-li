@@ -4,7 +4,9 @@
 
 ## CounterStyleStatic.cyclic property
 
-See https://www.w3.org/TR/css-counter-styles-3/\#cyclic-system
+Create a cyclic system renderer.
+
+See [CSS Counter Styles Level 3, Cycling Symbols: the cyclic system](https://www.w3.org/TR/css-counter-styles-3/#cyclic-system)<!-- -->.
 
 <b>Signature:</b>
 

@@ -4,12 +4,17 @@
 
 ## LoseCounterFormatter type
 
-A function that renders an index into its counter representation.
+A function that renders an index into its [initial counter representation](https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value)<!-- -->.
 
-It can return undefined to signal a fallback should be used instead.
+As specified in CSS, this function must not render negative signs, add padding or prefixes and suffixes.
 
 <b>Signature:</b>
 
 ```typescript
 export declare type LoseCounterFormatter = (index: number) => string | undefined;
 ```
+
+## Remarks
+
+It can return undefined to signal a fallback should be used instead.
+

@@ -6,7 +6,7 @@
 
 Create a new renderer which replaces or removes this renderer prefix.
 
-See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-prefix
+See [CSS Counter Styles Level 3, Symbols before the marker: the prefix descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-prefix)<!-- -->.
 
 <b>Signature:</b>
 

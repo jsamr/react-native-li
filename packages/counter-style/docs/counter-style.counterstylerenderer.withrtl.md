@@ -26,3 +26,5 @@ withRtl(options?: RtlOptions): CounterStyleRenderer;
 
 By default: - The order of prefix, counter representation and suffix will be reversed when rendering marker. - The letter ordering of prefix and suffix will be reversed when rendering marker, prefix and suffix. - The letter ordering of counter representation will not be reversed when rendering marker and counter.
 
+See [RtlOptions](./counter-style.rtloptions.md)<!-- -->.
+

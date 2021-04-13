@@ -4,7 +4,9 @@
 
 ## CounterStyleStatic.fixed property
 
-See https://www.w3.org/TR/css-counter-styles-3/\#fixed-system
+Create a fixed system renderer.
+
+See [CSS Counter Styles Level 3, Exhaustible Symbols: the fixed system](https://www.w3.org/TR/css-counter-styles-3/#fixed-system)<!-- -->.
 
 <b>Signature:</b>
 

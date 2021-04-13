@@ -13,22 +13,22 @@ export type MaxCodepointLengthInRangeComputer = (
 ) => number;
 
 /**
- * A function that renders an index into its counter representation.
+ * A function that renders an index into its
+ * {@link https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value | initial counter representation}.
  *
- * @public
- */
-export type StrictCounterFormatter = (index: number) => string;
-
-/**
- * A function that renders an index into its counter representation.
+ * As specified in CSS, this function must not render negative signs, add
+ * padding or prefixes and suffixes.
  *
- * It can return undefined to signal a fallback should be used instead.
+ * @remarks It can return undefined to signal a fallback should be used
+ * instead.
  *
  * @public
  */
 export type LoseCounterFormatter = (index: number) => string | undefined;
 
 /**
+ * An object to specify RTL rendering.
+ *
  * @public
  */
 export interface RtlOptions {
@@ -47,6 +47,8 @@ export interface RtlOptions {
 }
 
 /**
+ * An object to render counters.
+ *
  * @public
  */
 export interface CounterStyleRenderer {
@@ -91,7 +93,7 @@ export interface CounterStyleRenderer {
   /**
    * Create a new renderer with a fallback used when the index is out of bounds.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-fallback
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-fallback | CSS Counter Styles Level 3, Defining fallback: the fallback descriptor}.
    *
    * @param fallback - A fallback CounterStyleRenderer.
    */
@@ -101,7 +103,7 @@ export interface CounterStyleRenderer {
    * bounds, the counter representation is rendered with the provided fallback,
    * or the default fallback if none was provided.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-range
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-range | CSS Counter Styles Level 3, Limiting the counter scope: the range descriptor}.
    *
    * @param min - Minimum value (inclusive)
    * @param max - Maximum value (inclusive)
@@ -116,7 +118,7 @@ export interface CounterStyleRenderer {
    * Create a new renderer which will render negative values by prefixing and
    * suffixing the provided characters to the renderer function.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-negative
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-negative | CSS Counter Styles Level 3, Formatting negative values: the negative descriptor}.
    *
    * @param prefix - String prepended to counter representation.
    * @param suffix - String appended to counter representation.
@@ -125,7 +127,7 @@ export interface CounterStyleRenderer {
   /**
    * Create a new renderer which adds padding to the left.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad | CSS Counter Styles Level 3, Zero-Padding and Constant-Width Representations: the pad descriptor}.
    *
    * @param length - The total length to which padding should be added.
    * @param pad - The character to pad.
@@ -134,7 +136,7 @@ export interface CounterStyleRenderer {
   /**
    * Create a new renderer which adds padding to the right.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad | CSS Counter Styles Level 3, Zero-Padding and Constant-Width Representations: the pad descriptor}.
    *
    * @param length - The total length to which padding should be added.
    * @param pad - The character to pad.
@@ -144,7 +146,7 @@ export interface CounterStyleRenderer {
   /**
    * Create a new renderer which replaces or removes this renderer suffix.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-suffix
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-suffix | CSS Counter Styles Level 3, Symbols after the marker: the suffix descriptor}.
    *
    * @param suffix - A suffix, or `null` to remove the default suffix.
    */
@@ -153,7 +155,7 @@ export interface CounterStyleRenderer {
   /**
    * Create a new renderer which replaces or removes this renderer prefix.
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-prefix
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-prefix | CSS Counter Styles Level 3, Symbols before the marker: the prefix descriptor}.
    *
    * @param prefix - A prefix, or `null` to remove this renderer suffix.
    */
@@ -179,6 +181,8 @@ export interface CounterStyleRenderer {
    * - The order of prefix, counter representation and suffix will be reversed when rendering marker.
    * - The letter ordering of prefix and suffix will be reversed when rendering marker, prefix and suffix.
    * - The letter ordering of counter representation will not be reversed when rendering marker and counter.
+   *
+   * See {@link RtlOptions}.
    */
   withRtl(options?: RtlOptions): CounterStyleRenderer;
 }
@@ -194,6 +198,8 @@ export type FallbackRenderer = Pick<
 >;
 
 /**
+ * An object to build counter style renderers.
+ *
  * @public
  */
 export interface CounterStyleStatic {
@@ -202,18 +208,20 @@ export interface CounterStyleStatic {
    *
    * @remarks The formatter function should not add decorations. Especially:
    *
-   * - should not handle negative numbers. Use {@link CounterStyleRenderer.withNegative} instead to specify which negative symbol should be rendered.
+   * - should not add negative signs. Use {@link CounterStyleRenderer.withNegative} instead.
    * - should not add padding. Use {@link CounterStyleRenderer.withPadLeft} and {@link CounterStyleRenderer.withPadRight} instead.
+   * - should not add prefixes or suffixes. Use {@link CounterStyleRenderer.withPrefix} and {@link CounterStyleRenderer.withSuffix} instead.
    *
    * If the formatter function doesn't cover the [-Infinity, Infinity] range,
-   * you must specify the supported range. See
-   * {@link CounterStyleRenderer.withRange}.
+   * you must specify the scope via {@link CounterStyleRenderer.withRange}.
    *
-   * @param formatter - A formatter function which takes a non-negative
-   * integer and returns its counter representation, or undefined when there is
-   * no representation for this index. If that is the case, the renderer will
-   * use the specified fallback function (see
-   * {@link CounterStyleRenderer.withFallback}), or the default fallback.
+   * @param formatter - A formatter function which takes a non-negative integer
+   * and returns its
+   * {@link https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value | initial counter representation},
+   * or undefined when there is no representation for this index. If that is
+   * the case, the renderer will use the specified fallback function (see
+   * {@link CounterStyleRenderer.withFallback}), or the default decimal
+   * fallback if none was specified.
    *
    * @param maxLengthComputer - A function which takes a non-negative range and
    * returns the maximum formatter length for this range in codepoints. Default
@@ -228,15 +236,19 @@ export interface CounterStyleStatic {
   ) => CounterStyleRenderer;
 
   /**
-   * See https://www.w3.org/TR/css-counter-styles-3/#cyclic-system
+   * Create a cyclic system renderer.
    *
-   * @param symbols - A suite of repeated symbols.
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#cyclic-system | CSS Counter Styles Level 3, Cycling Symbols: the cyclic system}.
+   *
+   * @param symbols - A suite of cyclic symbols.
    * @returns - A cyclic renderer with default range of [-Infinity, Infinity]
    */
   cyclic: (...symbols: string[]) => CounterStyleRenderer;
 
   /**
-   * See https://www.w3.org/TR/css-counter-styles-3/#fixed-system
+   * Create a fixed system renderer.
+   *
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#fixed-system | CSS Counter Styles Level 3, Exhaustible Symbols: the fixed system}.
    *
    * @param symbols - The suite of fixed symbols
    * @returns - A fixed renderer with default range of [1, symbols.length]
@@ -244,7 +256,9 @@ export interface CounterStyleStatic {
   fixed: (...symbols: string[]) => CounterStyleRenderer;
 
   /**
-   * See https://www.w3.org/TR/css-counter-styles-3/#symbolic-system
+   * Create a symbolic system renderer.
+   *
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#symbolic-system | CSS Counter Styles Level 3, Repeating Symbols: the symbolic system}.
    *
    * @param symbols - The suite of repeated symbols.
    * @returns - A symbolic renderer with default range of [1, Infinity]
@@ -252,7 +266,9 @@ export interface CounterStyleStatic {
   symbolic: (...symbols: string[]) => CounterStyleRenderer;
 
   /**
-   * See https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system
+   * Create an alphabetic system renderer.
+   *
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system | CSS Counter Styles Level 3, Bijective Numerals: the alphabetic system}.
    *
    * @param symbols - The suite of alphabetic symbols.
    * @returns - An alphabetic renderer with default range of [1, Infinity]
@@ -260,7 +276,9 @@ export interface CounterStyleStatic {
   alphabetic: (...symbols: string[]) => CounterStyleRenderer;
 
   /**
-   * See https://www.w3.org/TR/css-counter-styles-3/#numeric-system
+   * Create a numeric system renderer.
+   *
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#numeric-system | CSS Counter Styles Level 3, Positional Numerals: the numeric system}.
    *
    * @param symbols - The suite of numeric symbols.
    * @returns - An numeric renderer with default range of [-Infinity, Infinity]
@@ -269,11 +287,14 @@ export interface CounterStyleStatic {
   numeric: (...symbols: string[]) => CounterStyleRenderer;
 
   /**
-   * See https://www.w3.org/TR/css-counter-styles-3/#additive-system
+   * Create an additive system renderer.
+   *
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#additive-system | CSS Counter Styles Level 3, Accumulating Numerals: the additive system}.
    *
    * @remarks Additive systems might have "holes" in their range coverage. For
    * example, an additive system which has no representation for "1" will not
-   * translate odd indexes. This edge-case is not guaranteed to work with this library.
+   * translate odd indexes. **The behavior of this renderer for incomplete
+   * additive systems is unspecified.**
    *
    * @param symbols - A record which indexes are non-negative numbers and values their
    * corresponding representations, each pair forming an additive tuple.
@@ -283,13 +304,13 @@ export interface CounterStyleStatic {
   additive: (symbols: Record<number, string>) => CounterStyleRenderer;
 
   /**
-   * Create a numeric multiplicative renderer from a unicode and a base. The
-   * set of numerals for this range will be generated by incrementing
+   * Create a numeric system renderer from a UTF-16 code unit and a
+   * base. The set of numerals for this range will be generated by incrementing
    * `originUnicode` with every integer in range [0, `base` - 1].
    *
-   * See https://www.w3.org/TR/css-counter-styles-3/#numeric-system.
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#numeric-system | CSS Counter Styles Level 3, Positional Numerals: the numeric system}.
    *
-   * @param originUnicode - The unicode number representation of index "0".
+   * @param originUnicode - The UTF-16 code unit number representation of index "0".
    * @param base - The number of numerals in the multiplicative system.
    */
   numericFromUnicodeRange: (
@@ -298,14 +319,14 @@ export interface CounterStyleStatic {
   ) => CounterStyleRenderer;
 
   /**
-   * Create an alphabetic renderer from a unicode and an alphabet length. The
-   * set of symbols for this alphabetic system will be generated by
-   * incrementing `originUnicode` with every integer in range
-   * [0, `alphabetLength` - 1].
+   * Create an alphabetic system renderer from a  UTF-16 code unit and an alphabet
+   * length. The set of symbols for this alphabetic system will be generated by
+   * incrementing `originUnicode` with every integer in range [0,
+   * `alphabetLength` - 1].
    *
-   * https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system.
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#alphabetic-system | CSS Counter Styles Level 3, Bijective Numerals: the alphabetic system}.
    *
-   * @param originUnicode - The unicode number representation of index "1".
+   * @param originUnicode - The UTF-16 code unit number representation of index "1".
    * @param alphabetLength - The number of characters in this alphabet.
    */
   alphabeticFromUnicodeRange: (

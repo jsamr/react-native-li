@@ -4,7 +4,9 @@
 
 ## CounterStyleStatic.numeric property
 
-See https://www.w3.org/TR/css-counter-styles-3/\#numeric-system
+Create a numeric system renderer.
+
+See [CSS Counter Styles Level 3, Positional Numerals: the numeric system](https://www.w3.org/TR/css-counter-styles-3/#numeric-system)<!-- -->.
 
 <b>Signature:</b>
 

@@ -2,11 +2,7 @@ import getAlphanumFromUnicodeRange from './getAlphanumFromUnicodeRange';
 import makeAlphanumMaxlenComputer from './makeAlphanumMaxlenComputer';
 import makeCSEngine from './makeCSEngine';
 import makeCSRenderer from './makeCSRenderer';
-import type {
-  LoseCounterFormatter,
-  StrictCounterFormatter,
-  CounterStyleStatic
-} from './public-types';
+import type { LoseCounterFormatter, CounterStyleStatic } from './public-types';
 
 const mod = (value: number, divisor: number) =>
   ((value % divisor) + divisor) % divisor;
@@ -51,7 +47,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       )
     ).withRange(1, Infinity),
   alphabetic: (...symbols) => {
-    const formatter: StrictCounterFormatter = (index) => {
+    const formatter: LoseCounterFormatter = (index) => {
       let result = '';
       while (index > 0) {
         index--;
@@ -65,7 +61,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       .withRange(1, Infinity);
   },
   numeric: (...symbols) => {
-    const formatter: StrictCounterFormatter = (index) => {
+    const formatter: LoseCounterFormatter = (index) => {
       if (index === 0) {
         return symbols[0];
       } else {
@@ -82,7 +78,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       .withNegative('-');
   },
   numericFromUnicodeRange: (originUnicode: number, base: number) => {
-    const formatter: StrictCounterFormatter = (index) =>
+    const formatter: LoseCounterFormatter = (index) =>
       getAlphanumFromUnicodeRange(index, originUnicode, base, false) as string;
     return makeCSRendererFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(base, false))

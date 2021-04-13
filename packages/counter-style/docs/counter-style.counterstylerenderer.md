@@ -4,6 +4,7 @@
 
 ## CounterStyleRenderer interface
 
+An object to render counters.
 
 <b>Signature:</b>
 
@@ -19,13 +20,13 @@ export interface CounterStyleRenderer
 |  [maxMarkerLenInRange(min, max)](./counter-style.counterstylerenderer.maxmarkerleninrange.md) | Get the maximum marker string length given an index range. If a fallback is defined, it will be used for values outside the range boundaries of this renderer. |
 |  [renderCounter(index)](./counter-style.counterstylerenderer.rendercounter.md) | Render an index into its counter representation, equivalent to CSS <code>counter</code> function. See [CSS Counter Styles Level 3, Counter Styles](https://www.w3.org/TR/css-counter-styles-3/#generate-a-counter)<!-- -->. |
 |  [renderMarker(index)](./counter-style.counterstylerenderer.rendermarker.md) | Render an index into its corresponding marker string. See [CSS Lists Level 3, Text-based Markers](https://www.w3.org/TR/css-lists-3/#text-markers)<!-- -->. |
-|  [withFallback(fallback)](./counter-style.counterstylerenderer.withfallback.md) | Create a new renderer with a fallback used when the index is out of bounds.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-fallback |
+|  [withFallback(fallback)](./counter-style.counterstylerenderer.withfallback.md) | Create a new renderer with a fallback used when the index is out of bounds.<!-- -->See [CSS Counter Styles Level 3, Defining fallback: the fallback descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-fallback)<!-- -->. |
 |  [withMaxLengthComputer(computer)](./counter-style.counterstylerenderer.withmaxlengthcomputer.md) | Create a new renderer with a (hopefuly) cost-effective max codepoint length computer. |
-|  [withNegative(prefix, suffix)](./counter-style.counterstylerenderer.withnegative.md) | Create a new renderer which will render negative values by prefixing and suffixing the provided characters to the renderer function.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-negative |
-|  [withPadLeft(length, pad)](./counter-style.counterstylerenderer.withpadleft.md) | Create a new renderer which adds padding to the left.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-pad |
-|  [withPadRight(length, pad)](./counter-style.counterstylerenderer.withpadright.md) | Create a new renderer which adds padding to the right.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-pad |
-|  [withPrefix(prefix)](./counter-style.counterstylerenderer.withprefix.md) | Create a new renderer which replaces or removes this renderer prefix.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-prefix |
-|  [withRange(min, max, fallback)](./counter-style.counterstylerenderer.withrange.md) | Create a new renderer with a constrained range. When the index is out of bounds, the counter representation is rendered with the provided fallback, or the default fallback if none was provided.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-range |
+|  [withNegative(prefix, suffix)](./counter-style.counterstylerenderer.withnegative.md) | Create a new renderer which will render negative values by prefixing and suffixing the provided characters to the renderer function.<!-- -->See [CSS Counter Styles Level 3, Formatting negative values: the negative descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-negative)<!-- -->. |
+|  [withPadLeft(length, pad)](./counter-style.counterstylerenderer.withpadleft.md) | Create a new renderer which adds padding to the left.<!-- -->See [CSS Counter Styles Level 3, Zero-Padding and Constant-Width Representations: the pad descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad)<!-- -->. |
+|  [withPadRight(length, pad)](./counter-style.counterstylerenderer.withpadright.md) | Create a new renderer which adds padding to the right.<!-- -->See [CSS Counter Styles Level 3, Zero-Padding and Constant-Width Representations: the pad descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-pad)<!-- -->. |
+|  [withPrefix(prefix)](./counter-style.counterstylerenderer.withprefix.md) | Create a new renderer which replaces or removes this renderer prefix.<!-- -->See [CSS Counter Styles Level 3, Symbols before the marker: the prefix descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-prefix)<!-- -->. |
+|  [withRange(min, max, fallback)](./counter-style.counterstylerenderer.withrange.md) | Create a new renderer with a constrained range. When the index is out of bounds, the counter representation is rendered with the provided fallback, or the default fallback if none was provided.<!-- -->See [CSS Counter Styles Level 3, Limiting the counter scope: the range descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-range)<!-- -->. |
 |  [withRtl(options)](./counter-style.counterstylerenderer.withrtl.md) | Create a new renderer which renders Right-to-left. |
-|  [withSuffix(suffix)](./counter-style.counterstylerenderer.withsuffix.md) | Create a new renderer which replaces or removes this renderer suffix.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-suffix |
+|  [withSuffix(suffix)](./counter-style.counterstylerenderer.withsuffix.md) | Create a new renderer which replaces or removes this renderer suffix.<!-- -->See [CSS Counter Styles Level 3, Symbols after the marker: the suffix descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-suffix)<!-- -->. |
 

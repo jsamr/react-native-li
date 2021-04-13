@@ -8,9 +8,9 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [CounterStyleRenderer](./counter-style.counterstylerenderer.md) |  |
-|  [CounterStyleStatic](./counter-style.counterstylestatic.md) |  |
-|  [RtlOptions](./counter-style.rtloptions.md) |  |
+|  [CounterStyleRenderer](./counter-style.counterstylerenderer.md) | An object to render counters. |
+|  [CounterStyleStatic](./counter-style.counterstylestatic.md) | An object to build counter style renderers. |
+|  [RtlOptions](./counter-style.rtloptions.md) | An object to specify RTL rendering. |
 
 ## Variables
 
@@ -23,7 +23,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [FallbackRenderer](./counter-style.fallbackrenderer.md) | Minimal API for a fallback. |
-|  [LoseCounterFormatter](./counter-style.losecounterformatter.md) | A function that renders an index into its counter representation.<!-- -->It can return undefined to signal a fallback should be used instead. |
+|  [LoseCounterFormatter](./counter-style.losecounterformatter.md) | A function that renders an index into its [initial counter representation](https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value)<!-- -->.<!-- -->As specified in CSS, this function must not render negative signs, add padding or prefixes and suffixes. |
 |  [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md) | A function which compute the maximum codepoint length of a formatter in a given range. |
-|  [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A function that renders an index into its counter representation. |
 

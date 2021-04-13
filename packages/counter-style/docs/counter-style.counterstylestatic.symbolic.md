@@ -4,7 +4,9 @@
 
 ## CounterStyleStatic.symbolic property
 
-See https://www.w3.org/TR/css-counter-styles-3/\#symbolic-system
+Create a symbolic system renderer.
+
+See [CSS Counter Styles Level 3, Repeating Symbols: the symbolic system](https://www.w3.org/TR/css-counter-styles-3/#symbolic-system)<!-- -->.
 
 <b>Signature:</b>
 

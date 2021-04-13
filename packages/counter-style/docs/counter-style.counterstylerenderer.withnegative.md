@@ -6,7 +6,7 @@
 
 Create a new renderer which will render negative values by prefixing and suffixing the provided characters to the renderer function.
 
-See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-negative
+See [CSS Counter Styles Level 3, Formatting negative values: the negative descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-negative)<!-- -->.
 
 <b>Signature:</b>
 

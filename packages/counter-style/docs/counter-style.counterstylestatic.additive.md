@@ -4,7 +4,9 @@
 
 ## CounterStyleStatic.additive property
 
-See https://www.w3.org/TR/css-counter-styles-3/\#additive-system
+Create an additive system renderer.
+
+See [CSS Counter Styles Level 3, Accumulating Numerals: the additive system](https://www.w3.org/TR/css-counter-styles-3/#additive-system)<!-- -->.
 
 <b>Signature:</b>
 
@@ -14,5 +16,5 @@ additive: (symbols: Record<number, string>) => CounterStyleRenderer;
 
 ## Remarks
 
-Additive systems might have "holes" in their range coverage. For example, an additive system which has no representation for "1" will not translate odd indexes. This edge-case is not guaranteed to work with this library.
+Additive systems might have "holes" in their range coverage. For example, an additive system which has no representation for "1" will not translate odd indexes. \*\*The behavior of this renderer for incomplete additive systems is unspecified.\*\*
 

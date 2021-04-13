@@ -6,7 +6,7 @@
 
 Create a new renderer with a fallback used when the index is out of bounds.
 
-See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-fallback
+See [CSS Counter Styles Level 3, Defining fallback: the fallback descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-fallback)<!-- -->.
 
 <b>Signature:</b>
 

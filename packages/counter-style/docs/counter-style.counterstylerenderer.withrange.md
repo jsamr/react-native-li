@@ -6,7 +6,7 @@
 
 Create a new renderer with a constrained range. When the index is out of bounds, the counter representation is rendered with the provided fallback, or the default fallback if none was provided.
 
-See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-range
+See [CSS Counter Styles Level 3, Limiting the counter scope: the range descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-range)<!-- -->.
 
 <b>Signature:</b>
 

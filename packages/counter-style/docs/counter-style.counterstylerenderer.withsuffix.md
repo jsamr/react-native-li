@@ -6,7 +6,7 @@
 
 Create a new renderer which replaces or removes this renderer suffix.
 
-See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-suffix
+See [CSS Counter Styles Level 3, Symbols after the marker: the suffix descriptor](https://www.w3.org/TR/css-counter-styles-3/#counter-style-suffix)<!-- -->.
 
 <b>Signature:</b>
 

@@ -16,7 +16,7 @@ raw: (formatter: LoseCounterFormatter, maxLengthComputer?: MaxCodepointLengthInR
 
 The formatter function should not add decorations. Especially:
 
-- should not handle negative numbers. Use [CounterStyleRenderer.withNegative()](./counter-style.counterstylerenderer.withnegative.md) instead to specify which negative symbol should be rendered. - should not add padding. Use [CounterStyleRenderer.withPadLeft()](./counter-style.counterstylerenderer.withpadleft.md) and [CounterStyleRenderer.withPadRight()](./counter-style.counterstylerenderer.withpadright.md) instead.
+- should not add negative signs. Use [CounterStyleRenderer.withNegative()](./counter-style.counterstylerenderer.withnegative.md) instead. - should not add padding. Use [CounterStyleRenderer.withPadLeft()](./counter-style.counterstylerenderer.withpadleft.md) and [CounterStyleRenderer.withPadRight()](./counter-style.counterstylerenderer.withpadright.md) instead. - should not add prefixes or suffixes. Use [CounterStyleRenderer.withPrefix()](./counter-style.counterstylerenderer.withprefix.md) and [CounterStyleRenderer.withSuffix()](./counter-style.counterstylerenderer.withsuffix.md) instead.
 
-If the formatter function doesn't cover the \[-Infinity, Infinity\] range, you must specify the supported range. See [CounterStyleRenderer.withRange()](./counter-style.counterstylerenderer.withrange.md)<!-- -->.
+If the formatter function doesn't cover the \[-Infinity, Infinity\] range, you must specify the scope via [CounterStyleRenderer.withRange()](./counter-style.counterstylerenderer.withrange.md)<!-- -->.
 

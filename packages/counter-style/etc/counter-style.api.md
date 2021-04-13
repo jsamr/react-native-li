@@ -9,7 +9,7 @@ const CounterStyle: Readonly<CounterStyleStatic>;
 
 export default CounterStyle;
 
-// @public (undocumented)
+// @public
 export interface CounterStyleRenderer {
     maxCounterLenInRange(min: number, max: number): number;
     maxMarkerLenInRange(min: number, max: number): number;
@@ -26,7 +26,7 @@ export interface CounterStyleRenderer {
     withSuffix(suffix: string | null): CounterStyleRenderer;
 }
 
-// @public (undocumented)
+// @public
 export interface CounterStyleStatic {
     additive: (symbols: Record<number, string>) => CounterStyleRenderer;
     alphabetic: (...symbols: string[]) => CounterStyleRenderer;
@@ -48,7 +48,7 @@ export type LoseCounterFormatter = (index: number) => string | undefined;
 // @public
 export type MaxCodepointLengthInRangeComputer = (min: number, max: number) => number;
 
-// @public (undocumented)
+// @public
 export interface RtlOptions {
     // (undocumented)
     reverseCounter?: boolean;
@@ -57,9 +57,6 @@ export interface RtlOptions {
     // (undocumented)
     reverseSuffix?: boolean;
 }
-
-// @public
-export type StrictCounterFormatter = (index: number) => string;
 
 
 // (No @packageDocumentation comment for this package)

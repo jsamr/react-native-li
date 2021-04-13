@@ -4,6 +4,7 @@
 
 ## RtlOptions interface
 
+An object to specify RTL rendering.
 
 <b>Signature:</b>
 
