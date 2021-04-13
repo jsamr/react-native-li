@@ -3,16 +3,21 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { MarkedListProps } from './shared-types';
 
 /**
+ * Props for the {@link MarkedListItem} component.
+ *
  * @public
  */
 export type MarkedListItemProps = Required<
   Pick<
     MarkedListProps,
-    'counterRenderer' | 'renderMarker' | 'markerStyle' | 'rtlLineReversed'
+    | 'counterRenderer'
+    | 'renderMarker'
+    | 'markerStyle'
+    | 'rtlLineReversed'
+    | 'startIndex'
   >
 > & {
   index: number;
-  startIndex: number;
   maxNumOfCodepoints: number;
   style: StyleProp<ViewStyle>;
 };

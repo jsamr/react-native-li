@@ -24,5 +24,5 @@
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [MarkedListItemProps](./react-native-li.markedlistitemprops.md) |  |
+|  [MarkedListItemProps](./react-native-li.markedlistitemprops.md) | Props for the [MarkedListItem()](./react-native-li.markedlistitem.md) component. |
 

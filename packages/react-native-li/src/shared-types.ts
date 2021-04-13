@@ -8,8 +8,17 @@ import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
  * @public
  */
 export interface MarkerBoxProps {
+  /**
+   * Style for the container `Text` element.
+   */
   style: StyleProp<TextStyle>;
+  /**
+   * The content of the marker box.
+   */
   markerString: string;
+  /**
+   * The maximum length of the `markerString` in range.
+   */
   maxNumOfCodepoints: number;
 }
 

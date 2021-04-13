@@ -4,6 +4,8 @@
 
 ## MarkerBoxProps.maxNumOfCodepoints property
 
+The maximum length of the `markerString` in range.
+
 <b>Signature:</b>
 
 ```typescript

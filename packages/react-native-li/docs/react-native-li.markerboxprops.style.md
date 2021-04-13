@@ -4,6 +4,8 @@
 
 ## MarkerBoxProps.style property
 
+Style for the container `Text` element.
+
 <b>Signature:</b>
 
 ```typescript

@@ -23,10 +23,9 @@ export default MarkedList;
 // @public
 export function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerStyle, maxNumOfCodepoints, style, renderMarker, children }: PropsWithChildren<MarkedListItemProps>): JSX.Element;
 
-// @public (undocumented)
-export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerStyle' | 'rtlLineReversed'>> & {
+// @public
+export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerStyle' | 'rtlLineReversed' | 'startIndex'>> & {
     index: number;
-    startIndex: number;
     maxNumOfCodepoints: number;
     style: StyleProp<ViewStyle>;
 };
@@ -48,11 +47,8 @@ export function MarkerBox({ style, markerString }: MarkerBoxProps): JSX.Element;
 
 // @public
 export interface MarkerBoxProps {
-    // (undocumented)
     markerString: string;
-    // (undocumented)
     maxNumOfCodepoints: number;
-    // (undocumented)
     style: StyleProp<TextStyle>;
 }
 

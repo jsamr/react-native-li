@@ -4,6 +4,8 @@
 
 ## MarkerBoxProps.markerString property
 
+The content of the marker box.
+
 <b>Signature:</b>
 
 ```typescript
