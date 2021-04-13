@@ -30,7 +30,7 @@ export default function useMarkedList({
   computeMarkerBoxWidth = defaultComputeMarkerBoxWidth
 }: MarkedListProps & { length: number }): Omit<MarkedListItemProps, 'index'> {
   const maxNumOfCodepoints = useMemo(
-    () => counterRenderer.maxMarkerLenInRange(startIndex, length),
+    () => counterRenderer.maxMarkerLenInRange(startIndex, startIndex + length - 1),
     [counterRenderer, length, startIndex]
   );
   const syntheticRtlLineReversed = !I18nManager.isRTL && rtlLineReversed;
