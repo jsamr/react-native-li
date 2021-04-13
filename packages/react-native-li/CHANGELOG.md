@@ -1,3 +1,5 @@
+## [1.0.3](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.2...@jsamr/react-native-li@1.0.3) (2021-04-13)
+
 ## [1.0.2](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.1...@jsamr/react-native-li@1.0.2) (2021-04-13)
 
 ## [1.0.1](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.0...@jsamr/react-native-li@1.0.1) (2021-04-13)
