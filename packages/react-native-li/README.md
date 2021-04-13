@@ -67,10 +67,6 @@ combination with [`useMarkedList`](docs/react-native-li.usemarkedlist.md). The l
 
 #### Lower Latin
 
-<table width="100%">
-<tr>
-<td>
-
 ```jsx
 import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
@@ -83,7 +79,8 @@ export default function App() {
       <MarkedList counterRenderer={lowerLatin}>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            The World Wide Web Consortium (W3C) develops international standards
+            The World Wide Web Consortium (W3C)
+            develops international standards
             for the web and HTML, CSS, and more.
           </Text>
         ))}
@@ -93,16 +90,12 @@ export default function App() {
 }
 ```
 
-</td>
-<td> <img src="screenshots/lower-roman-ltr.png" width="300"/> </td>
-</tr>
-</table>
+<details>
+<summary>Show rendered 🖼</summary>
+<img src="screenshots/lower-roman-ltr.png" />
+</details>
 
 #### Disc
-
-<table width="100%">
-<tr>
-<td>
 
 ```jsx
 import React from 'react';
@@ -116,7 +109,8 @@ export default function App() {
       <MarkedList counterRenderer={disc}>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            The World Wide Web Consortium (W3C) develops international standards
+            The World Wide Web Consortium (W3C)
+            develops international standards
             for the web and HTML, CSS, and more.
           </Text>
         ))}
@@ -126,16 +120,12 @@ export default function App() {
 }
 ```
 
-</td>
-<td> <img src="screenshots/disc-ltr.png" width="300"/> </td>
-</tr>
-</table>
+<details>
+<summary>Show rendered 🖼</summary>
+<img src="screenshots/disc-ltr.png" />
+</details>
 
 #### Arabic + RTL
-
-<table width="100%">
-<tr>
-<td>
 
 ```jsx
 import React from 'react';
@@ -152,7 +142,8 @@ export default function App() {
         rtlMarkerReversed>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            يقوم اتحاد شبكة الويب العالمية (W3C) بتطوير معايير دولية للويب و
+            يقوم اتحاد شبكة الويب العالمية
+            (W3C) بتطوير معايير دولية للويب و
             HTML و CSS وغير ذلك الكثير.
           </Text>
         ))}
@@ -162,16 +153,12 @@ export default function App() {
 }
 ```
 
-</td>
-<td> <img src="screenshots/arabic-indic-rtl.png" width="300"/> </td>
-</tr>
-</table>
+<details>
+<summary>Show rendered 🖼</summary>
+<img src="screenshots/arabic-indic-rtl.png" />
+</details>
 
 #### Disc + RTL
-
-<table width="100%">
-<tr>
-<td>
 
 ```jsx
 import React from 'react';
@@ -195,10 +182,10 @@ export default function App() {
 }
 ```
 
-</td>
-<td> <img src="screenshots/disc-rtl.png" width="300"/> </td>
-</tr>
-</table>
+<details>
+<summary>Show rendered 🖼</summary>
+<img src="screenshots/disc-rtl.png" />
+</details>
 
 ## API Reference
 
