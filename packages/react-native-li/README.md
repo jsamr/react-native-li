@@ -51,14 +51,16 @@ yarn add @jsamr/react-native-li @jsamr/counter-style
 ### Introduction
 
 You must provide a counter style renderer from `@jsamr/counter-style` library
-to the `counterRenderer` prop of `MarkedList` component. This library exports
+to the `counterRenderer` prop of [`MarkedList`](docs/react-native-li.markedlist.md) component. This library exports
 dozens of presets as individual modules (see examples below) and also provides
 an easy API to create custom counter styles. [Check the docs
 here](https://github.com/jsamr/react-native-li/tree/master/packages/counter-style#readme).
 
-`MarkedList` will render every children as a list item (li). If you want to
-render items in a different container, you should instead use `MarkedListItem` in
-combination with `useMarkedList`.
+[`MarkedList`](docs/react-native-li.markedlist.md) will render every children as a list item (li). If you want to
+render items in a different container, you should instead use [`MarkedListItem`](docs/react-native-li.markedlistitem.md) in
+combination with [`useMarkedList`](docs/react-native-li.usemarkedlist.md). The latter takes exactly the same props as `MarkedListItem` + a `length` prop corresponding to the number of list items to render. It returns base props for the `MarkedListItem` component.
+
+[The full API including components props is available here](./docs/react-native-li.md).
 
 ### Examples
 
@@ -80,8 +82,7 @@ export default function App() {
       <MarkedList counterRenderer={lowerLatin}>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            The World Wide Web Consortium (W3C)
-            develops international standards
+            The World Wide Web Consortium (W3C) develops international standards
             for the web and HTML, CSS, and more.
           </Text>
         ))}
@@ -90,13 +91,13 @@ export default function App() {
   );
 }
 ```
+
 </td>
 <td> <img src="screenshots/lower-roman-ltr.png" width="300"/> </td>
 </tr>
 </table>
 
 #### Disc
-
 
 <table width="100%">
 <tr>
@@ -114,8 +115,7 @@ export default function App() {
       <MarkedList counterRenderer={disc}>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            The World Wide Web Consortium (W3C)
-            develops international standards
+            The World Wide Web Consortium (W3C) develops international standards
             for the web and HTML, CSS, and more.
           </Text>
         ))}
@@ -124,6 +124,7 @@ export default function App() {
   );
 }
 ```
+
 </td>
 <td> <img src="screenshots/disc-ltr.png" width="300"/> </td>
 </tr>
@@ -150,9 +151,8 @@ export default function App() {
         rtlMarkerReversed>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            يقوم اتحاد شبكة الويب العالمية (W3C)
-            بتطوير معايير دولية للويب و HTML و
-            CSS وغير ذلك الكثير.
+            يقوم اتحاد شبكة الويب العالمية (W3C) بتطوير معايير دولية للويب و
+            HTML و CSS وغير ذلك الكثير.
           </Text>
         ))}
       </MarkedList>
@@ -181,15 +181,11 @@ import MarkedList from '@jsamr/react-native-li';
 export default function App() {
   return (
     <ScrollView style={{ flexGrow: 1 }}>
-      <MarkedList
-        counterRenderer={disc}
-        rtlLineReversed
-        rtlMarkerReversed>
+      <MarkedList counterRenderer={disc} rtlLineReversed rtlMarkerReversed>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            يقوم اتحاد شبكة الويب العالمية (W3C)
-            بتطوير معايير دولية للويب و HTML و
-            CSS وغير ذلك الكثير.
+            يقوم اتحاد شبكة الويب العالمية (W3C) بتطوير معايير دولية للويب و
+            HTML و CSS وغير ذلك الكثير.
           </Text>
         ))}
       </MarkedList>
