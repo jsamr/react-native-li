@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.0...@jsamr/counter-style@1.0.1) (2021-04-13)
+
+
+### Bug Fixes
+
+* wrong homepage link ([901b80f](https://github.com/jsamr/react-native-li/commit/901b80fdc01c34a659b0cc890cbe017590078b04))
+
 # 1.0.0 (2021-04-13)
 
 
