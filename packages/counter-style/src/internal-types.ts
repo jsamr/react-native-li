@@ -1,5 +1,5 @@
 import type {
-  LoseCounterFormatter,
+  InitialCounterFormatter,
   MaxCodepointLengthInRangeComputer,
   FallbackRenderer,
   CounterStyleRenderer
@@ -7,7 +7,7 @@ import type {
 
 export interface Engine {
   specs: Specifications;
-  formatter: LoseCounterFormatter;
+  formatter: InitialCounterFormatter;
   maxLengthInRange: MaxCodepointLengthInRangeComputer;
   withSpecs: (spToMerge: Partial<Specifications>) => Engine;
   withMaxLengthInRange: (cp: MaxCodepointLengthInRangeComputer) => Engine;

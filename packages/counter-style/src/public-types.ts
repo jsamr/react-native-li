@@ -24,7 +24,7 @@ export type MaxCodepointLengthInRangeComputer = (
  *
  * @public
  */
-export type LoseCounterFormatter = (index: number) => string | undefined;
+export type InitialCounterFormatter = (index: number) => string | undefined;
 
 /**
  * An object to specify RTL rendering.
@@ -215,7 +215,7 @@ export interface CounterStyleStatic {
    * If the formatter function doesn't cover the [-Infinity, Infinity] range,
    * you must specify the scope via {@link CounterStyleRenderer.withRange}.
    *
-   * @param formatter - A formatter function which takes a non-negative integer
+   * @param initialCounterFormatter - A formatter function which takes a non-negative integer
    * and returns its
    * {@link https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value | initial counter representation},
    * or undefined when there is no representation for this index. If that is
@@ -231,7 +231,7 @@ export interface CounterStyleStatic {
    * @returns A style renderer.
    */
   raw: (
-    formatter: LoseCounterFormatter,
+    initialCounterFormatter: InitialCounterFormatter,
     maxLengthComputer?: MaxCodepointLengthInRangeComputer
   ) => CounterStyleRenderer;
 

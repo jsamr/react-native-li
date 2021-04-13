@@ -35,7 +35,7 @@ export interface CounterStyleStatic {
     fixed: (...symbols: string[]) => CounterStyleRenderer;
     numeric: (...symbols: string[]) => CounterStyleRenderer;
     numericFromUnicodeRange: (originUnicode: number, base: number) => CounterStyleRenderer;
-    raw: (formatter: LoseCounterFormatter, maxLengthComputer?: MaxCodepointLengthInRangeComputer) => CounterStyleRenderer;
+    raw: (initialCounterFormatter: InitialCounterFormatter, maxLengthComputer?: MaxCodepointLengthInRangeComputer) => CounterStyleRenderer;
     symbolic: (...symbols: string[]) => CounterStyleRenderer;
 }
 
@@ -43,7 +43,7 @@ export interface CounterStyleStatic {
 export type FallbackRenderer = Pick<CounterStyleRenderer, 'renderCounter' | 'maxCounterLenInRange'>;
 
 // @public
-export type LoseCounterFormatter = (index: number) => string | undefined;
+export type InitialCounterFormatter = (index: number) => string | undefined;
 
 // @public
 export type MaxCodepointLengthInRangeComputer = (min: number, max: number) => number;

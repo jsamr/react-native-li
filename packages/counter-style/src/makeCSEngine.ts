@@ -1,7 +1,7 @@
 import codepointLength from './utils/codepointLength';
 import { DEFAULT_SUFFIX } from './constants';
 import { Specifications, Engine } from './internal-types';
-import { LoseCounterFormatter } from './public-types';
+import { InitialCounterFormatter } from './public-types';
 
 const DEFAULT_SPECS: Specifications = {
   suffix: DEFAULT_SUFFIX,
@@ -51,11 +51,11 @@ const styleEngineProto: Pick<
 };
 
 export default function makeCSEngine(
-  renderer: LoseCounterFormatter,
+  formatter: InitialCounterFormatter,
   specs: Specifications = DEFAULT_SPECS
 ): Engine {
   const eng = Object.create(styleEngineProto) as Engine;
   eng.specs = specs;
-  eng.formatter = renderer;
+  eng.formatter = formatter;
   return eng;
 }

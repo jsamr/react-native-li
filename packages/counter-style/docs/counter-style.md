@@ -23,6 +23,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [FallbackRenderer](./counter-style.fallbackrenderer.md) | Minimal API for a fallback. |
-|  [LoseCounterFormatter](./counter-style.losecounterformatter.md) | A function that renders an index into its [initial counter representation](https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value)<!-- -->.<!-- -->As specified in CSS, this function must not render negative signs, add padding or prefixes and suffixes. |
+|  [InitialCounterFormatter](./counter-style.initialcounterformatter.md) | A function that renders an index into its [initial counter representation](https://www.w3.org/TR/css-counter-styles-3/#initial-representation-for-the-counter-value)<!-- -->.<!-- -->As specified in CSS, this function must not render negative signs, add padding or prefixes and suffixes. |
 |  [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md) | A function which compute the maximum codepoint length of a formatter in a given range. |
 
