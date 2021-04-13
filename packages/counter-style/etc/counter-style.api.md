@@ -19,13 +19,13 @@ export default CounterStyle;
 
 // @public (undocumented)
 export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
-    withFallback(fallback: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+    withFallback(fallback: BaseCounterStyleRenderer): CounterStyleRenderer;
     withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;
     withPadLeft(length: number, pad: string): CounterStyleRenderer;
     withPadRight(length: number, pad: string): CounterStyleRenderer;
     withPrefix(prefix: string | null): CounterStyleRenderer;
-    withRange(min: number, max: number, fallback?: BaseCounterStyleRenderer | StrictCounterFormatter): CounterStyleRenderer;
+    withRange(min: number, max: number, fallback?: BaseCounterStyleRenderer): CounterStyleRenderer;
     withRtl(options?: RtlOptions): CounterStyleRenderer;
     withSuffix(suffix: string | null): CounterStyleRenderer;
 }

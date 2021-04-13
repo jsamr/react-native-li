@@ -96,11 +96,9 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
    *
    * See https://www.w3.org/TR/css-counter-styles-3/#counter-style-fallback
    *
-   * @param fallback - A fallback CounterStyleRenderer or a formatter function.
+   * @param fallback - A fallback CounterStyleRenderer.
    */
-  withFallback(
-    fallback: BaseCounterStyleRenderer | StrictCounterFormatter
-  ): CounterStyleRenderer;
+  withFallback(fallback: BaseCounterStyleRenderer): CounterStyleRenderer;
   /**
    * Create a new renderer with a constrained range. When the index is out of
    * bounds, the counter representation is rendered with the provided fallback,
@@ -110,12 +108,12 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
    *
    * @param min - Minimum value (inclusive)
    * @param max - Maximum value (inclusive)
-   * @param fallback - A fallback to apply when the index is out of bounds.
+   * @param fallback - A fallback renderer to apply when the index is out of bounds.
    */
   withRange(
     min: number,
     max: number,
-    fallback?: BaseCounterStyleRenderer | StrictCounterFormatter
+    fallback?: BaseCounterStyleRenderer
   ): CounterStyleRenderer;
   /**
    * Create a new renderer which will render negative values by prefixing and
@@ -349,25 +347,10 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     ];
     return sp.reversedMarker ? elements.reverse().join('') : elements.join('');
   },
-  withFallback(
-    this: CounterStyleRendererInt,
-    fallback: BaseCounterStyleRenderer | StrictCounterFormatter
-  ) {
-    return makeRaw(
-      this.engine.withSpecs({
-        fallback:
-          typeof fallback === 'function'
-            ? makeRawFromFormatter(fallback)
-            : fallback
-      })
-    );
+  withFallback(this: CounterStyleRendererInt, fallback) {
+    return makeRaw(this.engine.withSpecs({ fallback }));
   },
-  withRange(
-    this: CounterStyleRendererInt,
-    min: number,
-    max: number,
-    fallback?: BaseCounterStyleRenderer | StrictCounterFormatter
-  ) {
+  withRange(this: CounterStyleRendererInt, min, max, fallback) {
     const result = makeRaw(
       this.engine.withSpecs({
         range: {
@@ -378,11 +361,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     );
     return fallback ? result.withFallback(fallback) : result;
   },
-  withNegative(
-    this: CounterStyleRendererInt,
-    prefix: string,
-    suffix: string = ''
-  ) {
+  withNegative(this: CounterStyleRendererInt, prefix, suffix = '') {
     return makeRaw(
       this.engine.withSpecs({
         negative: {
@@ -392,7 +371,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
       })
     );
   },
-  withPadLeft(this: CounterStyleRendererInt, length: number, pad: string) {
+  withPadLeft(this: CounterStyleRendererInt, length, pad) {
     return makeRaw(
       this.engine.withSpecs({
         padding: {
@@ -403,7 +382,7 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
       })
     );
   },
-  withPadRight(this: CounterStyleRendererInt, length: number, pad: string) {
+  withPadRight(this: CounterStyleRendererInt, length, pad) {
     return makeRaw(
       this.engine.withSpecs({
         padding: {
