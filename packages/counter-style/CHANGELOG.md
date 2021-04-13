@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.1...@jsamr/counter-style@1.0.2) (2021-04-13)
+
+
+### Bug Fixes
+
+* **counter-style:** remove support for functional formatters in types ([d445553](https://github.com/jsamr/react-native-li/commit/d4455532cac89bac6dca6b5bbb20d0add0be1a44))
+
 ## [1.0.1](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.0...@jsamr/counter-style@1.0.1) (2021-04-13)
 
 
