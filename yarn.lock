@@ -15481,7 +15481,7 @@ release-it@14.6.0:
 
 "release-it@patch:release-it@14.6.0#patches/release-it.patch::locator=react-native-li-project%40workspace%3A.":
   version: 14.6.0
-  resolution: "release-it@patch:release-it@npm%3A14.6.0#patches/release-it.patch::version=14.6.0&hash=6ea2c8&locator=react-native-li-project%40workspace%3A."
+  resolution: "release-it@patch:release-it@npm%3A14.6.0#patches/release-it.patch::version=14.6.0&hash=181d50&locator=react-native-li-project%40workspace%3A."
   dependencies:
     "@iarna/toml": 2.2.5
     "@octokit/rest": 18.5.2
@@ -15513,7 +15513,7 @@ release-it@14.6.0:
     yargs-parser: 20.2.7
   bin:
     release-it: bin/release-it.js
-  checksum: 24068ef0f9c7f73c8c483cdde43910c0f217f2ef51903aea35f71ea596a997df756a3c7f117afed90b76b086bdbeb270e2f662e91024256caa1bf31cb06e3d30
+  checksum: 1081b5ce95a0c09d6b8b60e76a6ecd1e841b8bc8d8d366e82c432ed31ba8309c8da9a767e8736bfbd29dec8b9c774aabca4aea91d6b3596ac4a274f42d5cb654
   languageName: node
   linkType: hard
 
