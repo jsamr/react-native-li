@@ -33,7 +33,7 @@
 
 <p align="center">
   A pure-JavaScript React Native component to render CSS3 compliant ordered and unordered lists.<br><br>
-  Supports more than 4 dozens numeric, alphabetic, symbolic and addivive presets, including<br>
+  Supports <a href="https://github.com/jsamr/react-native-li/tree/master/packages/counter-style/src/presets">more than 4 dozens numeric, alphabetic, symbolic and additive presets</a>, including<br>
   <b>Arabic</b> (numeric), <b>Persian</b>, <b>Thai</b>, <b>Hebrew</b>, <b>Roman</b>, <b>Katana</b>, <b>Latin</b>, disk, circle, square...<br>
   Plus, it has premium RTL support 🚀
 </p>
@@ -64,7 +64,7 @@ combination with `useMarkedList`.
 
 #### Lower Latin
 
-<table>
+<table width="100%">
 <tr>
 <td>
 
@@ -98,7 +98,7 @@ export default function App() {
 #### Disc
 
 
-<table>
+<table width="100%">
 <tr>
 <td>
 
@@ -131,7 +131,7 @@ export default function App() {
 
 #### Arabic + RTL
 
-<table>
+<table width="100%">
 <tr>
 <td>
 

@@ -31,13 +31,12 @@
 </p>
 
 <p align="center">
-  A slim <a href="https://drafts.csswg.org/css-counter-styles-3">CSS Counter Styles Level 3 compliant</a> library with 47 presets including<br> <b>Arabic</b>, <b>Persian</b>, <b>Thai</b>, <b>Hebrew</b>, <b>Roman</b>, <b>Katana</b>...<br><br>
-  <sup>The core is 1.6kB minified and gzipped. Each preset is distributed as a separate module.<br>
+  A slim <a href="https://drafts.csswg.org/css-counter-styles-3">CSS Counter Styles Level 3 compliant</a> library with <a href="./src/presets">47 presets</a> including<br> <b>Arabic</b>, <b>Persian</b>, <b>Thai</b>, <b>Hebrew</b>, <b>Roman</b>, <b>Katana</b>...<br><br>
+  The core is 1.6kB minified and gzipped. Each preset is distributed as a separate module.<br>
   Available in both CommonJS and ECMAScript modules. <br>
   Targets ECMAScript 2015.<br>
   Optimized for metro (React Native) and Webpack bundlers.<br>
   Based on <a href="https://github.com/beanandbean/counter-style">prior work from Whang Shuwei</a>
-  </sup>
 </p>
 
 <hr/>
