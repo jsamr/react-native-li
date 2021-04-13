@@ -45,6 +45,7 @@ export default function MarkedListItem({
   const markerString = counterRenderer.renderMarker(index + startIndex);
   return (
     <View
+      testID="marked-list-item"
       style={[rtlLineReversed ? styles.lineRtl : styles.lineLtr, style]}
       key={index}>
       {renderMarker({

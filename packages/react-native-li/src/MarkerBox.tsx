@@ -10,5 +10,9 @@ import { MarkerBoxProps } from './shared-types';
  * @public
  */
 export default function MarkerBox({ style, markerString }: MarkerBoxProps) {
-  return <Text style={style}>{markerString}</Text>;
+  return (
+    <Text testID="marker-box" style={style}>
+      {markerString}
+    </Text>
+  );
 }

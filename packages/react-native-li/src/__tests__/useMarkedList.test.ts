@@ -18,4 +18,12 @@ describe('useMarkedList', () => {
     );
     expect(result.current.maxNumOfCodepoints).toBe(expectedLen);
   });
+  it('should work with 0 lengths', () => {
+    const expectedLen = counterRenderer.maxMarkerLenInRange(2, 1);
+    const { result } = renderHook(() =>
+      //@ts-expect-error
+      useMarkedList({ counterRenderer, startIndex: 2 })
+    );
+    expect(result.current.maxNumOfCodepoints).toBe(expectedLen);
+  });
 });
