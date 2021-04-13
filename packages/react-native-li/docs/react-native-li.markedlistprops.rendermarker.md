@@ -9,7 +9,7 @@ A custom Marker render function.
 <b>Signature:</b>
 
 ```typescript
-renderMarker?: (props: RenderMarkerBoxProps) => ReactNode;
+renderMarker?: (props: MarkerBoxProps) => ReactNode;
 ```
 
 ## Remarks

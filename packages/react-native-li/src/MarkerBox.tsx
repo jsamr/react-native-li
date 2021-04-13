@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { RenderMarkerBoxProps } from './shared-types';
+import { MarkerBoxProps } from './shared-types';
 
 /**
+ * Default component to render the list marker.
+ *
+ * See {@link https://www.w3.org/TR/css-lists-3/#marker-pseudo | CSS Lists and Counters Module Level 3, Markers}
+ *
  * @public
  */
-export default function MarkerBox({
-  style,
-  markerString
-}: Omit<RenderMarkerBoxProps, 'maxNumOfCodePoints' | 'reverseMarker'>) {
+export default function MarkerBox({ style, markerString }: MarkerBoxProps) {
   return <Text style={style}>{markerString}</Text>;
 }

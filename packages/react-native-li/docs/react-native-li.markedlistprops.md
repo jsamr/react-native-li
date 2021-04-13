@@ -4,6 +4,7 @@
 
 ## MarkedListProps interface
 
+Props for the [MarkedList()](./react-native-li.markedlist.md) component.
 
 <b>Signature:</b>
 
@@ -19,7 +20,7 @@ export interface MarkedListProps
 |  [counterRenderer](./react-native-li.markedlistprops.counterrenderer.md) | CounterStyleRenderer | The counter renderer for this list. |
 |  [lineStyle?](./react-native-li.markedlistprops.linestyle.md) | StyleProp&lt;ViewStyle&gt; | <i>(Optional)</i> Style for the line wrapper. |
 |  [markerStyle?](./react-native-li.markedlistprops.markerstyle.md) | TextStyle | <i>(Optional)</i> A plain-object text style for the marker. |
-|  [renderMarker?](./react-native-li.markedlistprops.rendermarker.md) | (props: [RenderMarkerBoxProps](./react-native-li.rendermarkerboxprops.md)<!-- -->) =&gt; ReactNode | <i>(Optional)</i> A custom Marker render function. |
+|  [renderMarker?](./react-native-li.markedlistprops.rendermarker.md) | (props: [MarkerBoxProps](./react-native-li.markerboxprops.md)<!-- -->) =&gt; ReactNode | <i>(Optional)</i> A custom Marker render function. |
 |  [rtlLineReversed?](./react-native-li.markedlistprops.rtllinereversed.md) | boolean | <i>(Optional)</i> Set the line layout in <code>flexDirection: 'row-reverse'</code> and left-align the marker box. |
 |  [rtlMarkerReversed?](./react-native-li.markedlistprops.rtlmarkerreversed.md) | true \| false \| RtlOptions | <i>(Optional)</i> Should the marker string be rendered in reverse order? |
 |  [startIndex?](./react-native-li.markedlistprops.startindex.md) | number | <i>(Optional)</i> The index for the first item in the list. Negative indexes are supported. |

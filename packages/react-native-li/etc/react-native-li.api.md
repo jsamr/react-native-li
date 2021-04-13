@@ -13,12 +13,14 @@ import { StyleProp } from 'react-native';
 import type { TextStyle } from 'react-native';
 import { ViewStyle } from 'react-native';
 
-// @public (undocumented)
+// @public
 function MarkedList({ children, ...props }: PropsWithChildren<MarkedListProps>): React_2.FunctionComponentElement<{}>;
+
+export { MarkedList }
 
 export default MarkedList;
 
-// @public (undocumented)
+// @public
 export function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerStyle, maxNumOfCodepoints, style, renderMarker, children }: PropsWithChildren<MarkedListItemProps>): JSX.Element;
 
 // @public (undocumented)
@@ -29,23 +31,23 @@ export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRendere
     style: StyleProp<ViewStyle>;
 };
 
-// @public (undocumented)
+// @public
 export interface MarkedListProps {
     computeMarkerBoxWidth?: (maxCodepointsLengthInRange: number, fontSize: number) => number;
     counterRenderer: CounterStyleRenderer;
     lineStyle?: StyleProp<ViewStyle>;
     markerStyle?: TextStyle;
-    renderMarker?: (props: RenderMarkerBoxProps) => ReactNode;
+    renderMarker?: (props: MarkerBoxProps) => ReactNode;
     rtlLineReversed?: boolean;
     rtlMarkerReversed?: true | false | RtlOptions;
     startIndex?: number;
 }
 
-// @public (undocumented)
-export function MarkerBox({ style, markerString }: Omit<RenderMarkerBoxProps, 'maxNumOfCodePoints' | 'reverseMarker'>): JSX.Element;
+// @public
+export function MarkerBox({ style, markerString }: MarkerBoxProps): JSX.Element;
 
-// @public (undocumented)
-export interface RenderMarkerBoxProps {
+// @public
+export interface MarkerBoxProps {
     // (undocumented)
     markerString: string;
     // (undocumented)

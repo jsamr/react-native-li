@@ -4,18 +4,21 @@
 
 ## MarkerBox() function
 
+Default component to render the list marker.
+
+See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-lists-3/#marker-pseudo)
 
 <b>Signature:</b>
 
 ```typescript
-export default function MarkerBox({ style, markerString }: Omit<RenderMarkerBoxProps, 'maxNumOfCodePoints' | 'reverseMarker'>): JSX.Element;
+export default function MarkerBox({ style, markerString }: MarkerBoxProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { style, markerString } | Omit&lt;[RenderMarkerBoxProps](./react-native-li.rendermarkerboxprops.md)<!-- -->, 'maxNumOfCodePoints' \| 'reverseMarker'&gt; |  |
+|  { style, markerString } | [MarkerBoxProps](./react-native-li.markerboxprops.md) |  |
 
 <b>Returns:</b>
 

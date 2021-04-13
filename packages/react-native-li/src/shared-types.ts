@@ -3,15 +3,19 @@ import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
 
 /**
+ * Props for the {@link MarkerBox} component.
+ *
  * @public
  */
-export interface RenderMarkerBoxProps {
+export interface MarkerBoxProps {
   style: StyleProp<TextStyle>;
   markerString: string;
   maxNumOfCodepoints: number;
 }
 
 /**
+ * Props for the {@link MarkedList} component.
+ *
  * @public
  */
 export interface MarkedListProps {
@@ -66,5 +70,5 @@ export interface MarkedListProps {
    *
    * @remarks You are advised to use {@link MarkerBox} component.
    */
-  renderMarker?: (props: RenderMarkerBoxProps) => ReactNode;
+  renderMarker?: (props: MarkerBoxProps) => ReactNode;
 }

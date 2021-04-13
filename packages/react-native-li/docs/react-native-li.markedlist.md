@@ -4,6 +4,9 @@
 
 ## MarkedList() function
 
+A component which given a counter style, wraps each of its children with a [MarkedListItem()](./react-native-li.markedlistitem.md)<!-- -->. The latter prepends the child with a marker box containing a marker string representation for this child index.
+
+See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-lists-3/#markers)<!-- -->.
 
 <b>Signature:</b>
 

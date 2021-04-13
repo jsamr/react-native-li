@@ -4,6 +4,9 @@
 
 ## MarkedListItem() function
 
+A component which reproduces CSS3 `display: list-item;` behavior. It prepends its child with a marker box containing a marker string representation for this child index.
+
+See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-lists-3/#markers)<!-- -->.
 
 <b>Signature:</b>
 

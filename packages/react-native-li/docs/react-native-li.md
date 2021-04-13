@@ -8,17 +8,17 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [MarkedList({ children, ...props })](./react-native-li.markedlist.md) |  |
-|  [MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerStyle, maxNumOfCodepoints, style, renderMarker, children })](./react-native-li.markedlistitem.md) |  |
-|  [MarkerBox({ style, markerString })](./react-native-li.markerbox.md) |  |
+|  [MarkedList({ children, ...props })](./react-native-li.markedlist.md) | A component which given a counter style, wraps each of its children with a [MarkedListItem()](./react-native-li.markedlistitem.md)<!-- -->. The latter prepends the child with a marker box containing a marker string representation for this child index.<!-- -->See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-lists-3/#markers)<!-- -->. |
+|  [MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerStyle, maxNumOfCodepoints, style, renderMarker, children })](./react-native-li.markedlistitem.md) | A component which reproduces CSS3 <code>display: list-item;</code> behavior. It prepends its child with a marker box containing a marker string representation for this child index.<!-- -->See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-lists-3/#markers)<!-- -->. |
+|  [MarkerBox({ style, markerString })](./react-native-li.markerbox.md) | Default component to render the list marker.<!-- -->See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-lists-3/#marker-pseudo) |
 |  [useMarkedList({ counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerStyle, length, renderMarker, computeMarkerBoxWidth })](./react-native-li.usemarkedlist.md) | A hook to reuse MarkedList logic to render custom lists components in combinasion with [MarkedListItem()](./react-native-li.markedlistitem.md)<!-- -->. |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
-|  [MarkedListProps](./react-native-li.markedlistprops.md) |  |
-|  [RenderMarkerBoxProps](./react-native-li.rendermarkerboxprops.md) |  |
+|  [MarkedListProps](./react-native-li.markedlistprops.md) | Props for the [MarkedList()](./react-native-li.markedlist.md) component. |
+|  [MarkerBoxProps](./react-native-li.markerboxprops.md) | Props for the [MarkerBox()](./react-native-li.markerbox.md) component. |
 
 ## Type Aliases
 
