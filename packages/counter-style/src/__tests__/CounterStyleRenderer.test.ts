@@ -50,7 +50,10 @@ describe('CounterStyleRenderer', () => {
     expect(counter.renderMarker(11)).toBe('|11  ');
     expect(counter.renderCounter(11)).toBe('11');
   });
-
+  test('It should fall back to a decimal renderer when default formatter is incomplete in range', () => {
+    const counter = CounterStyle.additive({ 2: '2', 3: '3' });
+    expect(counter.renderCounter(1)).toBe('1');
+  });
   test('::withRtl', () => {
     const counter = arabicIndic.withPrefix(') ');
     expect(counter.withRtl().renderCounter(10)).toBe('١٠');
