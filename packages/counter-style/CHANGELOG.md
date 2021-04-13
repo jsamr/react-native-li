@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.3...@jsamr/counter-style@1.0.4) (2021-04-13)
+
+
+### Bug Fixes
+
+* **counter-style:** handle decreasing ranges properly ([2315975](https://github.com/jsamr/react-native-li/commit/2315975034ab369e80f449907b983c1a4ac3e86b))
+
 ## [1.0.3](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.2...@jsamr/counter-style@1.0.3) (2021-04-13)
 
 ## [1.0.2](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.1...@jsamr/counter-style@1.0.2) (2021-04-13)
