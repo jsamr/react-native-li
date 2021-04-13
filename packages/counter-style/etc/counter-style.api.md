@@ -4,28 +4,24 @@
 
 ```ts
 
-// @public (undocumented)
-export interface BaseCounterStyleRenderer {
-    maxCounterLenInRange(min: number, max: number): number;
-    maxMarkerLenInRange(min: number, max: number): number;
-    renderCounter(index: number): string;
-    renderMarker(index: number): string;
-}
-
 // @public
 const CounterStyle: Readonly<CounterStyleStatic>;
 
 export default CounterStyle;
 
 // @public (undocumented)
-export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
-    withFallback(fallback: BaseCounterStyleRenderer): CounterStyleRenderer;
+export interface CounterStyleRenderer extends FallbackRenderer {
+    maxCounterLenInRange(min: number, max: number): number;
+    maxMarkerLenInRange(min: number, max: number): number;
+    renderCounter(index: number): string;
+    renderMarker(index: number): string;
+    withFallback(fallback: FallbackRenderer): CounterStyleRenderer;
     withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;
     withPadLeft(length: number, pad: string): CounterStyleRenderer;
     withPadRight(length: number, pad: string): CounterStyleRenderer;
     withPrefix(prefix: string | null): CounterStyleRenderer;
-    withRange(min: number, max: number, fallback?: BaseCounterStyleRenderer): CounterStyleRenderer;
+    withRange(min: number, max: number, fallback?: FallbackRenderer): CounterStyleRenderer;
     withRtl(options?: RtlOptions): CounterStyleRenderer;
     withSuffix(suffix: string | null): CounterStyleRenderer;
 }
@@ -42,6 +38,9 @@ export interface CounterStyleStatic {
     raw: (formatter: LoseCounterFormatter, maxLengthComputer?: MaxCodepointLengthInRangeComputer) => CounterStyleRenderer;
     symbolic: (...symbols: string[]) => CounterStyleRenderer;
 }
+
+// @public
+export type FallbackRenderer = Pick<CounterStyleRenderer, 'renderCounter' | 'maxCounterLenInRange'>;
 
 // @public
 export type LoseCounterFormatter = (index: number) => string | undefined;

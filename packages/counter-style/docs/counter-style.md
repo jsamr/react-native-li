@@ -8,7 +8,6 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md) |  |
 |  [CounterStyleRenderer](./counter-style.counterstylerenderer.md) |  |
 |  [CounterStyleStatic](./counter-style.counterstylestatic.md) |  |
 |  [RtlOptions](./counter-style.rtloptions.md) |  |
@@ -23,6 +22,7 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [FallbackRenderer](./counter-style.fallbackrenderer.md) | Minimal API for a fallback. |
 |  [LoseCounterFormatter](./counter-style.losecounterformatter.md) | A function that renders an index into its counter representation.<!-- -->It can return undefined to signal a fallback should be used instead. |
 |  [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md) | A function which compute the maximum codepoint length of a formatter in a given range. |
 |  [StrictCounterFormatter](./counter-style.strictcounterformatter.md) | A function that renders an index into its counter representation. |

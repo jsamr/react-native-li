@@ -14,6 +14,11 @@ describe('CounterStyle', () => {
     expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
   });
 
+  test('::cyclic with multiple symbols', () => {
+    const counter = CounterStyle.cyclic('a', 'b', 'c').withSuffix(null);
+    expect(counter.renderCounter(1)).toBe('a');
+  });
+
   test('::fixed', () => {
     const counter = CounterStyle.fixed('x', 'y', 'z');
     expect(counter.renderCounter(1)).toBe('x');
@@ -57,7 +62,10 @@ describe('CounterStyle', () => {
   });
 
   test('::alphabeticFromUnicodeRange', () => {
-    const counter = CounterStyle.alphabeticFromUnicodeRange(97, 26);
+    const counter = CounterStyle.alphabeticFromUnicodeRange(97, 26).withRange(
+      0,
+      Infinity
+    );
     expect(counter.renderCounter(0)).toBe('0');
     expect(counter.renderCounter(1)).toBe('a');
   });

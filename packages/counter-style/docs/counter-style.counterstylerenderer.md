@@ -8,14 +8,18 @@
 <b>Signature:</b>
 
 ```typescript
-export interface CounterStyleRenderer extends BaseCounterStyleRenderer 
+export interface CounterStyleRenderer extends FallbackRenderer 
 ```
-<b>Extends:</b> [BaseCounterStyleRenderer](./counter-style.basecounterstylerenderer.md)
+<b>Extends:</b> [FallbackRenderer](./counter-style.fallbackrenderer.md)
 
 ## Methods
 
 |  Method | Description |
 |  --- | --- |
+|  [maxCounterLenInRange(min, max)](./counter-style.counterstylerenderer.maxcounterleninrange.md) | Get the maximum counter representation length given an index range. If a fallback is defined, it will be used for values outside the range boundaries of this renderer. |
+|  [maxMarkerLenInRange(min, max)](./counter-style.counterstylerenderer.maxmarkerleninrange.md) | Get the maximum marker string length given an index range. If a fallback is defined, it will be used for values outside the range boundaries of this renderer. |
+|  [renderCounter(index)](./counter-style.counterstylerenderer.rendercounter.md) | Render an index into its counter representation, equivalent to CSS <code>counter</code> function. See [CSS Counter Styles Level 3, Counter Styles](https://www.w3.org/TR/css-counter-styles-3/#generate-a-counter)<!-- -->. |
+|  [renderMarker(index)](./counter-style.counterstylerenderer.rendermarker.md) | Render an index into its corresponding marker string. See [CSS Lists Level 3, Text-based Markers](https://www.w3.org/TR/css-lists-3/#text-markers)<!-- -->. |
 |  [withFallback(fallback)](./counter-style.counterstylerenderer.withfallback.md) | Create a new renderer with a fallback used when the index is out of bounds.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-fallback |
 |  [withMaxLengthComputer(computer)](./counter-style.counterstylerenderer.withmaxlengthcomputer.md) | Create a new renderer with a (hopefuly) cost-effective max codepoint length computer. |
 |  [withNegative(prefix, suffix)](./counter-style.counterstylerenderer.withnegative.md) | Create a new renderer which will render negative values by prefixing and suffixing the provided characters to the renderer function.<!-- -->See https://www.w3.org/TR/css-counter-styles-3/\#counter-style-negative |

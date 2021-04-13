@@ -15,7 +15,7 @@ interface Specifications {
   reversedCounter: boolean;
   suffix: string | null;
   prefix: string | null;
-  fallback: BaseCounterStyleRenderer;
+  fallback: FallbackRenderer;
   negative: null | {
     prefix: string;
     suffix: string;
@@ -90,7 +90,45 @@ export interface RtlOptions {
 /**
  * @public
  */
-export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
+export interface CounterStyleRenderer extends FallbackRenderer {
+  /**
+   * Render an index into its counter representation, equivalent to CSS `counter` function.
+   * See {@link https://www.w3.org/TR/css-counter-styles-3/#generate-a-counter | CSS Counter Styles Level 3, Counter Styles}.
+   *
+   * @param index - The counter value to render.
+   */
+  renderCounter(index: number): string;
+  /**
+   * Get the maximum counter representation length given an index range. If a
+   * fallback is defined, it will be used for values outside the range
+   * boundaries of this renderer.
+   *
+   * @remarks This method doesn't take into account
+   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
+   *
+   * @param min - The minimum inclusive value.
+   * @param max - The maximum inclusive value.
+   */
+  maxCounterLenInRange(min: number, max: number): number;
+  /**
+   * Get the maximum marker string length given an index range. If a fallback
+   * is defined, it will be used for values outside the range boundaries of
+   * this renderer.
+   *
+   * @remarks This method doesn't take into account
+   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
+   *
+   * @param min - The minimum inclusive value.
+   * @param max - The maximum inclusive value.
+   */
+  maxMarkerLenInRange(min: number, max: number): number;
+  /**
+   * Render an index into its corresponding marker string.
+   * See {@link https://www.w3.org/TR/css-lists-3/#text-markers | CSS Lists Level 3, Text-based Markers}.
+   *
+   * @param index - The counter value to render.
+   */
+  renderMarker(index: number): string;
   /**
    * Create a new renderer with a fallback used when the index is out of bounds.
    *
@@ -98,7 +136,7 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
    *
    * @param fallback - A fallback CounterStyleRenderer.
    */
-  withFallback(fallback: BaseCounterStyleRenderer): CounterStyleRenderer;
+  withFallback(fallback: FallbackRenderer): CounterStyleRenderer;
   /**
    * Create a new renderer with a constrained range. When the index is out of
    * bounds, the counter representation is rendered with the provided fallback,
@@ -113,7 +151,7 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
   withRange(
     min: number,
     max: number,
-    fallback?: BaseCounterStyleRenderer
+    fallback?: FallbackRenderer
   ): CounterStyleRenderer;
   /**
    * Create a new renderer which will render negative values by prefixing and
@@ -187,51 +225,14 @@ export interface CounterStyleRenderer extends BaseCounterStyleRenderer {
 }
 
 /**
+ * Minimal API for a fallback.
+ *
  * @public
  */
-export interface BaseCounterStyleRenderer {
-  /**
-   * Render an index into its corresponding marker string.
-   * See {@link https://www.w3.org/TR/css-lists-3/#text-markers | CSS Lists Level 3, Text-based Markers}.
-   *
-   * @param index - The counter value to render.
-   */
-  renderMarker(index: number): string;
-
-  /**
-   * Render an index into its counter representation, equivalent to CSS `counter` function.
-   * See {@link https://www.w3.org/TR/css-counter-styles-3/#generate-a-counter | CSS Counter Styles Level 3, Counter Styles}.
-   *
-   * @param index - The counter value to render.
-   */
-  renderCounter(index: number): string;
-
-  /**
-   * Get the maximum marker string length given an index range. If a fallback
-   * is defined, it will be used for values outside the range boundaries of
-   * this renderer.
-   *
-   * @remarks This method doesn't take into account
-   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
-   *
-   * @param min - The minimum inclusive value.
-   * @param max - The maximum inclusive value.
-   */
-  maxMarkerLenInRange(min: number, max: number): number;
-
-  /**
-   * Get the maximum counter representation length given an index range. If a
-   * fallback is defined, it will be used for values outside the range
-   * boundaries of this renderer.
-   *
-   * @remarks This method doesn't take into account
-   * {@link https://www.w3.org/TR/css-text-3/#grapheme-cluster | unicode grapheme clusters}.
-   *
-   * @param min - The minimum inclusive value.
-   * @param max - The maximum inclusive value.
-   */
-  maxCounterLenInRange(min: number, max: number): number;
-}
+export type FallbackRenderer = Pick<
+  CounterStyleRenderer,
+  'renderCounter' | 'maxCounterLenInRange'
+>;
 
 const defaultRtlOptions: Required<RtlOptions> = {
   reverseCounter: false,
@@ -252,7 +253,7 @@ function reverseString(source: string) {
   return Array.from(source).reverse().join('');
 }
 
-const _mod = (value: number, divisor: number) =>
+const mod = (value: number, divisor: number) =>
   ((value % divisor) + divisor) % divisor;
 
 const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
@@ -581,7 +582,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       return makeRawFromFormatter(() => symbols[0]);
     } else {
       return makeRawFromFormatter(
-        (index) => symbols[_mod(index - 1, symbols.length)]
+        (index) => symbols[mod(index - 1, symbols.length)]
       );
     }
   },
@@ -592,7 +593,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
     ),
   symbolic: (...symbols) =>
     makeRawFromFormatter((index) =>
-      symbols[_mod(index - 1, symbols.length)].repeat(
+      symbols[mod(index - 1, symbols.length)].repeat(
         Math.ceil(index / symbols.length)
       )
     ).withRange(1, Infinity),
@@ -601,7 +602,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       let result = '';
       while (index > 0) {
         index--;
-        result = symbols[_mod(index, symbols.length)] + result;
+        result = symbols[mod(index, symbols.length)] + result;
         index = Math.floor(index / symbols.length);
       }
       return result;
@@ -617,7 +618,7 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       } else {
         let result = '';
         while (index > 0) {
-          result = symbols[_mod(index, symbols.length)] + result;
+          result = symbols[mod(index, symbols.length)] + result;
           index = Math.floor(index / symbols.length);
         }
         return result;
@@ -627,25 +628,21 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(symbols.length, false))
       .withNegative('-');
   },
-
   numericFromUnicodeRange: (originUnicode: number, base: number) => {
     const formatter: StrictCounterFormatter = (index) =>
-      getAlphanumFromUnicodeRange(index, originUnicode, base, false);
+      getAlphanumFromUnicodeRange(index, originUnicode, base, false) as string;
     return makeRawFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(base, false))
       .withNegative('-');
   },
   alphabeticFromUnicodeRange: (originUnicode: number, alphabetLen: number) => {
     const formatter: LoseCounterFormatter = (index) => {
-      if (index > 0) {
-        return getAlphanumFromUnicodeRange(
-          index,
-          originUnicode,
-          alphabetLen,
-          true
-        );
-      }
-      return;
+      return getAlphanumFromUnicodeRange(
+        index,
+        originUnicode,
+        alphabetLen,
+        true
+      );
     };
     return makeRawFromFormatter(formatter)
       .withMaxLengthComputer(makeAlphanumMaxlenComputer(alphabetLen, true))
@@ -689,16 +686,12 @@ const DEFAULT_SPECS: Specifications = {
   reversedMarker: false,
   reversedCounter: false,
   fallback: {
-    renderMarker: (index) => index.toString() + DEFAULT_SUFFIX,
     renderCounter: (index) => index.toString(),
     maxCounterLenInRange(min, max) {
       return Math.max(
         this.renderCounter(min).length,
         this.renderCounter(max).length
       );
-    },
-    maxMarkerLenInRange(min, max) {
-      return this.maxCounterLenInRange(min, max) + DEFAULT_SUFFIX.length;
     }
   },
   negative: null,
@@ -737,7 +730,7 @@ const styleEngineProto: Pick<
 };
 
 function makeStyleEngine(
-  renderer: LoseCounterFormatter = () => '',
+  renderer: LoseCounterFormatter,
   specs: Specifications = DEFAULT_SPECS
 ): Engine {
   const eng = Object.create(styleEngineProto) as Engine;
