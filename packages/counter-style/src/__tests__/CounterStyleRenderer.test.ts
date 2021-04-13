@@ -54,17 +54,32 @@ describe('CounterStyleRenderer', () => {
     const counter = CounterStyle.additive({ 2: '2', 3: '3' });
     expect(counter.renderCounter(1)).toBe('1');
   });
-  test('::withRtl', () => {
+  test('::withRtl (prefix)', () => {
     const counter = arabicIndic.withPrefix(') ');
     expect(counter.withRtl().renderCounter(10)).toBe('١٠');
     expect(counter.withRtl({ reversePrefix: false }).renderMarker(10)).toBe(
       ' .١٠) '
     );
+    expect(counter.withRtl({ reversePrefix: true }).renderMarker(10)).toBe(
+      ' .١٠ )'
+    );
     expect(counter.withRtl({ reverseCounter: true }).renderCounter(10)).toBe(
       '٠١'
     );
   });
-
+  test('::withRtl (suffix)', () => {
+    const counter = arabicIndic.withSuffix('( ');
+    expect(counter.withRtl().renderCounter(10)).toBe('١٠');
+    expect(counter.withRtl({ reverseSuffix: false }).renderMarker(10)).toBe(
+      '( ١٠'
+    );
+    expect(counter.withRtl({ reverseSuffix: true }).renderMarker(10)).toBe(
+      ' (١٠'
+    );
+    expect(counter.withRtl({ reverseCounter: true }).renderCounter(10)).toBe(
+      '٠١'
+    );
+  });
   describe('::maxMarkerLenInRange', () => {
     it('should work with numeric styles', () => {
       const counter = decimal;
