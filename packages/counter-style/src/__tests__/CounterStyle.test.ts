@@ -56,6 +56,12 @@ describe('CounterStyle', () => {
     expect(counter.renderCounter(7)).toBe('TTT');
   });
 
+  test('::alphabeticFromUnicodeRange', () => {
+    const counter = CounterStyle.alphabeticFromUnicodeRange(97, 26);
+    expect(counter.renderCounter(0)).toBe('0');
+    expect(counter.renderCounter(1)).toBe('a');
+  });
+
   test('::numeric', () => {
     const counter = CounterStyle.numeric('0', '1', '2');
     expect(counter.renderCounter(0)).toBe('0');

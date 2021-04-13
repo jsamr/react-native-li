@@ -80,6 +80,19 @@ describe('CounterStyleRenderer', () => {
       '٠١'
     );
   });
+  describe('Default fallback', () => {
+    const dumbCounter = CounterStyle.raw(() => 'x').withRange(0, 0);
+    expect(dumbCounter.renderMarker(1)).toBe('1' + DEFAULT_SUFFIX);
+    expect(dumbCounter.maxMarkerLenInRange(1, 100)).toBe(
+      3 + DEFAULT_SUFFIX.length
+    );
+    expect(dumbCounter.maxMarkerLenInRange(-100, 10)).toBe(
+      4 + DEFAULT_SUFFIX.length
+    );
+    expect(dumbCounter.maxMarkerLenInRange(-100, 10000)).toBe(
+      5 + DEFAULT_SUFFIX.length
+    );
+  });
   describe('::maxMarkerLenInRange', () => {
     it('should work with numeric styles', () => {
       const counter = decimal;
