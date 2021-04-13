@@ -10,7 +10,7 @@ const CounterStyle: Readonly<CounterStyleStatic>;
 export default CounterStyle;
 
 // @public (undocumented)
-export interface CounterStyleRenderer extends FallbackRenderer {
+export interface CounterStyleRenderer {
     maxCounterLenInRange(min: number, max: number): number;
     maxMarkerLenInRange(min: number, max: number): number;
     renderCounter(index: number): string;

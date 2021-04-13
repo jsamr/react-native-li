@@ -8,9 +8,8 @@
 <b>Signature:</b>
 
 ```typescript
-export interface CounterStyleRenderer extends FallbackRenderer 
+export interface CounterStyleRenderer 
 ```
-<b>Extends:</b> [FallbackRenderer](./counter-style.fallbackrenderer.md)
 
 ## Methods
 
