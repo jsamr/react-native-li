@@ -214,12 +214,21 @@ Width is approximated with the maximum marker string length in range, but letter
 
 Don't forget to add `flexShrink: 1` to your `Text` element.
 
-### How to extend a preset, like changing the prefix or suffix?
+### How to extend a preset, such as changing the prefix or suffix?
 
-That's pretty easy:
+That's really stunningly easy:
 
 ```js
 import arabicIndic from '@jsamr/counter-style/presets/arabicIndic';
 
 const myCustomArabicIndic = arabicIndic.withPrefix('(').withSuffix(')');
+
+// Expect comes from jest testing framework.
+// Just a showcase of expected returned values.
+expect(myCustomArabicIndic.renderMarker(78)).toBe('(٧٨)');
 ```
+
+
+### How easy it is to create a custom counter renderer?
+
+That's really quite easy. Check [`@jsamr/counter-style` examples section](https://github.com/jsamr/react-native-li/tree/master/packages/counter-style#custom-style-renderers).

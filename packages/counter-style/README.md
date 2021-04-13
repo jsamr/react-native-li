@@ -58,10 +58,13 @@ yarn add @jsamr/counter-style
 ```js
 import arabicIndic from '@jsamr/counter-style/presets/arabicIndic';
 
-expect(arabicIndic.render(78)).toBe('٧٨. ');
+expect(arabicIndic.renderMarker(78)).toBe('٧٨. ');
 ```
 
 > PRs are welcomed to support other presets. Very easy to implement thanks to [this W3C resource](https://www.w3.org/TR/predefined-counter-styles/).
+
+
+<a name="custom-style-renderers">
 
 ### Creating custom style renderers
 
@@ -93,6 +96,7 @@ expect(lowerRussian.maxMarkerLenInRange(1, 5)).toBe(3);
 expect(lowerRussian.maxCounterLenInRange(1, 5)).toBe(1);
 ```
 Reference: [W3C Ready-made Counter Styles: Cyrillic styles](https://www.w3.org/TR/predefined-counter-styles/#cyrillic-styles).
+
 #### Example 2: a "Funky" symbolic renderer
 
 In the
@@ -107,11 +111,11 @@ const funky = CounterStyle.symbolic('*', '&').withSuffix(null);
 
 // Expect comes from jest testing framework.
 // Just a showcase of expected returned values.
-expect(funky.render(1)).renderCounter('*');
-expect(funky.render(2)).renderMarker('&');
-expect(funky.render(3)).renderCounter('**');
-expect(funky.render(4)).renderMarker('&&');
-expect(funky.render(5)).renderCounter('***');
+expect(funky.renderMarker(1)).renderCounter('*');
+expect(funky.renderMarker(2)).renderMarker('&');
+expect(funky.renderMarker(3)).renderCounter('**');
+expect(funky.renderMarker(4)).renderMarker('&&');
+expect(funky.renderMarker(5)).renderCounter('***');
 expect(funky.maxMarkerLenInRange(1, 5)).toBe(3);
 expect(funky.maxCounterLenInRange(1, 5)).toBe(3);
 ```
