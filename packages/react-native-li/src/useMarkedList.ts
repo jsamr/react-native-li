@@ -14,7 +14,7 @@ const defaultComputeMarkerBoxWidth: NonNullable<
 
 /**
  * A hook to reuse MarkedList logic to render custom lists components in
- * combinasion with {@link MarkedListItem}.
+ * combination with {@link MarkedListItem}.
  *
  * @public
  */

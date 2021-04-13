@@ -4,7 +4,7 @@
 
 ## useMarkedList() function
 
-A hook to reuse MarkedList logic to render custom lists components in combinasion with [MarkedListItem()](./react-native-li.markedlistitem.md)<!-- -->.
+A hook to reuse MarkedList logic to render custom lists components in combination with [MarkedListItem()](./react-native-li.markedlistitem.md)<!-- -->.
 
 <b>Signature:</b>
 
