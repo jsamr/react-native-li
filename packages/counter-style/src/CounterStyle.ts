@@ -4,7 +4,8 @@ import makeCSEngine from './makeCSEngine';
 import makeCSRenderer from './makeCSRenderer';
 import type {
   InitialCounterFormatter,
-  CounterStyleStatic
+  CounterStyleStatic,
+  CounterStyleRenderer
 } from './public-types';
 import codepointLength from './utils/codepointLength';
 
@@ -24,6 +25,18 @@ function getMaxLenInSymbols(
   return symbols
     .slice(fromIndex, toIndex + 1)
     .reduce((p, c) => Math.max(p, c), 0);
+}
+
+function numeric(renderer: CounterStyleRenderer, length: number) {
+  return renderer
+    .withMaxLengthComputer(makeAlphanumMaxlenComputer(length, false))
+    .withNegative('-');
+}
+
+function alphabetic(renderer: CounterStyleRenderer, length: number) {
+  return renderer
+    .withMaxLengthComputer(makeAlphanumMaxlenComputer(length, true))
+    .withRange(1, Infinity);
 }
 
 /**
@@ -78,55 +91,62 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
         );
       }),
   alphabetic: (...symbols) => {
-    const formatter: InitialCounterFormatter = (index) => {
-      let result = '';
-      while (index > 0) {
-        index--;
-        result = symbols[mod(index, symbols.length)] + result;
-        index = Math.floor(index / symbols.length);
-      }
-      return result;
-    };
-    return makeCSRendererFromFormatter(formatter)
-      .withMaxLengthComputer(makeAlphanumMaxlenComputer(symbols.length, true))
-      .withRange(1, Infinity);
-  },
-  numeric: (...symbols) => {
-    const formatter: InitialCounterFormatter = (index) => {
-      if (index === 0) {
-        return symbols[0];
-      } else {
+    return alphabetic(
+      makeCSRendererFromFormatter((index) => {
         let result = '';
         while (index > 0) {
+          index--;
           result = symbols[mod(index, symbols.length)] + result;
           index = Math.floor(index / symbols.length);
         }
         return result;
-      }
-    };
-    return makeCSRendererFromFormatter(formatter)
-      .withMaxLengthComputer(makeAlphanumMaxlenComputer(symbols.length, false))
-      .withNegative('-');
+      }),
+      symbols.length
+    );
+  },
+  numeric: (...symbols) => {
+    return numeric(
+      makeCSRendererFromFormatter((index) => {
+        if (index === 0) {
+          return symbols[0];
+        } else {
+          let result = '';
+          while (index > 0) {
+            result = symbols[mod(index, symbols.length)] + result;
+            index = Math.floor(index / symbols.length);
+          }
+          return result;
+        }
+      }),
+      symbols.length
+    );
   },
   numericFromUnicodeRange: (originUnicode: number, base: number) => {
-    const formatter: InitialCounterFormatter = (index) =>
-      getAlphanumFromUnicodeRange(index, originUnicode, base, false) as string;
-    return makeCSRendererFromFormatter(formatter)
-      .withMaxLengthComputer(makeAlphanumMaxlenComputer(base, false))
-      .withNegative('-');
+    return numeric(
+      makeCSRendererFromFormatter(
+        (index) =>
+          getAlphanumFromUnicodeRange(
+            index,
+            originUnicode,
+            base,
+            false
+          ) as string
+      ),
+      base
+    );
   },
   alphabeticFromUnicodeRange: (originUnicode: number, alphabetLen: number) => {
-    const formatter: InitialCounterFormatter = (index) => {
-      return getAlphanumFromUnicodeRange(
-        index,
-        originUnicode,
-        alphabetLen,
-        true
-      );
-    };
-    return makeCSRendererFromFormatter(formatter)
-      .withMaxLengthComputer(makeAlphanumMaxlenComputer(alphabetLen, true))
-      .withRange(1, Infinity);
+    return alphabetic(
+      makeCSRendererFromFormatter((index) => {
+        return getAlphanumFromUnicodeRange(
+          index,
+          originUnicode,
+          alphabetLen,
+          true
+        );
+      }),
+      alphabetLen
+    );
   },
   additive: (symbols: { [value: number]: string }) => {
     const values = Object.keys(symbols)
