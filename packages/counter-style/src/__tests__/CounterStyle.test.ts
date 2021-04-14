@@ -107,6 +107,10 @@ describe('CounterStyle', () => {
           .range
       ).toMatchObject({ min: 0, max: -1 });
       expect(
+        (CounterStyle.additive({ 0: '0' }) as CounterStyleRendererInt).engine
+          .specs.range
+      ).toMatchObject({ min: 0, max: 0 });
+      expect(
         (CounterStyle.additive({ 1: '0', 2: '1' }) as CounterStyleRendererInt)
           .engine.specs.range
       ).toMatchObject({ min: 1, max: Infinity });

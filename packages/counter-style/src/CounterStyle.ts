@@ -122,8 +122,8 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       }
     });
     return style.withRange(
-      values.length ? values[values.length - 1] : 0,
-      values.length ? Infinity : -1
+      0 in symbols ? 0 : Math.max(values.length - 1, 0),
+      values.length ? Infinity : 0 in symbols ? 0 : -1
     );
   }
 });
