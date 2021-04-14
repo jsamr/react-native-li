@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.1.0...@jsamr/counter-style@1.1.1) (2021-04-14)
+
+
+### Bug Fixes
+
+* **counter-style:** additive systems with only one symbol mapped to 0 ([5c23c27](https://github.com/jsamr/react-native-li/commit/5c23c273e5e9580610501ab63faf2f1ba94c32d4))
+
 # [1.1.0](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.4...@jsamr/counter-style@1.1.0) (2021-04-14)
 
 
