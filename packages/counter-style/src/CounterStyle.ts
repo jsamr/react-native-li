@@ -22,21 +22,18 @@ function makeCSRendererFromFormatter(formatter: InitialCounterFormatter) {
  */
 const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
   raw: (formatter, lengthComputer) => {
-    if (lengthComputer) {
-      return makeCSRendererFromFormatter(formatter).withMaxLengthComputer(
-        lengthComputer
-      );
-    }
-    return makeCSRendererFromFormatter(formatter);
+    return lengthComputer
+      ? makeCSRendererFromFormatter(formatter).withMaxLengthComputer(
+          lengthComputer
+        )
+      : makeCSRendererFromFormatter(formatter);
   },
   cyclic: (...symbols) => {
-    if (symbols.length === 1) {
-      return makeCSRendererFromFormatter(() => symbols[0]);
-    } else {
-      return makeCSRendererFromFormatter(
-        (index) => symbols[mod(index - 1, symbols.length)]
-      );
-    }
+    return symbols.length === 1
+      ? makeCSRendererFromFormatter(() => symbols[0])
+      : makeCSRendererFromFormatter(
+          (index) => symbols[mod(index - 1, symbols.length)]
+        );
   },
   fixed: (...symbols) =>
     makeCSRendererFromFormatter((index) => symbols[index - 1]).withRange(
@@ -124,11 +121,10 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
         return index === 0 ? result : undefined;
       }
     });
-    if (0 in symbols) {
-      return style.withRange(0, Infinity);
-    } else {
-      return style.withRange(1, Infinity);
-    }
+    return style.withRange(
+      values.length ? values[values.length - 1] : 0,
+      values.length ? Infinity : -1
+    );
   }
 });
 
