@@ -147,6 +147,8 @@ describe('CounterStyle', () => {
     });
     it('should render fallback when incomplete symbols where specified', () => {
       const incompleteRenderer = CounterStyle.additive({ 0: '*', 2: 'x' });
+      expect(incompleteRenderer.renderCounter(0)).toBe('*');
+      expect(incompleteRenderer.renderCounter(1)).toBe('1');
       expect(incompleteRenderer.renderCounter(2)).toBe('x');
       expect(incompleteRenderer.renderCounter(3)).toBe('3');
     });

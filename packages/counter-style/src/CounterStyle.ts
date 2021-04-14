@@ -16,15 +16,9 @@ function makeCSRendererFromFormatter(formatter: InitialCounterFormatter) {
   return makeCSRenderer(makeCSEngine(formatter));
 }
 
-function getMaxLenInSymbols(
-  symbols: number[],
-  fromIndex = 0,
-  toIndex?: number
-) {
-  toIndex = typeof toIndex === 'number' ? toIndex : symbols.length;
-  return symbols
-    .slice(fromIndex, toIndex + 1)
-    .reduce((p, c) => Math.max(p, c), 0);
+function getMaxLenInSymbols(lens: number[], from = 0, to?: number) {
+  to = typeof to === 'number' ? to : lens.length;
+  return lens.slice(from, to + 1).reduce((p, c) => Math.max(p, c), 0);
 }
 
 function numeric(renderer: CounterStyleRenderer, length: number) {
@@ -151,30 +145,23 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
   additive: (symbols: { [value: number]: string }) => {
     const values = Object.keys(symbols)
       .map((value) => parseInt(value, 10))
-      .filter((value) => value > 0);
-    values.sort((a, b) => b - a);
-    const symbolList = values.map((value) => ({
-      value,
-      symbol: symbols[value]
-    }));
-    const style = makeCSRendererFromFormatter((index) => {
+      .sort((a, b) => b - a);
+    return makeCSRendererFromFormatter((index) => {
       if (index === 0) {
         return symbols[0];
-      } else {
-        let result = '';
-        for (const { value, symbol } of symbolList) {
-          if (index >= value) {
-            const repeat = Math.floor(index / value);
-            result += symbol.repeat(repeat);
-            index -= repeat * value;
-          }
-        }
-        return index === 0 ? result : undefined;
       }
-    });
-    return style.withRange(
-      0 in symbols ? 0 : Math.max(values.length - 1, 0),
-      values.length ? Infinity : 0 in symbols ? 0 : -1
+      let result = '';
+      for (const value of values) {
+        if (index >= value && value > 0) {
+          const repeat = Math.floor(index / value);
+          result += symbols[value].repeat(repeat);
+          index -= repeat * value;
+        }
+      }
+      return index === 0 ? result : undefined;
+    }).withRange(
+      values.length ? values[values.length - 1] : 0,
+      0 in symbols && values.length === 1 ? 0 : values.length ? Infinity : -1
     );
   }
 });

@@ -1,7 +1,7 @@
 import { CJK_SUFFIX } from '../constants';
 import japaneseFormal from '../presets/japaneseFormal';
 
-test('arabic indic', () => {
+test('Japanese formal', () => {
   const counter = japaneseFormal;
   expect(counter.renderMarker(0)).toBe('零' + CJK_SUFFIX);
   expect(counter.renderMarker(9000)).toBe('九阡' + CJK_SUFFIX);
