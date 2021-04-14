@@ -179,7 +179,11 @@ export interface CounterStyleRenderer {
    * produced by the underlying formatter given a range.
    */
   withMaxLengthComputer(
-    computer: MaxCodepointLengthInRangeComputer
+    computer: (
+      min: number,
+      max: number,
+      defaultComputer: MaxCodepointLengthInRangeComputer
+    ) => number
   ): CounterStyleRenderer;
 
   /**

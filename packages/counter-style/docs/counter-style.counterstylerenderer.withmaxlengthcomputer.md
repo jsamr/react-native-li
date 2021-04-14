@@ -9,14 +9,14 @@ Create a new renderer with a (hopefuly) cost-effective max codepoint length comp
 <b>Signature:</b>
 
 ```typescript
-withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
+withMaxLengthComputer(computer: (min: number, max: number, defaultComputer: MaxCodepointLengthInRangeComputer) => number): CounterStyleRenderer;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  computer | [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md) | A function to compute the max codepoints length produced by the underlying formatter given a range. |
+|  computer | (min: number, max: number, defaultComputer: [MaxCodepointLengthInRangeComputer](./counter-style.maxcodepointlengthinrangecomputer.md)<!-- -->) =&gt; number | A function to compute the max codepoints length produced by the underlying formatter given a range. |
 
 <b>Returns:</b>
 

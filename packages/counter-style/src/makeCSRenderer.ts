@@ -191,7 +191,11 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     );
   },
   withMaxLengthComputer(this: CounterStyleRendererInt, computer) {
-    return makeCSRenderer(this.engine.withMaxLengthInRange(computer));
+    return makeCSRenderer(
+      this.engine.withMaxLengthInRange((min, max) =>
+        computer(min, max, this.engine.maxLengthInRange.bind(this.engine))
+      )
+    );
   }
 };
 
