@@ -18,7 +18,7 @@ export interface CounterStyleRenderer {
     renderPrefix(): string;
     renderSuffix(): string;
     withFallback(fallback: FallbackRenderer): CounterStyleRenderer;
-    withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
+    withMaxLengthComputer(computer: (min: number, max: number, defaultComputer: MaxCodepointLengthInRangeComputer) => number): CounterStyleRenderer;
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;
     withPadLeft(length: number, pad: string): CounterStyleRenderer;
     withPadRight(length: number, pad: string): CounterStyleRenderer;

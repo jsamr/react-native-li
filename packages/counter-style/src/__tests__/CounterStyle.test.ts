@@ -9,6 +9,18 @@ describe('CounterStyle', () => {
     expect(counter.renderCounter(5)).toBe('>');
   });
 
+  test('::cyclic with multiple symbols', () => {
+    const counter = CounterStyle.cyclic('>', '<>', '<');
+    expect(counter.renderCounter(1)).toBe('>');
+    expect(counter.renderCounter(2)).toBe('<>');
+    expect(counter.renderCounter(3)).toBe('<');
+    expect(counter.maxCounterLenInRange(2, 2)).toBe(2);
+    expect(counter.maxCounterLenInRange(1, 3)).toBe(2);
+    expect(counter.maxCounterLenInRange(2, 3)).toBe(2);
+    expect(counter.maxCounterLenInRange(3, 3)).toBe(1);
+    expect(counter.maxCounterLenInRange(1, 1000)).toBe(2);
+  });
+
   test('::cyclic with multi-units codepoints', () => {
     const counter = CounterStyle.cyclic('👍').withSuffix(null);
     expect(counter.renderCounter(1)).toBe('👍');

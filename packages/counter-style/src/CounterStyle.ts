@@ -6,6 +6,7 @@ import type {
   InitialCounterFormatter,
   CounterStyleStatic
 } from './public-types';
+import codepointLength from './utils/codepointLength';
 
 const mod = (value: number, divisor: number) =>
   ((value % divisor) + divisor) % divisor;
@@ -29,11 +30,21 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       : makeCSRendererFromFormatter(formatter);
   },
   cyclic: (...symbols) => {
-    return symbols.length === 1
-      ? makeCSRendererFromFormatter(() => symbols[0])
-      : makeCSRendererFromFormatter(
-          (index) => symbols[mod(index - 1, symbols.length)]
-        );
+    const maxLen = symbols
+      .map((v) => codepointLength(v))
+      .reduce((p, c) => Math.max(p, c));
+    const renderer =
+      symbols.length === 1
+        ? makeCSRendererFromFormatter(() => symbols[0])
+        : makeCSRendererFromFormatter(
+            (index) => symbols[mod(index - 1, symbols.length)]
+          );
+    return renderer.withMaxLengthComputer((min, max, defaultComp) => {
+      if (max - min + 1 >= symbols.length) {
+        return maxLen;
+      }
+      return defaultComp(min, max);
+    });
   },
   fixed: (...symbols) =>
     makeCSRendererFromFormatter((index) => symbols[index - 1]).withRange(
