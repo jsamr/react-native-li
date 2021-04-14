@@ -71,7 +71,7 @@
   "size-limit": [
     {
       "path": "lib/es/index.js",
-      "limit": "1.65 KB",
+      "limit": "1.70 KB",
       "gzip": true
     },
     {

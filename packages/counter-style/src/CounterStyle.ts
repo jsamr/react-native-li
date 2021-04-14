@@ -50,16 +50,22 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
             (index) => symbols[mod(index - 1, symbols.length)]
           );
     return renderer.withMaxLengthComputer((min, max) => {
-      return max - min + 1 >= symbols.length
+      return maxLen === 1 || max - min + 1 >= symbols.length
         ? maxLen
         : getMaxLenInSymbols(symbolLenghts, min - 1, max - 1);
     });
   },
-  fixed: (...symbols) =>
-    makeCSRendererFromFormatter((index) => symbols[index - 1]).withRange(
-      1,
-      symbols.length
-    ),
+  fixed: (...symbols) => {
+    const symbolLenghts = symbols.map(codepointLength);
+    const maxLen = getMaxLenInSymbols(symbolLenghts);
+    return makeCSRendererFromFormatter((index) => symbols[index - 1])
+      .withRange(1, symbols.length)
+      .withMaxLengthComputer((min, max) => {
+        return maxLen === 1
+          ? maxLen
+          : getMaxLenInSymbols(symbolLenghts, min - 1, max - 1);
+      });
+  },
   symbolic: (...symbols) =>
     makeCSRendererFromFormatter((index) =>
       symbols[mod(index - 1, symbols.length)].repeat(

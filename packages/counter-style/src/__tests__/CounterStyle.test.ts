@@ -34,18 +34,23 @@ describe('CounterStyle', () => {
     expect(counter.renderCounter(1)).toBe('a');
   });
 
-  test('::fixed', () => {
-    const counter = CounterStyle.fixed('x', 'y', 'z');
-    expect(counter.renderCounter(1)).toBe('x');
-    expect(counter.renderCounter(2)).toBe('y');
-    expect(counter.renderCounter(3)).toBe('z');
-    expect(counter.renderCounter(4)).toBe('4');
-  });
+  describe('::fixed', () => {
+    it('should comply with specs', () => {
+      const counter = CounterStyle.fixed('x', 'xy', 'xyz');
+      expect(counter.renderCounter(1)).toBe('x');
+      expect(counter.renderCounter(2)).toBe('xy');
+      expect(counter.renderCounter(3)).toBe('xyz');
+      expect(counter.renderCounter(4)).toBe('4');
+      expect(counter.maxCounterLenInRange(1, 3)).toBe(3);
+      expect(counter.maxCounterLenInRange(2, 3)).toBe(3);
+      expect(counter.maxCounterLenInRange(3, 3)).toBe(3);
+    });
 
-  test('::fixed with multi-units codepoints', () => {
-    const counter = CounterStyle.fixed('👍').withSuffix(null);
-    expect(counter.renderCounter(1)).toBe('👍');
-    expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+    test('with multi-units codepoints', () => {
+      const counter = CounterStyle.fixed('👍').withSuffix(null);
+      expect(counter.renderCounter(1)).toBe('👍');
+      expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+    });
   });
 
   describe('::symbolic', () => {
