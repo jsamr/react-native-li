@@ -1,5 +1,6 @@
 import { DEFAULT_SUFFIX } from '../constants';
 import CounterStyle from '../CounterStyle';
+import { CounterStyleRendererInt } from '../internal-types';
 
 describe('CounterStyle', () => {
   test('::cyclic', () => {
@@ -82,21 +83,42 @@ describe('CounterStyle', () => {
     expect(counter.renderCounter(6)).toBe('20');
   });
 
-  test('::additive', () => {
-    const counter = CounterStyle.additive({
-      1: '1',
-      2: '2',
-      3: '3',
-      4: '4',
-      5: '5',
-      6: '6'
+  describe('::additive', () => {
+    it('should render counters such as defined in CSS', () => {
+      const counter = CounterStyle.additive({
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6'
+      });
+      expect(counter.renderCounter(1)).toBe('1');
+      expect(counter.renderMarker(1)).toBe('1' + DEFAULT_SUFFIX);
+      expect(counter.renderCounter(2)).toBe('2');
+      expect(counter.renderCounter(3)).toBe('3');
+      expect(counter.renderCounter(11)).toBe('65');
+      expect(counter.renderCounter(12)).toBe('66');
+      expect(counter.renderCounter(13)).toBe('661');
     });
-    expect(counter.renderCounter(1)).toBe('1');
-    expect(counter.renderMarker(1)).toBe('1' + DEFAULT_SUFFIX);
-    expect(counter.renderCounter(2)).toBe('2');
-    expect(counter.renderCounter(3)).toBe('3');
-    expect(counter.renderCounter(11)).toBe('65');
-    expect(counter.renderCounter(12)).toBe('66');
-    expect(counter.renderCounter(13)).toBe('661');
+    it('should infer range from symbols', () => {
+      expect(
+        (CounterStyle.additive({}) as CounterStyleRendererInt).engine.specs
+          .range
+      ).toMatchObject({ min: 0, max: -1 });
+      expect(
+        (CounterStyle.additive({ 1: '0', 2: '1' }) as CounterStyleRendererInt)
+          .engine.specs.range
+      ).toMatchObject({ min: 1, max: Infinity });
+      expect(
+        (CounterStyle.additive({ 1: '0', 2: '1' }) as CounterStyleRendererInt)
+          .engine.specs.range
+      ).toMatchObject({ min: 1, max: Infinity });
+    });
+    it('should render fallback when incomplete symbols where specified', () => {
+      const incompleteRenderer = CounterStyle.additive({ 0: '*', 2: 'x' });
+      expect(incompleteRenderer.renderCounter(2)).toBe('x');
+      expect(incompleteRenderer.renderCounter(3)).toBe('3');
+    });
   });
 });

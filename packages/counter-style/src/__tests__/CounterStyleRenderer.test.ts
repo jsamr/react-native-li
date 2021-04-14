@@ -96,6 +96,14 @@ describe('CounterStyleRenderer', () => {
       5 + DEFAULT_SUFFIX.length
     );
   });
+  test('::renderPrefix', () => {
+    expect(decimal.withPrefix('3').renderPrefix()).toBe('3');
+    expect(decimal.withPrefix(null).renderPrefix()).toBe('');
+  });
+  test('::renderSuffix', () => {
+    expect(decimal.withSuffix('3').renderSuffix()).toBe('3');
+    expect(decimal.withSuffix(null).renderSuffix()).toBe('');
+  });
   describe('::maxMarkerLenInRange', () => {
     it('should return 0 when range is decreasing', () => {
       const counter = decimal;
