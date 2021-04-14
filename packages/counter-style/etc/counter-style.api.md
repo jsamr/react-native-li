@@ -15,6 +15,8 @@ export interface CounterStyleRenderer {
     maxMarkerLenInRange(min: number, max: number): number;
     renderCounter(index: number): string;
     renderMarker(index: number): string;
+    renderPrefix(): string;
+    renderSuffix(): string;
     withFallback(fallback: FallbackRenderer): CounterStyleRenderer;
     withMaxLengthComputer(computer: MaxCodepointLengthInRangeComputer): CounterStyleRenderer;
     withNegative(prefix: string, suffix?: string): CounterStyleRenderer;

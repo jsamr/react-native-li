@@ -106,6 +106,12 @@ const stylePrototype: Omit<CounterStyleRendererInt, 'engine'> = {
     ];
     return sp.reversedMarker ? elements.reverse().join('') : elements.join('');
   },
+  renderPrefix(this: CounterStyleRendererInt) {
+    return this.engine.specs.prefix || '';
+  },
+  renderSuffix(this: CounterStyleRendererInt) {
+    return this.engine.specs.suffix || '';
+  },
   withFallback(this: CounterStyleRendererInt, fallback) {
     return makeCSRenderer(this.engine.withSpecs({ fallback }));
   },

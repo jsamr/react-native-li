@@ -91,6 +91,14 @@ export interface CounterStyleRenderer {
    */
   renderMarker(index: number): string;
   /**
+   * Render this renderer's prefix.
+   */
+  renderPrefix(): string;
+  /**
+   * Render this renderer's suffix.
+   */
+  renderSuffix(): string;
+  /**
    * Create a new renderer with a fallback used when the index is out of bounds.
    *
    * See {@link https://www.w3.org/TR/css-counter-styles-3/#counter-style-fallback | CSS Counter Styles Level 3, Defining fallback: the fallback descriptor}.
