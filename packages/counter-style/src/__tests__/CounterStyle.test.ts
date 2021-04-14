@@ -1,6 +1,7 @@
 import { DEFAULT_SUFFIX } from '../constants';
 import CounterStyle from '../CounterStyle';
 import { CounterStyleRendererInt } from '../internal-types';
+import lowerRoman from '../presets/lowerRoman';
 
 describe('CounterStyle', () => {
   describe('::cyclic', () => {
@@ -148,6 +149,19 @@ describe('CounterStyle', () => {
       const incompleteRenderer = CounterStyle.additive({ 0: '*', 2: 'x' });
       expect(incompleteRenderer.renderCounter(2)).toBe('x');
       expect(incompleteRenderer.renderCounter(3)).toBe('3');
+    });
+    it('should have correct counter length computation', () => {
+      const counter = lowerRoman;
+      // 1 = i
+      expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+      // 3 = iii
+      expect(counter.maxCounterLenInRange(2, 4)).toBe(3);
+      // 88 = lxxxviii
+      expect(counter.maxCounterLenInRange(88, 88)).toBe(8);
+      // 89 = lxxxix
+      expect(counter.maxCounterLenInRange(89, 100)).toBe(6);
+      // 90 = xc
+      expect(counter.maxCounterLenInRange(90, 90)).toBe(2);
     });
   });
 });
