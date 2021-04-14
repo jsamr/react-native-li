@@ -235,16 +235,10 @@ export interface CounterStyleStatic {
    * {@link CounterStyleRenderer.withFallback}), or the default decimal
    * fallback if none was specified.
    *
-   * @param maxLengthComputer - A function which takes a non-negative range and
-   * returns the maximum formatter length for this range in codepoints. Default
-   * implementation is slow as it iterates over all values in range.
-   * See {@link MaxCodepointLengthInRangeComputer}.
-   *
    * @returns A style renderer.
    */
   raw: (
-    initialCounterFormatter: InitialCounterFormatter,
-    maxLengthComputer?: MaxCodepointLengthInRangeComputer
+    initialCounterFormatter: InitialCounterFormatter
   ) => CounterStyleRenderer;
 
   /**

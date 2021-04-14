@@ -9,7 +9,7 @@ Create a renderer from a formatter function.
 <b>Signature:</b>
 
 ```typescript
-raw: (initialCounterFormatter: InitialCounterFormatter, maxLengthComputer?: MaxCodepointLengthInRangeComputer) => CounterStyleRenderer;
+raw: (initialCounterFormatter: InitialCounterFormatter) => CounterStyleRenderer;
 ```
 
 ## Remarks

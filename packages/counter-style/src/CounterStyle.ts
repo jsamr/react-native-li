@@ -33,12 +33,8 @@ function getMaxLenInSymbols(
  * @public
  */
 const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
-  raw: (formatter, lengthComputer) => {
-    return lengthComputer
-      ? makeCSRendererFromFormatter(formatter).withMaxLengthComputer(
-          lengthComputer
-        )
-      : makeCSRendererFromFormatter(formatter);
+  raw: (formatter) => {
+    return makeCSRendererFromFormatter(formatter);
   },
   cyclic: (...symbols) => {
     const symbolLenghts = symbols.map(codepointLength);

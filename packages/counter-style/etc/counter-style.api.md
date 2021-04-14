@@ -37,7 +37,7 @@ export interface CounterStyleStatic {
     fixed: (...symbols: string[]) => CounterStyleRenderer;
     numeric: (...symbols: string[]) => CounterStyleRenderer;
     numericFromUnicodeRange: (originUnicode: number, base: number) => CounterStyleRenderer;
-    raw: (initialCounterFormatter: InitialCounterFormatter, maxLengthComputer?: MaxCodepointLengthInRangeComputer) => CounterStyleRenderer;
+    raw: (initialCounterFormatter: InitialCounterFormatter) => CounterStyleRenderer;
     symbolic: (...symbols: string[]) => CounterStyleRenderer;
 }
 
