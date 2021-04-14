@@ -2831,7 +2831,7 @@ __metadata:
     release-it: ^14.3.0
     typescript: ~4.2.4
   peerDependencies:
-    "@jsamr/counter-style": "*"
+    "@jsamr/counter-style": ^1.0.0
     react: "*"
     react-native: "*"
   languageName: unknown
