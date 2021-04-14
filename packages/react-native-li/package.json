@@ -60,7 +60,7 @@
     "typescript": "~4.2.4"
   },
   "peerDependencies": {
-    "@jsamr/counter-style": "^1.0.0",
+    "@jsamr/counter-style": "^1.0.0|^2.0.0",
     "react": "*",
     "react-native": "*"
   },
