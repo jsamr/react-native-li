@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.4...@jsamr/react-native-li@1.0.5) (2021-04-14)
+
+
+### Bug Fixes
+
+* **react-native-li:** lock @jsamr/counter-style peer dependency to v1.x ([6296bba](https://github.com/jsamr/react-native-li/commit/6296bbafe726fde10010c663c408a1e7c6f0c174))
+
 ## [1.0.4](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.3...@jsamr/react-native-li@1.0.4) (2021-04-13)
 
 
