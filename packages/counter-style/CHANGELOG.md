@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.4...@jsamr/counter-style@1.1.0) (2021-04-14)
+
+
+### Features
+
+* **counter-style:** stricter additive range extrapolation ([fa72954](https://github.com/jsamr/react-native-li/commit/fa7295483aac1e447feab0232cecafc95c076b75))
+
 ## [1.0.4](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.0.3...@jsamr/counter-style@1.0.4) (2021-04-13)
 
 
