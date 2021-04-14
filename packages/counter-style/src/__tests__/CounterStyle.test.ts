@@ -3,31 +3,33 @@ import CounterStyle from '../CounterStyle';
 import { CounterStyleRendererInt } from '../internal-types';
 
 describe('CounterStyle', () => {
-  test('::cyclic', () => {
-    const counter = CounterStyle.cyclic('>').withSuffix(null);
-    expect(counter.renderCounter(1)).toBe('>');
-    expect(counter.renderCounter(5)).toBe('>');
+  describe('::cyclic', () => {
+    it('should comply with specs', () => {
+      const counter = CounterStyle.cyclic('>').withSuffix(null);
+      expect(counter.renderCounter(1)).toBe('>');
+      expect(counter.renderCounter(5)).toBe('>');
+    });
+
+    test('with multiple symbols', () => {
+      const counter = CounterStyle.cyclic('>', '<>', '<');
+      expect(counter.renderCounter(1)).toBe('>');
+      expect(counter.renderCounter(2)).toBe('<>');
+      expect(counter.renderCounter(3)).toBe('<');
+      expect(counter.maxCounterLenInRange(2, 2)).toBe(2);
+      expect(counter.maxCounterLenInRange(1, 3)).toBe(2);
+      expect(counter.maxCounterLenInRange(2, 3)).toBe(2);
+      expect(counter.maxCounterLenInRange(3, 3)).toBe(1);
+      expect(counter.maxCounterLenInRange(1, 1000)).toBe(2);
+    });
+
+    test('with multi-units codepoints', () => {
+      const counter = CounterStyle.cyclic('👍').withSuffix(null);
+      expect(counter.renderCounter(1)).toBe('👍');
+      expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+    });
   });
 
-  test('::cyclic with multiple symbols', () => {
-    const counter = CounterStyle.cyclic('>', '<>', '<');
-    expect(counter.renderCounter(1)).toBe('>');
-    expect(counter.renderCounter(2)).toBe('<>');
-    expect(counter.renderCounter(3)).toBe('<');
-    expect(counter.maxCounterLenInRange(2, 2)).toBe(2);
-    expect(counter.maxCounterLenInRange(1, 3)).toBe(2);
-    expect(counter.maxCounterLenInRange(2, 3)).toBe(2);
-    expect(counter.maxCounterLenInRange(3, 3)).toBe(1);
-    expect(counter.maxCounterLenInRange(1, 1000)).toBe(2);
-  });
-
-  test('::cyclic with multi-units codepoints', () => {
-    const counter = CounterStyle.cyclic('👍').withSuffix(null);
-    expect(counter.renderCounter(1)).toBe('👍');
-    expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
-  });
-
-  test('::cyclic with multiple symbols', () => {
+  test('with multiple symbols', () => {
     const counter = CounterStyle.cyclic('a', 'b', 'c').withSuffix(null);
     expect(counter.renderCounter(1)).toBe('a');
   });
@@ -46,20 +48,26 @@ describe('CounterStyle', () => {
     expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
   });
 
-  test('::symbolic', () => {
-    const counter = CounterStyle.symbolic('*', '&');
-    expect(counter.renderCounter(1)).toBe('*');
-    expect(counter.renderMarker(1)).toBe('*' + DEFAULT_SUFFIX);
-    expect(counter.renderCounter(2)).toBe('&');
-    expect(counter.renderCounter(3)).toBe('**');
-    expect(counter.renderCounter(4)).toBe('&&');
-    expect(counter.renderCounter(5)).toBe('***');
-  });
-
-  test('::symbolic with multi-units codepoints', () => {
-    const counter = CounterStyle.symbolic('👍').withSuffix(null);
-    expect(counter.renderCounter(1)).toBe('👍');
-    expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+  describe('::symbolic', () => {
+    it('should comply with the specs', () => {
+      const counter = CounterStyle.symbolic('*', '⁑', '††', '‡');
+      expect(counter.renderCounter(1)).toBe('*');
+      expect(counter.renderCounter(2)).toBe('⁑');
+      expect(counter.renderCounter(3)).toBe('††');
+      expect(counter.renderCounter(4)).toBe('‡');
+      expect(counter.renderCounter(5)).toBe('**');
+      expect(counter.renderCounter(6)).toBe('⁑⁑');
+      expect(counter.renderCounter(7)).toBe('††††');
+      expect(counter.maxCounterLenInRange(1, 3)).toBe(2);
+      expect(counter.maxCounterLenInRange(1, 7)).toBe(4);
+      expect(counter.maxCounterLenInRange(3, 5)).toBe(2);
+      expect(counter.maxCounterLenInRange(1, 3)).toBe(2);
+    });
+    test('with multi-units codepoints', () => {
+      const counter = CounterStyle.symbolic('👍').withSuffix(null);
+      expect(counter.renderCounter(1)).toBe('👍');
+      expect(counter.maxCounterLenInRange(1, 1)).toBe(1);
+    });
   });
 
   test('::alphabetic', () => {

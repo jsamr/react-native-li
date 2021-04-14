@@ -15,6 +15,17 @@ function makeCSRendererFromFormatter(formatter: InitialCounterFormatter) {
   return makeCSRenderer(makeCSEngine(formatter));
 }
 
+function getMaxLenInSymbols(
+  symbols: number[],
+  fromIndex = 0,
+  toIndex?: number
+) {
+  toIndex = typeof toIndex === 'number' ? toIndex : symbols.length;
+  return symbols
+    .slice(fromIndex, toIndex + 1)
+    .reduce((p, c) => Math.max(p, c), 0);
+}
+
 /**
  * A static object to build counter style renderers.
  * See {@link CounterStyleStatic}.
@@ -30,20 +41,18 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       : makeCSRendererFromFormatter(formatter);
   },
   cyclic: (...symbols) => {
-    const maxLen = symbols
-      .map((v) => codepointLength(v))
-      .reduce((p, c) => Math.max(p, c));
+    const symbolLenghts = symbols.map(codepointLength);
+    const maxLen = getMaxLenInSymbols(symbolLenghts);
     const renderer =
       symbols.length === 1
         ? makeCSRendererFromFormatter(() => symbols[0])
         : makeCSRendererFromFormatter(
             (index) => symbols[mod(index - 1, symbols.length)]
           );
-    return renderer.withMaxLengthComputer((min, max, defaultComp) => {
-      if (max - min + 1 >= symbols.length) {
-        return maxLen;
-      }
-      return defaultComp(min, max);
+    return renderer.withMaxLengthComputer((min, max) => {
+      return max - min + 1 >= symbols.length
+        ? maxLen
+        : getMaxLenInSymbols(symbolLenghts, min - 1, max - 1);
     });
   },
   fixed: (...symbols) =>
@@ -56,7 +65,16 @@ const CounterStyle: Readonly<CounterStyleStatic> = Object.freeze({
       symbols[mod(index - 1, symbols.length)].repeat(
         Math.ceil(index / symbols.length)
       )
-    ).withRange(1, Infinity),
+    )
+      .withRange(1, Infinity)
+      .withMaxLengthComputer((min, max, defaultCmp) => {
+        // Just iterate over the last n elements until max, with n the number
+        // of symbols.
+        return defaultCmp(
+          max < symbols.length ? min : max - symbols.length,
+          max
+        );
+      }),
   alphabetic: (...symbols) => {
     const formatter: InitialCounterFormatter = (index) => {
       let result = '';
