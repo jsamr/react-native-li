@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.5...@jsamr/react-native-li@1.1.0) (2021-04-15)
+
+
+### Bug Fixes
+
+* **react-native-li:** restrict versions of @jsamr/counter-style ([89cf7dc](https://github.com/jsamr/react-native-li/commit/89cf7dc3ab484f978e15465926cbfe74bfa0a8ca))
+
+
+### Features
+
+* **react-native-li:** support @jsamr/counter-style v2 ([c122627](https://github.com/jsamr/react-native-li/commit/c1226274719ac052ba392dd83506c04c2eaf5b11))
+
 ## [1.0.5](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.0.4...@jsamr/react-native-li@1.0.5) (2021-04-14)
 
 
