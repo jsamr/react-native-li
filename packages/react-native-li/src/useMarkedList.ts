@@ -68,13 +68,14 @@ export default function useMarkedList({
   );
   return {
     maxNumOfCodepoints,
+    rtlMarkerReversed,
+    markerTextWidth,
+    renderMarker,
+    startIndex,
     rtlLineReversed: syntheticRtlLineReversed,
     markerTextStyle: syntheticMarkerTextStyle,
-    markerTextWidth,
     markerBoxStyle: markerBoxStyle as any,
-    renderMarker,
     counterRenderer: renderer,
-    startIndex,
     style: lineStyle
   };
 }

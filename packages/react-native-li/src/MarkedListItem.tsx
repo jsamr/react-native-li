@@ -15,6 +15,7 @@ export type MarkedListItemProps = Required<
     | 'markerTextStyle'
     | 'markerBoxStyle'
     | 'rtlLineReversed'
+    | 'rtlMarkerReversed'
     | 'startIndex'
   >
 > & {
@@ -38,6 +39,7 @@ export default function MarkedListItem({
   index,
   startIndex,
   rtlLineReversed,
+  rtlMarkerReversed,
   markerTextStyle,
   markerBoxStyle,
   maxNumOfCodepoints,
@@ -53,6 +55,8 @@ export default function MarkedListItem({
       key={index}>
       {renderMarker({
         counterRenderer,
+        rtlMarkerReversed:
+          typeof rtlMarkerReversed === 'boolean' ? rtlMarkerReversed : true,
         counterIndex: index + startIndex,
         maxNumOfCodepoints,
         style: markerBoxStyle,

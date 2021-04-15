@@ -32,6 +32,11 @@ export interface MarkerBoxProps {
    * The maximum length of the `markerString` in range.
    */
   maxNumOfCodepoints: number;
+  /**
+   * Whether to reverse or not the order of elements in marker (prefix,
+   * counter, suffix).
+   */
+  rtlMarkerReversed: true | false;
 }
 
 /**

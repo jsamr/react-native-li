@@ -21,10 +21,10 @@ export { MarkedList }
 export default MarkedList;
 
 // @public
-export function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerTextStyle, markerBoxStyle, maxNumOfCodepoints, markerTextWidth, style, renderMarker, children }: PropsWithChildren<MarkedListItemProps>): JSX.Element;
+export function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, rtlMarkerReversed, markerTextStyle, markerBoxStyle, maxNumOfCodepoints, markerTextWidth, style, renderMarker, children }: PropsWithChildren<MarkedListItemProps>): JSX.Element;
 
 // @public
-export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerTextStyle' | 'markerBoxStyle' | 'rtlLineReversed' | 'startIndex'>> & {
+export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerTextStyle' | 'markerBoxStyle' | 'rtlLineReversed' | 'rtlMarkerReversed' | 'startIndex'>> & {
     index: number;
     markerTextWidth: number;
     maxNumOfCodepoints: number;
@@ -54,6 +54,7 @@ export interface MarkerBoxProps {
     markerTextStyle: TextStyle;
     markerTextWidth: number;
     maxNumOfCodepoints: number;
+    rtlMarkerReversed: true | false;
     style: StyleProp<TextStyle>;
 }
 

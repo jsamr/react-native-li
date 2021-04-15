@@ -21,5 +21,6 @@ export interface MarkerBoxProps
 |  [markerTextStyle](./react-native-li.markerboxprops.markertextstyle.md) | TextStyle | Style for any text element. Should not contain CSS box model properties. |
 |  [markerTextWidth](./react-native-li.markerboxprops.markertextwidth.md) | number | The width for the marker text element. |
 |  [maxNumOfCodepoints](./react-native-li.markerboxprops.maxnumofcodepoints.md) | number | The maximum length of the <code>markerString</code> in range. |
+|  [rtlMarkerReversed](./react-native-li.markerboxprops.rtlmarkerreversed.md) | true \| false | Whether to reverse or not the order of elements in marker (prefix, counter, suffix). |
 |  [style](./react-native-li.markerboxprops.style.md) | StyleProp&lt;TextStyle&gt; | Style for the container <code>Text</code> element. |
 
