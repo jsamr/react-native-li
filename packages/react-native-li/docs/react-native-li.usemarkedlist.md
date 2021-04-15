@@ -9,7 +9,7 @@ A hook to reuse MarkedList logic to render custom lists components in combinatio
 <b>Signature:</b>
 
 ```typescript
-export default function useMarkedList({ counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerStyle, length, renderMarker, computeMarkerBoxWidth }: MarkedListProps & {
+export default function useMarkedList({ counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerTextStyle, markerBoxStyle, length, renderMarker, computeMarkerBoxWidth }: MarkedListProps & {
     length: number;
 }): Omit<MarkedListItemProps, 'index'>;
 ```
@@ -18,7 +18,7 @@ export default function useMarkedList({ counterRenderer, startIndex, lineStyle, 
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerStyle, length, renderMarker, computeMarkerBoxWidth } | [MarkedListProps](./react-native-li.markedlistprops.md) &amp; { length: number; } |  |
+|  { counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerTextStyle, markerBoxStyle, length, renderMarker, computeMarkerBoxWidth } | [MarkedListProps](./react-native-li.markedlistprops.md) &amp; { length: number; } |  |
 
 <b>Returns:</b>
 

@@ -11,14 +11,14 @@ See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-l
 <b>Signature:</b>
 
 ```typescript
-export default function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerStyle, maxNumOfCodepoints, style, renderMarker, children }: PropsWithChildren<MarkedListItemProps>): JSX.Element;
+export default function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReversed, markerTextStyle, markerBoxStyle, maxNumOfCodepoints, markerTextWidth, style, renderMarker, children }: PropsWithChildren<MarkedListItemProps>): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { counterRenderer, index, startIndex, rtlLineReversed, markerStyle, maxNumOfCodepoints, style, renderMarker, children } | PropsWithChildren&lt;[MarkedListItemProps](./react-native-li.markedlistitemprops.md)<!-- -->&gt; |  |
+|  { counterRenderer, index, startIndex, rtlLineReversed, markerTextStyle, markerBoxStyle, maxNumOfCodepoints, markerTextWidth, style, renderMarker, children } | PropsWithChildren&lt;[MarkedListItemProps](./react-native-li.markedlistitemprops.md)<!-- -->&gt; |  |
 
 <b>Returns:</b>
 

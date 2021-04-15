@@ -19,6 +19,7 @@ export type MarkedListItemProps = Required<
   >
 > & {
   index: number;
+  markerTextWidth: number;
   maxNumOfCodepoints: number;
   style: StyleProp<ViewStyle>;
 };
@@ -40,18 +41,19 @@ export default function MarkedListItem({
   markerTextStyle,
   markerBoxStyle,
   maxNumOfCodepoints,
+  markerTextWidth,
   style,
   renderMarker,
   children
 }: PropsWithChildren<MarkedListItemProps>) {
-  const markerString = counterRenderer.renderMarker(index + startIndex);
   return (
     <View
       testID="marked-list-item"
       style={[rtlLineReversed ? styles.lineRtl : styles.lineLtr, style]}
       key={index}>
       {renderMarker({
-        markerString,
+        counterRenderer,
+        counterIndex: index + startIndex,
         maxNumOfCodepoints,
         style: markerBoxStyle,
         markerTextStyle,

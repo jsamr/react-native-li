@@ -16,7 +16,10 @@ export interface MarkerBoxProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [markerString](./react-native-li.markerboxprops.markerstring.md) | string | The content of the marker box. |
+|  [counterIndex](./react-native-li.markerboxprops.counterindex.md) | number | The index to render. |
+|  [counterRenderer](./react-native-li.markerboxprops.counterrenderer.md) | CounterStyleRenderer | The renderer to generate the marker string. |
+|  [markerTextStyle](./react-native-li.markerboxprops.markertextstyle.md) | TextStyle | Style for any text element. Should not contain CSS box model properties. |
+|  [markerTextWidth](./react-native-li.markerboxprops.markertextwidth.md) | number | The width for the marker text element. |
 |  [maxNumOfCodepoints](./react-native-li.markerboxprops.maxnumofcodepoints.md) | number | The maximum length of the <code>markerString</code> in range. |
 |  [style](./react-native-li.markerboxprops.style.md) | StyleProp&lt;TextStyle&gt; | Style for the container <code>Text</code> element. |
 

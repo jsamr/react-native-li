@@ -13,9 +13,21 @@ export interface MarkerBoxProps {
    */
   style: StyleProp<TextStyle>;
   /**
-   * The content of the marker box.
+   * Style for any text element. Should not contain CSS box model properties.
    */
-  markerString: string;
+  markerTextStyle: TextStyle;
+  /**
+   * The width for the marker text element.
+   */
+  markerTextWidth: number;
+  /**
+   * The renderer to generate the marker string.
+   */
+  counterRenderer: CounterStyleRenderer;
+  /**
+   * The index to render.
+   */
+  counterIndex: number;
   /**
    * The maximum length of the `markerString` in range.
    */

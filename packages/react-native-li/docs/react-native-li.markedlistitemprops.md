@@ -9,8 +9,9 @@ Props for the [MarkedListItem()](./react-native-li.markedlistitem.md) component.
 <b>Signature:</b>
 
 ```typescript
-export declare type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerStyle' | 'rtlLineReversed' | 'startIndex'>> & {
+export declare type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerTextStyle' | 'markerBoxStyle' | 'rtlLineReversed' | 'startIndex'>> & {
     index: number;
+    markerTextWidth: number;
     maxNumOfCodepoints: number;
     style: StyleProp<ViewStyle>;
 };

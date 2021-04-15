@@ -11,14 +11,14 @@ See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-l
 <b>Signature:</b>
 
 ```typescript
-export default function MarkerBox({ style, markerString }: MarkerBoxProps): JSX.Element;
+export default function MarkerBox({ style, counterRenderer, counterIndex, markerTextStyle, markerTextWidth }: MarkerBoxProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { style, markerString } | [MarkerBoxProps](./react-native-li.markerboxprops.md) |  |
+|  { style, counterRenderer, counterIndex, markerTextStyle, markerTextWidth } | [MarkerBoxProps](./react-native-li.markerboxprops.md) |  |
 
 <b>Returns:</b>
 
