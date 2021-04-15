@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { MarkerBoxProps } from './shared-types';
 
 /**
@@ -9,10 +9,20 @@ import { MarkerBoxProps } from './shared-types';
  *
  * @public
  */
-export default function MarkerBox({ style, markerString }: MarkerBoxProps) {
+export default function MarkerBox({
+  style,
+  counterRenderer,
+  counterIndex,
+  markerTextStyle,
+  markerTextWidth
+}: MarkerBoxProps) {
   return (
-    <Text testID="marker-box" style={style}>
-      {markerString}
-    </Text>
+    <View style={style}>
+      <Text
+        testID="marker-box"
+        style={[markerTextStyle, { width: markerTextWidth }]}>
+        {counterRenderer.renderMarker(counterIndex)}
+      </Text>
+    </View>
   );
 }

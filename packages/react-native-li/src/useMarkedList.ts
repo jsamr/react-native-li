@@ -12,6 +12,8 @@ const defaultComputeMarkerBoxWidth: NonNullable<
   MarkedListProps['computeMarkerBoxWidth']
 > = (maxNumOfCodepoints, fontSize) => maxNumOfCodepoints * fontSize * 0.6;
 
+const DEFAULT_FONT_SIZE = 14;
+
 /**
  * A hook to reuse MarkedList logic to render custom lists components in
  * combination with {@link MarkedListItem}.
@@ -24,7 +26,8 @@ export default function useMarkedList({
   lineStyle,
   rtlLineReversed = false,
   rtlMarkerReversed = false,
-  markerStyle,
+  markerTextStyle,
+  markerBoxStyle,
   length = 0,
   renderMarker = defaultRenderMarker,
   computeMarkerBoxWidth = defaultComputeMarkerBoxWidth
@@ -35,10 +38,13 @@ export default function useMarkedList({
     [counterRenderer, length, startIndex]
   );
   const syntheticRtlLineReversed = !I18nManager.isRTL && rtlLineReversed;
-  const markerWidth = useMemo(
+  const markerTextWidth = useMemo(
     () =>
-      computeMarkerBoxWidth(maxNumOfCodepoints, markerStyle?.fontSize ?? 14),
-    [computeMarkerBoxWidth, markerStyle?.fontSize, maxNumOfCodepoints]
+      computeMarkerBoxWidth(
+        maxNumOfCodepoints,
+        markerTextStyle?.fontSize ?? DEFAULT_FONT_SIZE
+      ),
+    [computeMarkerBoxWidth, markerTextStyle?.fontSize, maxNumOfCodepoints]
   );
   const renderer = useMemo(
     () =>
@@ -49,18 +55,23 @@ export default function useMarkedList({
         : counterRenderer,
     [counterRenderer, rtlMarkerReversed]
   );
-  const syntheticMarkerStyle = {
-    flexGrow: 0,
-    flexShrink: 0,
-    width: markerWidth,
-    fontSize: 14,
-    textAlign: syntheticRtlLineReversed ? 'left' : 'right',
-    ...markerStyle
-  } as const;
+  const syntheticMarkerTextStyle = useMemo(
+    () =>
+      ({
+        flexGrow: 0,
+        flexShrink: 0,
+        fontSize: DEFAULT_FONT_SIZE,
+        textAlign: syntheticRtlLineReversed ? 'left' : 'right',
+        ...markerTextStyle
+      } as const),
+    [markerTextStyle, syntheticRtlLineReversed]
+  );
   return {
     maxNumOfCodepoints,
     rtlLineReversed: syntheticRtlLineReversed,
-    markerStyle: syntheticMarkerStyle,
+    markerTextStyle: syntheticMarkerTextStyle,
+    markerTextWidth,
+    markerBoxStyle: markerBoxStyle as any,
     renderMarker,
     counterRenderer: renderer,
     startIndex,

@@ -61,9 +61,20 @@ export interface MarkedListProps {
    */
   lineStyle?: StyleProp<ViewStyle>;
   /**
-   * A plain-object text style for the marker.
+   * A plain JavaScript object text style for the marker string. It is
+   * advised to pass the same `fontSize` and `lineHeight` as the list content
+   * for perfect horizontal alignment.
+   *
+   * @remarks It should not contain CSS box model properties and it should be a
+   * plain JavaScript object. **Do not** use StyleSheet or array styles.
    */
-  markerStyle?: TextStyle;
+  markerTextStyle?: TextStyle;
+  /**
+   * Style for the marker box container. It is discouraged to set
+   * `(min,max)width` that way. Use
+   * {@link MarkedListProps.computeMarkerBoxWidth} instead.
+   */
+  markerBoxStyle?: StyleProp<ViewStyle>;
   /**
    * A function to compute marker box width depending on the maximum length of
    * the marker string in range.

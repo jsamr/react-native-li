@@ -12,7 +12,8 @@ export type MarkedListItemProps = Required<
     MarkedListProps,
     | 'counterRenderer'
     | 'renderMarker'
-    | 'markerStyle'
+    | 'markerTextStyle'
+    | 'markerBoxStyle'
     | 'rtlLineReversed'
     | 'startIndex'
   >
@@ -36,7 +37,8 @@ export default function MarkedListItem({
   index,
   startIndex,
   rtlLineReversed,
-  markerStyle,
+  markerTextStyle,
+  markerBoxStyle,
   maxNumOfCodepoints,
   style,
   renderMarker,
@@ -51,7 +53,9 @@ export default function MarkedListItem({
       {renderMarker({
         markerString,
         maxNumOfCodepoints,
-        style: markerStyle
+        style: markerBoxStyle,
+        markerTextStyle,
+        markerTextWidth
       })}
       {children}
     </View>
