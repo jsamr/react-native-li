@@ -1,3 +1,10 @@
+# [2.0.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.0.0-alpha.0...@jsamr/react-native-li@2.0.0) (2021-04-15)
+
+
+### Features
+
+* **react-native-li:** add `rtlMarkerReversed` prop to `MarkerBox` ([ee5d729](https://github.com/jsamr/react-native-li/commit/ee5d729ee658f8f78e7402c2fb5d17570946747b))
+
 # [2.0.0-alpha.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@1.1.0...@jsamr/react-native-li@2.0.0-alpha.0) (2021-04-15)
 
 
