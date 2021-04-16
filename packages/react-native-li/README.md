@@ -172,7 +172,8 @@ export default function App() {
       <MarkedList counterRenderer={disc} rtlLineReversed rtlMarkerReversed>
         {[...Array(100).keys()].map((index) => (
           <Text key={index} style={{ flexShrink: 1 }}>
-            يقوم اتحاد شبكة الويب العالمية (W3C) بتطوير معايير دولية للويب و
+            يقوم اتحاد شبكة الويب العالمية
+            (W3C) بتطوير معايير دولية للويب و
             HTML و CSS وغير ذلك الكثير.
           </Text>
         ))}
