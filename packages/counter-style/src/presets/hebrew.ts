@@ -1,10 +1,45 @@
 import CounterStyle from '../CounterStyle';
 
 const hebrew = CounterStyle.additive({
-  /* Hebrew numerals from draft.csswg.org are not included here for
-     reference, because Visual Studio Code fails to display them in
-     the correct word order. */
-  /* This system manually specifies the values for 19-15 to force
+  /* 10000 י׳,
+     9000 ט׳,
+     8000 ח׳,
+     7000 ז׳,
+     6000 ו׳,
+     5000 ה׳,
+     4000 ד׳,
+     3000 ג׳,
+     2000 ב׳,
+     1000 א׳,
+     400 ת,
+     300 ש,
+     200 ר,
+     100 ק,
+     90 צ,
+     80 פ,
+     70 ע,
+     60 ס,
+     50 נ,
+     40 מ,
+     30 ל,
+     20 כ,
+     19 יט,
+     18 יח,
+     17 יז,
+     16 טז,
+     15 טו,
+     10 י,
+     9 ט,
+     8 ח,
+     7 ז,
+     6 ו,
+     5 ה,
+     4 ד,
+     3 ג,
+     2 ב,
+     1 א
+
+     This system manually specifies the values for 19-15 to force
      the correct display of 15 and 16, which are commonly rewritten
      to avoid a close resemblance to the Tetragrammaton. */
   10000: '\u05D9\u05F3',
