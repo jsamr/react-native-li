@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.0.0...@jsamr/react-native-li@2.1.0) (2021-05-01)
+
+
+### Features
+
+* **react-native-li:** new `Container` prop ([82648c0](https://github.com/jsamr/react-native-li/commit/82648c0ddef33a47bb19922cab41d8c9c735a8cc))
+
 # [2.0.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.0.0-alpha.0...@jsamr/react-native-li@2.0.0) (2021-04-15)
 
 
