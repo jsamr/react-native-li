@@ -1,5 +1,5 @@
 import type { CounterStyleRenderer, RtlOptions } from '@jsamr/counter-style';
-import type { ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
 import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
 
 /**
@@ -108,4 +108,10 @@ export interface MarkedListProps {
    * @remarks You are advised to use {@link MarkerBox} component.
    */
   renderMarker?: (props: MarkerBoxProps) => ReactNode;
+  /**
+   * The component used to wrap list elements.
+   *
+   * @defaultValue Fragment
+   */
+  Container?: ComponentType<any>;
 }

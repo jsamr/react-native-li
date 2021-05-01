@@ -4,6 +4,7 @@
 
 ```ts
 
+import type { ComponentType } from 'react';
 import type { CounterStyleRenderer } from '@jsamr/counter-style';
 import { PropsWithChildren } from 'react';
 import { default as React_2 } from 'react';
@@ -14,7 +15,7 @@ import type { TextStyle } from 'react-native';
 import { ViewStyle } from 'react-native';
 
 // @public
-function MarkedList({ children, ...props }: PropsWithChildren<MarkedListProps>): React_2.FunctionComponentElement<{}>;
+function MarkedList({ children, Container, ...props }: PropsWithChildren<MarkedListProps>): React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
 
 export { MarkedList }
 
@@ -34,6 +35,7 @@ export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRendere
 // @public
 export interface MarkedListProps {
     computeMarkerBoxWidth?: (maxCodepointsLengthInRange: number, fontSize: number) => number;
+    Container?: ComponentType<any>;
     counterRenderer: CounterStyleRenderer;
     lineStyle?: StyleProp<ViewStyle>;
     markerBoxStyle?: StyleProp<ViewStyle>;

@@ -14,12 +14,13 @@ import useMarkedList from './useMarkedList';
  */
 export default function MarkedList({
   children,
+  Container = Fragment,
   ...props
 }: PropsWithChildren<MarkedListProps>) {
   const normalChildren = Children.toArray(children);
   const listProps = useMarkedList({ ...props, length: normalChildren.length });
   return React.createElement(
-    Fragment,
+    Container,
     {},
     normalChildren.map((child, index) => {
       return (

@@ -11,16 +11,16 @@ See [CSS Lists and Counters Module Level 3, Markers](https://www.w3.org/TR/css-l
 <b>Signature:</b>
 
 ```typescript
-export default function MarkedList({ children, ...props }: PropsWithChildren<MarkedListProps>): React.FunctionComponentElement<{}>;
+export default function MarkedList({ children, Container, ...props }: PropsWithChildren<MarkedListProps>): React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { children, ...props } | PropsWithChildren&lt;[MarkedListProps](./react-native-li.markedlistprops.md)<!-- -->&gt; |  |
+|  { children, Container, ...props } | PropsWithChildren&lt;[MarkedListProps](./react-native-li.markedlistprops.md)<!-- -->&gt; |  |
 
 <b>Returns:</b>
 
-React.FunctionComponentElement&lt;{}&gt;
+React.ReactElement&lt;any, string \| React.JSXElementConstructor&lt;any&gt;&gt;
 

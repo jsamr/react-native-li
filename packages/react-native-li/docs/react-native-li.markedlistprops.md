@@ -17,6 +17,7 @@ export interface MarkedListProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [computeMarkerBoxWidth?](./react-native-li.markedlistprops.computemarkerboxwidth.md) | (maxCodepointsLengthInRange: number, fontSize: number) =&gt; number | <i>(Optional)</i> A function to compute marker box width depending on the maximum length of the marker string in range. |
+|  [Container?](./react-native-li.markedlistprops.container.md) | ComponentType&lt;any&gt; | <i>(Optional)</i> The component used to wrap list elements. |
 |  [counterRenderer](./react-native-li.markedlistprops.counterrenderer.md) | CounterStyleRenderer | The counter renderer for this list. |
 |  [lineStyle?](./react-native-li.markedlistprops.linestyle.md) | StyleProp&lt;ViewStyle&gt; | <i>(Optional)</i> Style for the line wrapper. |
 |  [markerBoxStyle?](./react-native-li.markedlistprops.markerboxstyle.md) | StyleProp&lt;ViewStyle&gt; | <i>(Optional)</i> Style for the marker box container. It is discouraged to set <code>(min,max)width</code> that way. Use [MarkedListProps.computeMarkerBoxWidth](./react-native-li.markedlistprops.computemarkerboxwidth.md) instead. |
