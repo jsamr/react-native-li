@@ -69,6 +69,7 @@ export default function useMarkedList({
         flexShrink: 0,
         fontSize: DEFAULT_FONT_SIZE,
         textAlign: syntheticRtlLineReversed ? 'left' : 'right',
+        alignSelf: syntheticRtlLineReversed ? 'flex-start' : 'flex-end',
         ...markerTextStyle
       } as const),
     [markerTextStyle, syntheticRtlLineReversed]
