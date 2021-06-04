@@ -37,7 +37,7 @@ describe('MarkedList', () => {
       </MarkedList>
     );
     const mb = getByTestId('marker-box');
-    expect(mb.props.children).toBe(' •');
+    expect(mb.props.children).toBe('\u00A0•');
   });
   it('should allow to customize rtlMarkerReversed', () => {
     const { getByTestId } = render(
@@ -49,6 +49,6 @@ describe('MarkedList', () => {
       </MarkedList>
     );
     const mb = getByTestId('marker-box');
-    expect(mb.props.children).toBe(' .01');
+    expect(mb.props.children).toBe('\u00A0.01');
   });
 });
