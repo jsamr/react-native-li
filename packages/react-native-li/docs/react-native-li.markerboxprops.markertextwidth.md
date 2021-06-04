@@ -9,5 +9,5 @@ The width for the marker text element.
 <b>Signature:</b>
 
 ```typescript
-markerTextWidth: number;
+markerTextWidth: number | false;
 ```

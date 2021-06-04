@@ -27,7 +27,7 @@ export function MarkedListItem({ counterRenderer, index, startIndex, rtlLineReve
 // @public
 export type MarkedListItemProps = Required<Pick<MarkedListProps, 'counterRenderer' | 'renderMarker' | 'markerTextStyle' | 'markerBoxStyle' | 'rtlLineReversed' | 'rtlMarkerReversed' | 'startIndex'>> & {
     index: number;
-    markerTextWidth: number;
+    markerTextWidth: number | false;
     maxNumOfCodepoints: number;
     style: StyleProp<ViewStyle>;
 };
@@ -37,6 +37,7 @@ export interface MarkedListProps {
     computeMarkerBoxWidth?: (maxCodepointsLengthInRange: number, fontSize: number) => number;
     Container?: ComponentType<any>;
     counterRenderer: CounterStyleRenderer;
+    dynamicMarkerBoxWidth?: boolean;
     lineStyle?: StyleProp<ViewStyle>;
     markerBoxStyle?: StyleProp<ViewStyle>;
     markerTextStyle?: TextStyle;
@@ -54,14 +55,14 @@ export interface MarkerBoxProps {
     counterIndex: number;
     counterRenderer: CounterStyleRenderer;
     markerTextStyle: TextStyle;
-    markerTextWidth: number;
+    markerTextWidth: number | false;
     maxNumOfCodepoints: number;
     rtlMarkerReversed: true | false;
     style: StyleProp<TextStyle>;
 }
 
 // @public
-export function useMarkedList({ counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerTextStyle, markerBoxStyle, length, renderMarker, computeMarkerBoxWidth }: MarkedListProps & {
+export function useMarkedList({ counterRenderer, startIndex, lineStyle, rtlLineReversed, rtlMarkerReversed, markerTextStyle, markerBoxStyle, dynamicMarkerBoxWidth, length, renderMarker, computeMarkerBoxWidth }: MarkedListProps & {
     length: number;
 }): Omit<MarkedListItemProps, 'index'>;
 

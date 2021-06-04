@@ -14,5 +14,5 @@ computeMarkerBoxWidth?: (maxCodepointsLengthInRange: number, fontSize: number) =
 
 ## Remarks
 
-Font size is derived from `markerStyle` prop.
+- Font size is derived from `markerStyle` prop. - Will be ignored when [MarkedListProps.dynamicMarkerBoxWidth](./react-native-li.markedlistprops.dynamicmarkerboxwidth.md) is set to `false`<!-- -->.
 

@@ -4,10 +4,15 @@
 
 ## MarkedListProps.markerBoxStyle property
 
-Style for the marker box container. It is discouraged to set `(min,max)width` that way. Use [MarkedListProps.computeMarkerBoxWidth](./react-native-li.markedlistprops.computemarkerboxwidth.md) instead.
+Style for the marker box container.
 
 <b>Signature:</b>
 
 ```typescript
 markerBoxStyle?: StyleProp<ViewStyle>;
 ```
+
+## Remarks
+
+It is discouraged to set `(min,max)width` when [MarkedListProps.dynamicMarkerBoxWidth](./react-native-li.markedlistprops.dynamicmarkerboxwidth.md) is set to `true`<!-- -->. In that case, use [MarkedListProps.computeMarkerBoxWidth](./react-native-li.markedlistprops.computemarkerboxwidth.md) instead.
+
