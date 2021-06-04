@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.2.0...@jsamr/react-native-li@2.2.1) (2021-06-04)
+
+
+### Bug Fixes
+
+* **react-native-li:** align text marker at the end of the marker box ([4973fe4](https://github.com/jsamr/react-native-li/commit/4973fe49cf2645c174bc7b18bd9d4034f963f039))
+
 # [2.2.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.1.0...@jsamr/react-native-li@2.2.0) (2021-06-04)
 
 
