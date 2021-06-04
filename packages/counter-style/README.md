@@ -130,6 +130,9 @@ All renderers can be chained to create variants, such as `withSuffix`,
 
 ### Caveats
 
+- Instead of a normal space character, a non-breaking space is used for default
+  prefixes. This is because this library primary usage is for React Native. On
+  iOS, `Text` elements get trimmed of normal space characters.
 - In **numeric** and **alphabetic** systems , one UTF-16 code unit per symbol
   must be used. Otherwise, length computation will be erroneous. If you really
   need multi code units per symbol however, you can still set a custom length

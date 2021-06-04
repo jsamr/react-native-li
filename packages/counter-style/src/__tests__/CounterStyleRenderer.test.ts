@@ -58,13 +58,14 @@ describe('CounterStyleRenderer', () => {
     expect(counter.renderCounter(1)).toBe('1');
   });
   test('::withRtl (prefix)', () => {
+    const REVERSED_DEFAULT_SUFFIX = DEFAULT_SUFFIX.split('').reverse().join('');
     const counter = arabicIndic.withPrefix(') ');
     expect(counter.withRtl().renderCounter(10)).toBe('١٠');
     expect(counter.withRtl({ reversePrefix: false }).renderMarker(10)).toBe(
-      ' .١٠) '
+      REVERSED_DEFAULT_SUFFIX + '١٠) '
     );
     expect(counter.withRtl({ reversePrefix: true }).renderMarker(10)).toBe(
-      ' .١٠ )'
+      REVERSED_DEFAULT_SUFFIX + '١٠ )'
     );
     expect(counter.withRtl({ reverseCounter: true }).renderCounter(10)).toBe(
       '٠١'
