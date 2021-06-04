@@ -16,11 +16,13 @@ export default function MarkerBox({
   markerTextStyle,
   markerTextWidth
 }: MarkerBoxProps) {
+  const markerStyle =
+    typeof markerTextWidth === 'number'
+      ? [markerTextStyle, { width: markerTextWidth }]
+      : markerTextStyle;
   return (
     <View style={style}>
-      <Text
-        testID="marker-box"
-        style={[markerTextStyle, { width: markerTextWidth }]}>
+      <Text testID="marker-box" style={markerStyle}>
         {counterRenderer.renderMarker(counterIndex)}
       </Text>
     </View>

@@ -20,7 +20,7 @@ export type MarkedListItemProps = Required<
   >
 > & {
   index: number;
-  markerTextWidth: number;
+  markerTextWidth: number | false;
   maxNumOfCodepoints: number;
   style: StyleProp<ViewStyle>;
 };

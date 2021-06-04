@@ -19,7 +19,7 @@ export interface MarkerBoxProps {
   /**
    * The width for the marker text element.
    */
-  markerTextWidth: number;
+  markerTextWidth: number | false;
   /**
    * The renderer to generate the marker string.
    */
@@ -68,6 +68,13 @@ export interface MarkedListProps {
    */
   rtlMarkerReversed?: true | false | RtlOptions;
   /**
+   * Should the width of the marker box be computed dynamically, e.g. depend on
+   * the longest marker in the list?
+   *
+   * @defaultValue true
+   */
+  dynamicMarkerBoxWidth?: boolean;
+  /**
    * The index for the first item in the list. Negative indexes are supported.
    *
    * @defaultValue 1
@@ -87,16 +94,22 @@ export interface MarkedListProps {
    */
   markerTextStyle?: TextStyle;
   /**
-   * Style for the marker box container. It is discouraged to set
-   * `(min,max)width` that way. Use
-   * {@link MarkedListProps.computeMarkerBoxWidth} instead.
+   * Style for the marker box container.
+   *
+   * @remarks It is discouraged to set
+   * `(min,max)width` when {@link MarkedListProps.dynamicMarkerBoxWidth} is set
+   * to `true`. In that case, use {@link MarkedListProps.computeMarkerBoxWidth}
+   * instead.
    */
   markerBoxStyle?: StyleProp<ViewStyle>;
   /**
    * A function to compute marker box width depending on the maximum length of
    * the marker string in range.
    *
-   * @remarks Font size is derived from `markerStyle` prop.
+   * @remarks
+   * - Font size is derived from `markerStyle` prop.
+   * - Will be ignored when {@link MarkedListProps.dynamicMarkerBoxWidth} is
+   *   set to `false`.
    */
   computeMarkerBoxWidth?: (
     maxCodepointsLengthInRange: number,

@@ -28,6 +28,7 @@ export default function useMarkedList({
   rtlMarkerReversed = false,
   markerTextStyle,
   markerBoxStyle,
+  dynamicMarkerBoxWidth = true,
   length = 0,
   renderMarker = defaultRenderMarker,
   computeMarkerBoxWidth = defaultComputeMarkerBoxWidth
@@ -40,11 +41,17 @@ export default function useMarkedList({
   const syntheticRtlLineReversed = !I18nManager.isRTL && rtlLineReversed;
   const markerTextWidth = useMemo(
     () =>
+      dynamicMarkerBoxWidth &&
       computeMarkerBoxWidth(
         maxNumOfCodepoints,
         markerTextStyle?.fontSize ?? DEFAULT_FONT_SIZE
       ),
-    [computeMarkerBoxWidth, markerTextStyle?.fontSize, maxNumOfCodepoints]
+    [
+      computeMarkerBoxWidth,
+      markerTextStyle?.fontSize,
+      maxNumOfCodepoints,
+      dynamicMarkerBoxWidth
+    ]
   );
   const renderer = useMemo(
     () =>
