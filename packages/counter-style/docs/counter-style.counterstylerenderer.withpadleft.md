@@ -25,3 +25,7 @@ withPadLeft(length: number, pad: string): CounterStyleRenderer;
 
 [CounterStyleRenderer](./counter-style.counterstylerenderer.md)
 
+## Remarks
+
+If you need to pad with spaces, beware on React Native you should use non-breaking spaces on iOS (<!-- -->\\<!-- -->u00A0) or the padding might get trimmed.
+

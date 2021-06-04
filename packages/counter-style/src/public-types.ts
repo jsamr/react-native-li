@@ -139,6 +139,8 @@ export interface CounterStyleRenderer {
    *
    * @param length - The total length to which padding should be added.
    * @param pad - The character to pad.
+   * @remarks If you need to pad with spaces, beware on React Native you should
+   * use non-breaking spaces on iOS (\\u00A0) or the padding might get trimmed.
    */
   withPadLeft(length: number, pad: string): CounterStyleRenderer;
   /**
@@ -148,6 +150,8 @@ export interface CounterStyleRenderer {
    *
    * @param length - The total length to which padding should be added.
    * @param pad - The character to pad.
+   * @remarks If you need to pad with spaces, beware on React Native you should
+   * use non-breaking spaces on iOS (\\u00A0) or the padding might get trimmed.
    */
   withPadRight(length: number, pad: string): CounterStyleRenderer;
 
