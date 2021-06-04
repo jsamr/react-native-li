@@ -1,6 +1,6 @@
 {
   "name": "@jsamr/counter-style",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "CSS Counter Styles Level 3 and presets",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
