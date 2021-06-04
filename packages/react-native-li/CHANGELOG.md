@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.1.0...@jsamr/react-native-li@2.2.0) (2021-06-04)
+
+
+### Features
+
+* **react-native-li:** new `dynamicMarkerBoxWidth` prop ([6b6453c](https://github.com/jsamr/react-native-li/commit/6b6453c24de86b6fcbb921f0d66f1d1e28946c21))
+
 # [2.1.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.0.0...@jsamr/react-native-li@2.1.0) (2021-05-01)
 
 
