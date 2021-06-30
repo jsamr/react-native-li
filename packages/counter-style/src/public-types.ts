@@ -33,14 +33,26 @@ export type InitialCounterFormatter = (index: number) => string | undefined;
  */
 export interface RtlOptions {
   /**
+   * Reverse the order of characters in the prefix.
+   *
+   * @example `-|` becomes `|-`
+   *
    * @defaultValue true
    */
   reversePrefix?: boolean;
   /**
+   * Reverse the order of characters in the suffix.
+   *
+   * @example `. ` becomes ` .`
+   *
    * @defaultValue true
    */
   reverseSuffix?: boolean;
   /**
+   * Reverse the order of characters in the counter.
+   *
+   * @example `abc` becomes `cba`
+   *
    * @defaultValue false
    */
   reverseCounter?: boolean;
