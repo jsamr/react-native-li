@@ -1,6 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TextProps, View } from 'react-native';
 import { MarkerBoxProps } from './shared-types';
+
+const markerClipConfig: Partial<TextProps> = {
+  numberOfLines: 1,
+  ellipsizeMode: 'clip'
+};
 
 /**
  * Default component to render the list marker.
@@ -14,7 +19,8 @@ export default function MarkerBox({
   counterRenderer,
   counterIndex,
   markerTextStyle,
-  markerTextWidth
+  markerTextWidth,
+  enableMarkerClipping
 }: MarkerBoxProps) {
   const markerStyle =
     typeof markerTextWidth === 'number'
@@ -22,7 +28,10 @@ export default function MarkerBox({
       : markerTextStyle;
   return (
     <View style={style}>
-      <Text testID="marker-box" style={markerStyle}>
+      <Text
+        {...(enableMarkerClipping ? markerClipConfig : null)}
+        testID="marker-box"
+        style={markerStyle}>
         {counterRenderer.renderMarker(counterIndex)}
       </Text>
     </View>

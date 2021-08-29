@@ -31,6 +31,7 @@ export default function useMarkedList({
   dynamicMarkerBoxWidth = true,
   length = 0,
   renderMarker = defaultRenderMarker,
+  enableMarkerClipping = false,
   computeMarkerBoxWidth = defaultComputeMarkerBoxWidth
 }: MarkedListProps & { length: number }): Omit<MarkedListItemProps, 'index'> {
   const maxNumOfCodepoints = useMemo(
@@ -84,6 +85,7 @@ export default function useMarkedList({
     markerTextStyle: syntheticMarkerTextStyle,
     markerBoxStyle: markerBoxStyle as any,
     counterRenderer: renderer,
-    style: lineStyle
+    style: lineStyle,
+    enableMarkerClipping
   };
 }

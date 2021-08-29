@@ -22,6 +22,7 @@ export type MarkedListItemProps = Required<
   index: number;
   markerTextWidth: number | false;
   maxNumOfCodepoints: number;
+  enableMarkerClipping: boolean;
   style: StyleProp<ViewStyle>;
 };
 
@@ -46,6 +47,7 @@ export default function MarkedListItem({
   markerTextWidth,
   style,
   renderMarker,
+  enableMarkerClipping,
   children
 }: PropsWithChildren<MarkedListItemProps>) {
   return (
@@ -61,7 +63,8 @@ export default function MarkedListItem({
         maxNumOfCodepoints,
         style: markerBoxStyle,
         markerTextStyle,
-        markerTextWidth
+        markerTextWidth,
+        enableMarkerClipping
       })}
       {children}
     </View>

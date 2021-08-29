@@ -36,7 +36,11 @@ export interface MarkerBoxProps {
    * Whether to reverse or not the order of elements in marker (prefix,
    * counter, suffix).
    */
-  rtlMarkerReversed: true | false;
+  rtlMarkerReversed: boolean;
+  /**
+   * Clip the marker text when it overflows the marker box.
+   */
+  enableMarkerClipping: boolean;
 }
 
 /**
@@ -127,4 +131,10 @@ export interface MarkedListProps {
    * @defaultValue Fragment
    */
   Container?: ComponentType<any>;
+  /**
+   * Clip the marker text when it overflows the marker box.
+   *
+   * @defaultValue false
+   */
+  enableMarkerClipping?: boolean;
 }
