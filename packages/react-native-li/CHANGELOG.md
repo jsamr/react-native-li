@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.2.1...@jsamr/react-native-li@2.3.0) (2021-08-29)
+
+
+### Features
+
+* new `clipMarkerText` prop to prevent text wrapping ([1fa1a22](https://github.com/jsamr/react-native-li/commit/1fa1a2245e6fa6e3849a08741fe8c47894e1e526))
+
 ## [2.2.1](https://github.com/jsamr/react-native-li/compare/@jsamr/react-native-li@2.2.0...@jsamr/react-native-li@2.2.1) (2021-06-04)
 
 

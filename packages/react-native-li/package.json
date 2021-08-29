@@ -1,6 +1,6 @@
 {
   "name": "@jsamr/react-native-li",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "A pure JavaScript React Native component to render CSS3 compliant ordered and unordered lists.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
