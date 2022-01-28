@@ -112,11 +112,11 @@ const funky = CounterStyle.symbolic('*', '&').withSuffix(null);
 
 // Expect comes from jest testing framework.
 // Just a showcase of expected returned values.
-expect(funky.renderMarker(1)).renderCounter('*');
-expect(funky.renderMarker(2)).renderMarker('&');
-expect(funky.renderMarker(3)).renderCounter('**');
-expect(funky.renderMarker(4)).renderMarker('&&');
-expect(funky.renderMarker(5)).renderCounter('***');
+expect(funky.renderMarker(1)).toBe('*');
+expect(funky.renderMarker(2)).toBe('&');
+expect(funky.renderMarker(3)).toBe('**');
+expect(funky.renderMarker(4)).toBe('&&');
+expect(funky.renderMarker(5)).toBe('***');
 expect(funky.maxMarkerLenInRange(1, 5)).toBe(3);
 expect(funky.maxCounterLenInRange(1, 5)).toBe(3);
 ```
