@@ -1,3 +1,5 @@
+## [2.0.2](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@2.0.1...@jsamr/counter-style@2.0.2) (2022-01-28)
+
 ## [2.0.1](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@2.0.0...@jsamr/counter-style@2.0.1) (2021-06-04)
 
 # [2.0.0](https://github.com/jsamr/react-native-li/compare/@jsamr/counter-style@1.1.1...@jsamr/counter-style@2.0.0) (2021-04-14)
