@@ -20,6 +20,7 @@ export interface MarkedListProps
 |  [Container?](./react-native-li.markedlistprops.container.md) | ComponentType&lt;any&gt; | <i>(Optional)</i> The component used to wrap list elements. |
 |  [counterRenderer](./react-native-li.markedlistprops.counterrenderer.md) | CounterStyleRenderer | The counter renderer for this list. |
 |  [dynamicMarkerBoxWidth?](./react-native-li.markedlistprops.dynamicmarkerboxwidth.md) | boolean | <i>(Optional)</i> Should the width of the marker box be computed dynamically, e.g. depend on the longest marker in the list? |
+|  [enableMarkerClipping?](./react-native-li.markedlistprops.enablemarkerclipping.md) | boolean | <i>(Optional)</i> Clip the marker text when it overflows the marker box. |
 |  [lineStyle?](./react-native-li.markedlistprops.linestyle.md) | StyleProp&lt;ViewStyle&gt; | <i>(Optional)</i> Style for the line wrapper. |
 |  [markerBoxStyle?](./react-native-li.markedlistprops.markerboxstyle.md) | StyleProp&lt;ViewStyle&gt; | <i>(Optional)</i> Style for the marker box container. |
 |  [markerTextStyle?](./react-native-li.markedlistprops.markertextstyle.md) | TextStyle | <i>(Optional)</i> A plain JavaScript object text style for the marker string. It is advised to pass the same <code>fontSize</code> and <code>lineHeight</code> as the list content for perfect horizontal alignment. |

@@ -4,8 +4,15 @@
 
 ## RtlOptions.reversePrefix property
 
+Reverse the order of characters in the prefix.
+
 <b>Signature:</b>
 
 ```typescript
 reversePrefix?: boolean;
 ```
+
+## Example
+
+`-|` becomes `|-`
+

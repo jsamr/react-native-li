@@ -9,5 +9,5 @@ Whether to reverse or not the order of elements in marker (prefix, counter, suff
 <b>Signature:</b>
 
 ```typescript
-rtlMarkerReversed: true | false;
+rtlMarkerReversed: boolean;
 ```

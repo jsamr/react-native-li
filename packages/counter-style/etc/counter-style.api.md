@@ -52,11 +52,8 @@ export type MaxCodepointLengthInRangeComputer = (min: number, max: number) => nu
 
 // @public
 export interface RtlOptions {
-    // (undocumented)
     reverseCounter?: boolean;
-    // (undocumented)
     reversePrefix?: boolean;
-    // (undocumented)
     reverseSuffix?: boolean;
 }
 

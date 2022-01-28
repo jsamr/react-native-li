@@ -4,8 +4,15 @@
 
 ## RtlOptions.reverseCounter property
 
+Reverse the order of characters in the counter.
+
 <b>Signature:</b>
 
 ```typescript
 reverseCounter?: boolean;
 ```
+
+## Example
+
+`abc` becomes `cba`
+

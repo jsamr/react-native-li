@@ -18,9 +18,10 @@ export interface MarkerBoxProps
 |  --- | --- | --- |
 |  [counterIndex](./react-native-li.markerboxprops.counterindex.md) | number | The index to render. |
 |  [counterRenderer](./react-native-li.markerboxprops.counterrenderer.md) | CounterStyleRenderer | The renderer to generate the marker string. |
+|  [enableMarkerClipping](./react-native-li.markerboxprops.enablemarkerclipping.md) | boolean | Clip the marker text when it overflows the marker box. |
 |  [markerTextStyle](./react-native-li.markerboxprops.markertextstyle.md) | TextStyle | Style for any text element. Should not contain CSS box model properties. |
 |  [markerTextWidth](./react-native-li.markerboxprops.markertextwidth.md) | number \| false | The width for the marker text element. |
 |  [maxNumOfCodepoints](./react-native-li.markerboxprops.maxnumofcodepoints.md) | number | The maximum length of the <code>markerString</code> in range. |
-|  [rtlMarkerReversed](./react-native-li.markerboxprops.rtlmarkerreversed.md) | true \| false | Whether to reverse or not the order of elements in marker (prefix, counter, suffix). |
+|  [rtlMarkerReversed](./react-native-li.markerboxprops.rtlmarkerreversed.md) | boolean | Whether to reverse or not the order of elements in marker (prefix, counter, suffix). |
 |  [style](./react-native-li.markerboxprops.style.md) | StyleProp&lt;TextStyle&gt; | Style for the container <code>Text</code> element. |
 

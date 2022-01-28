@@ -4,8 +4,15 @@
 
 ## RtlOptions.reverseSuffix property
 
+Reverse the order of characters in the suffix.
+
 <b>Signature:</b>
 
 ```typescript
 reverseSuffix?: boolean;
 ```
+
+## Example
+
+`. ` becomes ` .`
+

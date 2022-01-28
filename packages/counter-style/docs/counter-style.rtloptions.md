@@ -16,7 +16,7 @@ export interface RtlOptions
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [reverseCounter?](./counter-style.rtloptions.reversecounter.md) | boolean | <i>(Optional)</i> |
-|  [reversePrefix?](./counter-style.rtloptions.reverseprefix.md) | boolean | <i>(Optional)</i> |
-|  [reverseSuffix?](./counter-style.rtloptions.reversesuffix.md) | boolean | <i>(Optional)</i> |
+|  [reverseCounter?](./counter-style.rtloptions.reversecounter.md) | boolean | <i>(Optional)</i> Reverse the order of characters in the counter. |
+|  [reversePrefix?](./counter-style.rtloptions.reverseprefix.md) | boolean | <i>(Optional)</i> Reverse the order of characters in the prefix. |
+|  [reverseSuffix?](./counter-style.rtloptions.reversesuffix.md) | boolean | <i>(Optional)</i> Reverse the order of characters in the suffix. |
 

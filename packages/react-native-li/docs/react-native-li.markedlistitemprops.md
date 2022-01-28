@@ -13,6 +13,7 @@ export declare type MarkedListItemProps = Required<Pick<MarkedListProps, 'counte
     index: number;
     markerTextWidth: number | false;
     maxNumOfCodepoints: number;
+    enableMarkerClipping: boolean;
     style: StyleProp<ViewStyle>;
 };
 ```
