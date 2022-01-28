@@ -62,7 +62,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "directory": "packages/react-native-li",
+    "directory": "packages/counter-style",
     "url": "git+ssh://git@github.com/jsamr/react-native-li.git"
   },
   "publishConfig": {
