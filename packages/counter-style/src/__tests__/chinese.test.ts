@@ -45,6 +45,29 @@ test('simpleChineseInformal', () => {
   expect(counter.renderMarker(7800)).toBe('七千八百');
   expect(counter.renderMarker(7865)).toBe('七千八百六十五');
   expect(counter.renderMarker(9999)).toBe('九千九百九十九');
+  expect(counter.renderMarker(10000)).toBe('一万');
+  expect(counter.renderMarker(10001)).toBe('一万零一');
+  expect(counter.renderMarker(99999)).toBe('九万九千九百九十九');
+  expect(counter.renderMarker(100000)).toBe('十万');
+  expect(counter.renderMarker(100001)).toBe('十万零一');
+  expect(counter.renderMarker(999999)).toBe('九十九万九千九百九十九');
+  expect(counter.renderMarker(1000000)).toBe('一百万');
+  expect(counter.renderMarker(1000001)).toBe('一百万零一');
+  expect(counter.renderMarker(9999999)).toBe('九百九十九万九千九百九十九');
+  expect(counter.renderMarker(10000000)).toBe('一千万');
+  expect(counter.renderMarker(10000001)).toBe('一千万零一');
+  expect(counter.renderMarker(99999999)).toBe('九千九百九十九万九千九百九十九');
+  expect(counter.renderMarker(100000000)).toBe('一亿');
+  expect(counter.renderMarker(100000001)).toBe('一亿零一');
+  expect(counter.renderMarker(999999999)).toBe(
+    '九亿九千九百九十九万九千九百九十九'
+  );
+  expect(counter.renderMarker(1000000000)).toBe('十亿');
+  expect(counter.renderMarker(1000000001)).toBe('十亿零一');
+  expect(counter.renderMarker(-(1 << 31) - 1)).toBe(
+    '二十一亿四千七百四十八万三千六百四十七'
+  );
+  expect(counter.renderMarker(-(1 << 31))).toBe('2147483648');
 });
 
 test('simpleChineseFormal', () => {
@@ -88,6 +111,26 @@ test('simpleChineseFormal', () => {
   expect(counter.renderMarker(7800)).toBe('柒仟捌佰');
   expect(counter.renderMarker(7865)).toBe('柒仟捌佰陆拾伍');
   expect(counter.renderMarker(9999)).toBe('玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(10000)).toBe('壹万');
+  expect(counter.renderMarker(10001)).toBe('壹万零壹');
+  expect(counter.renderMarker(99999)).toBe('玖万玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(100000)).toBe('壹拾万');
+  expect(counter.renderMarker(100001)).toBe('壹拾万零壹');
+  expect(counter.renderMarker(999999)).toBe('玖拾玖万玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(1000000)).toBe('壹佰万');
+  expect(counter.renderMarker(1000001)).toBe('壹佰万零壹');
+  expect(counter.renderMarker(9999999)).toBe('玖佰玖拾玖万玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(10000000)).toBe('壹仟万');
+  expect(counter.renderMarker(10000001)).toBe('壹仟万零壹');
+  expect(counter.renderMarker(99999999)).toBe('玖仟玖佰玖拾玖万玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(100000000)).toBe('壹亿');
+  expect(counter.renderMarker(100000001)).toBe('壹亿零壹');
+  expect(counter.renderMarker(999999999)).toBe(
+    '玖亿玖仟玖佰玖拾玖万玖仟玖佰玖拾玖'
+  );
+  expect(counter.renderMarker(1000000000)).toBe('壹拾亿');
+  expect(counter.renderMarker(1000000001)).toBe('壹拾亿零壹');
+  expect(counter.renderMarker(-(1 << 31))).toBe('2147483648');
 });
 
 test('traditionalChineseInformal', () => {
@@ -131,6 +174,29 @@ test('traditionalChineseInformal', () => {
   expect(counter.renderMarker(7800)).toBe('七千八百');
   expect(counter.renderMarker(7865)).toBe('七千八百六十五');
   expect(counter.renderMarker(9999)).toBe('九千九百九十九');
+  expect(counter.renderMarker(10000)).toBe('一萬');
+  expect(counter.renderMarker(10001)).toBe('一萬零一');
+  expect(counter.renderMarker(99999)).toBe('九萬九千九百九十九');
+  expect(counter.renderMarker(100000)).toBe('十萬');
+  expect(counter.renderMarker(100001)).toBe('十萬零一');
+  expect(counter.renderMarker(999999)).toBe('九十九萬九千九百九十九');
+  expect(counter.renderMarker(1000000)).toBe('一百萬');
+  expect(counter.renderMarker(1000001)).toBe('一百萬零一');
+  expect(counter.renderMarker(9999999)).toBe('九百九十九萬九千九百九十九');
+  expect(counter.renderMarker(10000000)).toBe('一千萬');
+  expect(counter.renderMarker(10000001)).toBe('一千萬零一');
+  expect(counter.renderMarker(99999999)).toBe('九千九百九十九萬九千九百九十九');
+  expect(counter.renderMarker(100000000)).toBe('一億');
+  expect(counter.renderMarker(100000001)).toBe('一億零一');
+  expect(counter.renderMarker(999999999)).toBe(
+    '九億九千九百九十九萬九千九百九十九'
+  );
+  expect(counter.renderMarker(1000000000)).toBe('十億');
+  expect(counter.renderMarker(1000000001)).toBe('十億零一');
+  expect(counter.renderMarker(-(1 << 31) - 1)).toBe(
+    '二十一億四千七百四十八萬三千六百四十七'
+  );
+  expect(counter.renderMarker(-(1 << 31))).toBe('2147483648');
 });
 
 test('traditionalChineseFormal', () => {
@@ -174,4 +240,24 @@ test('traditionalChineseFormal', () => {
   expect(counter.renderMarker(7800)).toBe('柒仟捌佰');
   expect(counter.renderMarker(7865)).toBe('柒仟捌佰陸拾伍');
   expect(counter.renderMarker(9999)).toBe('玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(10000)).toBe('壹萬');
+  expect(counter.renderMarker(10001)).toBe('壹萬零壹');
+  expect(counter.renderMarker(99999)).toBe('玖萬玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(100000)).toBe('壹拾萬');
+  expect(counter.renderMarker(100001)).toBe('壹拾萬零壹');
+  expect(counter.renderMarker(999999)).toBe('玖拾玖萬玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(1000000)).toBe('壹佰萬');
+  expect(counter.renderMarker(1000001)).toBe('壹佰萬零壹');
+  expect(counter.renderMarker(9999999)).toBe('玖佰玖拾玖萬玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(10000000)).toBe('壹仟萬');
+  expect(counter.renderMarker(10000001)).toBe('壹仟萬零壹');
+  expect(counter.renderMarker(99999999)).toBe('玖仟玖佰玖拾玖萬玖仟玖佰玖拾玖');
+  expect(counter.renderMarker(100000000)).toBe('壹億');
+  expect(counter.renderMarker(100000001)).toBe('壹億零壹');
+  expect(counter.renderMarker(999999999)).toBe(
+    '玖億玖仟玖佰玖拾玖萬玖仟玖佰玖拾玖'
+  );
+  expect(counter.renderMarker(1000000000)).toBe('壹拾億');
+  expect(counter.renderMarker(1000000001)).toBe('壹拾億零壹');
+  expect(counter.renderMarker(-(1 << 31))).toBe('2147483648');
 });
