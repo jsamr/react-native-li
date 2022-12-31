@@ -151,6 +151,4 @@ All renderers can be chained to create variants, such as `withSuffix`,
 ### Limitations
 
 - `speakAs` hasn't been implemented yet.
-- [Chinese renderers](https://www.w3.org/TR/css-counter-styles-3/#limited-chinese)
-  haven't been implemented, requiring custom logic. PRs welcomed!
 - Only textual symbols are supported. Images are not.
